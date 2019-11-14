@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light nav-center">
+
+  <a class="navbar-brand" href="#!/home/10/1">troll<span class="font-weight-bold">Eyes</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" ng-class="{'active':(controller=='homeController')}">
+        <a class="nav-link"  href="#!/home/10/1">&#127968; Home</a>
+      </li>
+      <li class="nav-item" ng-class="{'active':(controller=='productoPlistController')}">
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/producto/plist/10/1">Productos</a>
+      </li>
+      <li class="nav-item" ng-class="{'active':(controller=='tipoproductoPlistController')}">
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/tipoproducto/plist/10/1">Tipo producto</a>
+      </li>
+      <li class="nav-item" ng-class="{'active':(controller=='facturaPlistController')}">
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/factura/plist/10/1">Facturas</a>
+      </li>
+      <li class="nav-item" ng-class="{'active':(controller=='usuarioPlistController')}">
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/usuario/plist/10/1">Usuarios</a>
+      </li>
+      <li class="nav-item" ng-class="{'active':(controller=='productofillController')}">
+        <a class="nav-link"  ng-class="{'hidden': session==false}" href="#!/producto/fill">Fill productos</a>
+      </li>
+      <li class="nav-item" ng-class="{'active':(controller=='facturafillController')}">
+        <a class="nav-link"  ng-class="{'hidden': session==false}" href="#!/factura/fill">Fill facturas</a>
+      </li>
+      <li class="nav-item" ng-class="{'active':(controller=='usuariofillController')}">
+        <a class="nav-link"  ng-class="{'hidden': session==false}" href="#!/usuario/fill">Fill usuarios</a>
+      </li>
+
+    </ul>
+    <div class="conection">
+        <ul class="navbar-nav mr-auto">
+      <li class="nav-item" ng-class="{'active': controller=='usuarioLoginController'}">
+        <a class="nav-link"  ng-class="{'hidden': session==true}" href="#!/login">Iniciar Sesión <i
+            class="fas fa-sign-in-alt" ng-class="{'hidden': session==true}"></i></a>
+      </li>
+      <li class="nav-item" ng-class="{'active': controller=='usuarioLogoutController'}"></li>
+      <a class="nav-link" ng-class="{'hidden': session==false}"  href="#!/logout"><span class="font-weight-bold">@{{usuario}}</span></a>
+      </li>
+
+      <li class="nav-item" ng-class="{'active': controller=='usuarioLogoutController'}"></li>
+      <a class="nav-link" ng-class="{'hidden': session==false}"  href="#!/logout">Cerrar Sesión <i
+          class="fas fa-sign-out-alt" ng-class="{'hidden': session==false}" ></i></a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>

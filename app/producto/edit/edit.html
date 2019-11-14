@@ -1,0 +1,95 @@
+<div class="slide-animate-container">
+        <ng-include src="'app/menu.html'"></ng-include>
+      </div>
+<div class="header shadow">
+    <h1><span class="font-weight-bold">Editar producto</span></h1>
+</div> 
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form name="userForm" ng-show="!fallo&&!hecho">
+                <div class="form-group row">
+                    <label for="id" class="col-sm-2 col-form-label">Id:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="id" value="{{id}}" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="codigo" class="col-sm-2 col-form-label">Codigo:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="codigo" class="form-control"
+                            ng-class="{ 'is-invalid' :!userForm.codigo.$valid && !userForm.codigo.$pristine}"
+                            name="codigo" ng-required="true" value="{{codigo}}" />
+                        <div class="invalid-feedback" ng-show="userForm.codigo.$invalid">
+                            El codigo no puede estar vacio.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="existencias" class="col-sm-2 col-form-label">Existencias:</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <textarea class="form-control rounded-0" rows="10" id="exampleFormControlTextarea2" rows="3"
+                                ng-model="existencias" class="form-control"
+                                ng-class="{ 'is-invalid' : !userForm.existencias.$valid && !userForm.existencias.$pristine}"
+                                name="existencias" ng-required="true" value="{{existencias}}"></textarea>
+                        </div>
+                        <div class="invalid-feedback" ng-show="userForm.existencias.$invalid">
+                            El campo existencias no puede estar vacio.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="precio" class="col-sm-2 col-form-label">Precio:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="precio" class="form-control"
+                            ng-class="{ 'is-invalid' : !userForm.precio.$valid && !userForm.precio.$pristine}"
+                            name="precio" ng-required="true" value="{{precio}}" />
+                        <div class="invalid-feedback" ng-show="userForm.precio.$error.pattern">
+                            Debe llevar al menos una etiqueta.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tipo_producto_id" class="col-sm-2 col-form-label">Tipo_producto:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="tipo_producto_id" class="form-control"
+                            ng-class="{ 'is-invalid' : !userForm.tipo_producto_id.$valid && !userForm.tipo_producto_id.$pristine}"
+                            name="tipo_producto_id" ng-required="true" value="{{tipo_producto_id}}" />
+                        <div class="invalid-feedback" ng-show="userForm.tipo_producto_id.$error.pattern">
+                            Debe llevar al menos una etiqueta.
+                        </div>       
+                    </div>
+                  </div>
+                <br>
+                <div class="row">
+                    <button type="button" class="btn btn-primary" ng-click="modificar()">Actualizar los datos</button>
+                </div>
+            </form>
+            <div ng-show="!fallo&&hecho">
+                <div class="alert alert-success text-center" role="alert">
+                    <h2>El producto se ha actualizado con éxito</h2>
+                    <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
+                </div>
+            </div>
+            <div ng-show="fallo&&hecho">
+                <div class="alert alert-danger text-center" role="alert">
+                    <h2>Ha ocurrido un error al actualizar el producto</h2>
+                    <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+                    <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
+                </div>
+            </div>
+            <div ng-show="fallo&&!hecho">
+                <div class="alert alert-danger text-center" role="alert">
+                    <h2>Ha habido un error al recibir datos del producto desde el servidor</h2>
+                    <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+                    <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-include src="'./app/footer.html'"></ng-include>
