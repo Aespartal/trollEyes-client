@@ -2,7 +2,7 @@
     <ng-include src="'app/menu.html'"></ng-include>
 </div>
 <div class="header shadow">
-    <h1><span class="font-weight-bold">Lista de posts</span></h1>
+    <h1><span class="font-weight-bold">Lista de facturas</span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -17,7 +17,7 @@
                 <nav aria-label="Registros por página">
                     <ul class="pagination float-right">
                         <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
-                            <a class="page-link" href="#!/post/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
+                            <a class="page-link" href="#!/factura/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
                         </li>
                     </ul>
                 </nav>
@@ -26,72 +26,61 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/post/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="#!/factura/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>
                 </nav>
                 <table class="table">
                     <tr>
-                        <th>Id<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                        <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
-                        <th>Título<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/titulo/asc"
+                        <th>Fecha <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/fecha/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/titulo/desc"
+                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/fecha/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
-                        <th>Cuerpo<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/cuerpo/asc"
+                        <th>Iva <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/iva/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/cuerpo/desc"
+                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/iva/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
-                        <th>Etiquetas<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/etiquetas/asc"
+                        <th>Usuario <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/usuario_id/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/etiquetas/desc"
+                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/usuario_id/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
-                        </th>
-                        <th>Fecha<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/fecha/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/fecha/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-down"></i></i></a>
-                            </div>
-
                         </th>
                         <th>Acciones</th>
                     </tr>
                     <tr ng-repeat="fila in pagina">
                         <td>{{fila.id}}</td>
-                        <td>{{fila.titulo}}</td>
-                        <td>{{fila.cuerpo}}</td>
-                        <td>{{fila.etiquetas}}</td>
                         <td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
+                        <td>{{fila.iva}}</td>
+                        <td>{{fila.usuario_obj.nombre}} {{fila.usuario_obj.apellido1}} {{fila.usuario_obj.apellido2}}</td> 
                         <td>
-                            <a href="#!/post/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
-                            <a href="#!/post/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
-                            <a href="#!/post/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
+                            <a href="#!/factura/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
+                            <a href="#!/factura/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
+                            <a href="#!/factura/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
 
@@ -101,7 +90,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/post/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="#!/factura/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>

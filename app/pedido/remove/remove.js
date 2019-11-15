@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postRemoveController",
+    "pedidoRemoveController",
     ['$scope', '$routeParams', '$location', 'promesasService', 
     function ($scope, $routeParams, $location, promesasService) {
         
@@ -18,26 +18,26 @@ var miControlador = miModulo.controller(
 
 
         $scope.id = $routeParams.id;
-        $scope.controller = "postEditController";
+        $scope.controller = "pedidoRemoveController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
 
        
 
-          promesasService.ajaxGet('post', $routeParams.id)
+          promesasService.ajaxGet('compra', $routeParams.id)
           .then(function (response) {
               $scope.id = response.data.message.id;
-              $scope.titulo = response.data.message.titulo;
-              $scope.cuerpo = response.data.message.cuerpo;
-              $scope.etiquetas = response.data.message.etiquetas;
+              $scope.cantidad = response.data.message.cantidad;
+              $scope.producto_id = response.data.message.producto_id;
+              $scope.factura_id = response.data.message.factura_id;
           }, function () {
               $scope.fallo = true;
           })
 
         $scope.remove = function () {
 
-            promesasService.ajaxRemove('post', $routeParams.id)
+            promesasService.ajaxRemove('compra', $routeParams.id)
             .then(function (response) {
                 if (response.data.status != 200) {
                     $scope.fallo = true;

@@ -33,7 +33,7 @@
                 </nav>
                 <table class="table">
                     <tr>
-                        <th>Id<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
@@ -42,39 +42,59 @@
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
-                        <th>Título<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/titulo/asc"
+                        <th>DNI <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/dni/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/titulo/desc"
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/dni/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
-                        <th>Cuerpo<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/cuerpo/asc"
+                        <th>Nombre <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/nombre/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/cuerpo/desc"
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/nombre/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
-                        <th>Etiquetas<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/etiquetas/asc"
+                        <th>Apellidos <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/apellido1/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/etiquetas/desc"
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/apellido1/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
                         </th>
-                        <th>Fecha<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/fecha/asc"
+                        <th>Email <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/email/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/fecha/desc"
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/email/desc"
+                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                        class="fas fa-sort-down"></i></i></a>
+                            </div>
+
+                        </th>
+                        <th>Login <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/login/asc"
+                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                        class="fas fa-sort-up"></i></i></a>
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/login/desc"
+                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                        class="fas fa-sort-down"></i></i></a>
+                            </div>
+
+                        </th>
+                        <th>Tipo usuario <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/tipo_usuario/asc"
+                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                        class="fas fa-sort-up"></i></i></a>
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/tipo_usuario/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
@@ -84,14 +104,16 @@
                     </tr>
                     <tr ng-repeat="fila in pagina">
                         <td>{{fila.id}}</td>
-                        <td>{{fila.titulo}}</td>
-                        <td>{{fila.cuerpo}}</td>
-                        <td>{{fila.etiquetas}}</td>
-                        <td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
+                        <td>{{fila.dni}}</td>
+                        <td>{{fila.nombre}}</td>
+                        <td>{{fila.apellido1}} {{fila.apellido2}}</td>
+                        <td>{{fila.email}}</td>
+                        <td>{{fila.login}}</td>
+                        <td>{{fila.tipo_usuario_obj.descripcion}}</td>
                         <td>
-                            <a href="#!/post/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
-                            <a href="#!/post/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
-                            <a href="#!/post/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
+                            <a href="#!/usuario/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
+                            <a href="#!/usuario/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
+                            <a href="#!/usuario/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
 

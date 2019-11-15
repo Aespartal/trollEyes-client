@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postPlistController",
+    "carritoPlistController",
     ['$scope', '$routeParams','$http', 'promesasService', '$window', function ($scope, $routeParams,$http, promesasService, $window) {
           
         promesasService.ajaxCheck()
@@ -17,14 +17,14 @@ var miControlador = miModulo.controller(
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
         $scope.rppS = [10, 50, 100];
-        $scope.controller = "postPlistController";
+        $scope.controller = "carritoPlistController";
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;
 
             if ($scope.order == null || $scope.colOrder == null) {
-                request = "http://localhost:8081/blogbuster/json?ob=post&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
+                request = "http://localhost:8081/trolleyes/json?ob=post&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
             } else {
-                request = "http://localhost:8081/blogbuster/json?ob=post&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
+                request = "http://localhost:8081/trolleyes/json?ob=post&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
             }
 
 
@@ -38,7 +38,7 @@ var miControlador = miModulo.controller(
             });
     
             $scope.showSelectValue = function (mySelect) {
-                $window.location.href = `/blogBuster-client/#!/post/plist/`+mySelect+`/1`;
+                $window.location.href = `/trollEyes-client/#!/carrito/plist/`+mySelect+`/1`;
             }
 
         $scope.search = function(){

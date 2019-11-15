@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postNewController",
+    "pedidoNewController",
     ['$scope', '$http','$location', 'promesasService', function ($scope, $http,$location, promesasService) {
         
         promesasService.ajaxCheck()
@@ -14,7 +14,7 @@ var miControlador = miModulo.controller(
             $scope.session= false;
         })
 
-        $scope.controller = "postNewController";
+        $scope.controller = "pedidoNewController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
@@ -33,16 +33,15 @@ var miControlador = miModulo.controller(
 
         $scope.new = function () {
             const datos = {
-                titulo: $scope.titulo,
-                cuerpo: $scope.cuerpo,
-                etiquetas: $scope.etiquetas, 
-                fecha: $scope.fecha
+                cantidad: $scope.cantidad,
+                producto_id: $scope.producto_id,
+                factura_id: $scope.factura_id, 
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
             };
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            promesasService.ajaxNew('post', { params: jsonToSend })
+            promesasService.ajaxNew('compra', { params: jsonToSend })
                 .then(function successCallback(response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;

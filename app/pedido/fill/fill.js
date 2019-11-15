@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postFillController",
+    "pedidoFillController",
     ['$scope', '$http', '$routeParams', 'promesasService',
     function ($scope, $http, $routeParams, promesasService) {
 
@@ -16,14 +16,14 @@ var miControlador = miModulo.controller(
          })
 
        //--
-       $scope.controller = "postFillController";
+       $scope.controller = "pedidoFillController";
        //--
        $scope.mensaje = "";
        $scope.fallo = false;
        $scope.hecho = false;
        //--
        $scope.crear = function (numero) {
-        promesasService.ajaxFill('post', numero).then(function (response) {
+        promesasService.ajaxFill('compra', numero).then(function (response) {
             if (response.data.status == 200) {
                 $scope.fallo = false;
                 $scope.hecho = true;

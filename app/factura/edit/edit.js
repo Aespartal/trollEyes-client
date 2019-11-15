@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postEditController",
+    "facturaEditController",
     ['$scope', '$http', '$routeParams', 'promesasService',
     function ($scope, $http, $routeParams, promesasService) {
         
@@ -16,20 +16,19 @@ var miControlador = miModulo.controller(
          })
 
         $scope.id = $routeParams.id;
-        $scope.controller = "postEditController";
+        $scope.controller = "facturaEditController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
         $scope.fecha = new Date();
         
 
-        promesasService.ajaxGet('post', $routeParams.id)
+        promesasService.ajaxGet('factura', $routeParams.id)
             .then(function (response) {
                 $scope.id = response.data.message.id;
-                $scope.titulo = response.data.message.titulo;
-                $scope.cuerpo = response.data.message.cuerpo;
-                $scope.etiquetas = response.data.message.etiquetas;
                 $scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
+                $scope.iva = response.data.message.iva;
+                $scope.usuario_id = response.data.message.usuario_id;
             }, function () {
                 $scope.fallo = true;
             })
@@ -38,17 +37,16 @@ var miControlador = miModulo.controller(
 
             const datos = {
                 id: $routeParams.id,
-                titulo: $scope.titulo,
-                cuerpo: $scope.cuerpo,
-                etiquetas: $scope.etiquetas,
-                fecha: $scope.fecha
+                fecha: $scope.fecha,
+                iva: $scope.iva,
+                usuario_id: $scope.usuario_id,
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
             };
 
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            promesasService.ajaxUpdate('post', { params: jsonToSend })
+            promesasService.ajaxUpdate('factura', { params: jsonToSend })
                 .then(function (response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -69,13 +67,13 @@ var miControlador = miModulo.controller(
         };
 
         $scope.reset = function () {
-            promesasService.ajaxGet('post', $routeParams.id)
+            promesasService.ajaxGet('factura', $routeParams.id)
                 .then(function (response) {
                     const respuesta = response.data.message;
-                    $scope.titulo = respuesta.titulo;
-                    $scope.cuerpo = respuesta.cuerpo;
-                    $scope.etiquetas = respuesta.etiquetas;
+                    $scope.id = response.data.message.id;
                     $scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
+                    $scope.iva = response.data.message.iva;
+                    $scope.usuario_id = response.data.message.usuario_id;
                 }, function (error) {
                     $scope.fallo = true;
                 });

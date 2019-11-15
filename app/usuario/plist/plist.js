@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postPlistController",
+    "usuarioPlistController",
     ['$scope', '$routeParams','$http', 'promesasService', '$window', function ($scope, $routeParams,$http, promesasService, $window) {
           
         promesasService.ajaxCheck()
@@ -17,14 +17,14 @@ var miControlador = miModulo.controller(
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
         $scope.rppS = [10, 50, 100];
-        $scope.controller = "postPlistController";
+        $scope.controller = "usuarioPlistController";
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;
 
             if ($scope.order == null || $scope.colOrder == null) {
-                request = "http://localhost:8081/blogbuster/json?ob=post&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
+                request = "http://localhost:8081/trolleyes/json?ob=usuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
             } else {
-                request = "http://localhost:8081/blogbuster/json?ob=post&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
+                request = "http://localhost:8081/trolleyes/json?ob=usuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
             }
 
 
@@ -38,11 +38,11 @@ var miControlador = miModulo.controller(
             });
     
             $scope.showSelectValue = function (mySelect) {
-                $window.location.href = `/blogBuster-client/#!/post/plist/`+mySelect+`/1`;
+                $window.location.href = `/trollEyes-client/#!/usuario/plist/`+mySelect+`/1`;
             }
 
         $scope.search = function(){
-            promesasService.ajaxSearch('post',$scope.rppActual,$scope.paginaActual,$scope.word)
+            promesasService.ajaxSearch('usuario',$scope.rppActual,$scope.paginaActual,$scope.word)
             .then(function (response) {
                 if (response.data.status != 200) {
                     $scope.fallo = true;
@@ -60,7 +60,7 @@ var miControlador = miModulo.controller(
                 $scope.falloMensaje = error.message + " " + error.stack;
             });
         }
-        promesasService.ajaxGetCount('post')
+        promesasService.ajaxGetCount('usuario')
         .then(function (response) {
             $scope.status = response.data.status;
             $scope.numRegistros = response.data.message;

@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postRemoveController",
+    "carritoRemoveController",
     ['$scope', '$routeParams', '$location', 'promesasService', 
     function ($scope, $routeParams, $location, promesasService) {
         
@@ -18,7 +18,7 @@ var miControlador = miModulo.controller(
 
 
         $scope.id = $routeParams.id;
-        $scope.controller = "postEditController";
+        $scope.controller = "carritoRemoveController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";

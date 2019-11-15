@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postNewController",
+    "carritoNewController",
     ['$scope', '$http','$location', 'promesasService', function ($scope, $http,$location, promesasService) {
         
         promesasService.ajaxCheck()
@@ -14,7 +14,7 @@ var miControlador = miModulo.controller(
             $scope.session= false;
         })
 
-        $scope.controller = "postNewController";
+        $scope.controller = "carritoNewController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";

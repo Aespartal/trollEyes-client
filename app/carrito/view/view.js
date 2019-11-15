@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postViewController",
+    "carritoViewController",
     ['$scope', '$routeParams', 'promesasService',
         function ($scope, $routeParams, promesasService) {
 
@@ -15,7 +15,7 @@ var miControlador = miModulo.controller(
                 $scope.session= false;
             })
 
-            promesasService.ajaxGet('post', $routeParams.id)
+            promesasService.ajaxGet('carrito', $routeParams.id)
                 .then(function (response) {
                     $scope.id = response.data.message.id;
                     $scope.titulo = response.data.message.titulo;

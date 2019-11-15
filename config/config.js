@@ -2,6 +2,18 @@ miModulo.config(['$httpProvider', function($httpProvider) {
   $httpProvider.defaults.withCredentials = true;
 }])
 
+/*
+html5Mode
+
+miModulo.config(['$locationProvider', function ($locationProvider) {
+  $locationProvider.html5Mode({
+      //requireBase: false,
+      enabled: true
+  });
+}]);
+/*
+datelocale
+*/
 miModulo.config(function ($mdDateLocaleProvider) {
   // Example of a Spanish localization.
   $mdDateLocaleProvider.months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',

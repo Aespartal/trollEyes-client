@@ -2,62 +2,53 @@
         <ng-include src="'app/menu.html'"></ng-include>
       </div>
 <div class="header shadow">
-    <h1><span class="font-weight-bold">Editar post</span></h1>
+    <h1><span class="font-weight-bold">Editar factura</span></h1>
 </div>
 <div class="container">
     <div class="row">
         <div class="col">
             <form name="userForm" ng-show="!fallo&&!hecho">
+                 <!--ID-->
                 <div class="form-group row">
-                    <label for="titulo" class="col-sm-2 col-form-label">Id:</label>
+                    <label for="id" class="col-sm-2 col-form-label">Id:</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="id" value="{{id}}" class="form-control" readonly />
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="titulo" class="form-control"
-                            ng-class="{ 'is-invalid' :!userForm.cuerpo.$valid && !userForm.titulo.$pristine}"
-                            name="titulo" ng-required="true" value="{{titulo}}" />
-                        <div class="invalid-feedback" ng-show="userForm.titulo.$invalid">
-                            El titulo no puede estar vacio.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
-                    <div class="col-sm-10">
-                        <div class="form-group">
-                            <textarea class="form-control rounded-0" rows="10" id="exampleFormControlTextarea2" rows="3"
-                                ng-model="cuerpo" class="form-control"
-                                ng-class="{ 'is-invalid' : !userForm.cuerpo.$valid && !userForm.cuerpo.$pristine}"
-                                name="cuerpo" ng-required="true" value="{{cuerpo}}"></textarea>
-                        </div>
-                        <div class="invalid-feedback" ng-show="userForm.cuerpo.$invalid">
-                            El cuerpo no puede estar vacio.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="etiquetas" class="form-control"
-                            ng-class="{ 'is-invalid' : !userForm.etiquetas.$valid && !userForm.etiquetas.$pristine}"
-                            name="etiquetas" ng-required="true" value="{{etiquetas}}" />
-                        <div class="invalid-feedback" ng-show="userForm.etiquetas.$error.pattern">
-                            Debe llevar al menos una etiqueta.
-                        </div>
-                    </div>
-                </div>
+                 <!--Fecha-->
                 <div class="form-group row">
                     <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
                     <div class="col-sm-10">
-                      <md-datepicker ng-model="fecha" md-placeholder="Enter date"
-                        ng-class="{ 'is-invalid' : !userForm.fecha.$valid && !userForm.fecha.$pristine}" name="fecha"
-                        ng-required="true"></md-datepicker>
+                            <md-datepicker ng-model="fecha" md-placeholder="Enter date"
+                            ng-class="{ 'is-invalid' : !userForm.fecha.$valid && !userForm.fecha.$pristine}" name="fecha"
+                            ng-required="true"></md-datepicker>
                     </div>
-                  </div>
+                </div>
+                <!--Iva-->
+                <div class="form-group row">
+                    <label for="iva" class="col-sm-2 col-form-label">Iva:</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">         
+                            <input type="text" ng-model="iva" value="{{iva}}" class="form-control"/>
+                        </div>
+                        <div class="invalid-feedback" ng-show="userForm.iva.$invalid">
+                            El iva no puede estar vacio.
+                        </div>
+                    </div>
+                </div>
+                <!--Usuario_ID-->
+                <div class="form-group row">
+                    <label for="usuario_id" class="col-sm-2 col-form-label">Usuario id:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="usuario_id" class="form-control"
+                            ng-class="{ 'is-invalid' : !userForm.usuario_id.$valid && !userForm.usuario_id.$pristine}"
+                            name="usuario_id" ng-required="true" value="{{usuario_id}}" />
+                        <div class="invalid-feedback" ng-show="userForm.usuario_id.$error.pattern">
+                                El usuario_id no puede estar vacio.
+                        </div>
+                    </div>
+                </div>
+               
                 <br>
                 <div class="row">
                     <button type="button" class="btn btn-primary" ng-click="modificar()">Actualizar los datos</button>
@@ -65,14 +56,14 @@
             </form>
             <div ng-show="!fallo&&hecho">
                 <div class="alert alert-success text-center" role="alert">
-                    <h2>El Post se ha actualizado con éxito</h2>
+                    <h2>La factura se ha actualizado con éxito</h2>
                     <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
                     <button class="btn btn-primary" ng-click="volver()">Volver</button>
                 </div>
             </div>
             <div ng-show="fallo&&hecho">
                 <div class="alert alert-danger text-center" role="alert">
-                    <h2>Ha ocurrido un error al actualizar el Post</h2>
+                    <h2>Ha ocurrido un error al actualizar la factura</h2>
                     <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
                     <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
                     <button class="btn btn-primary" ng-click="volver()">Volver</button>
@@ -80,7 +71,7 @@
             </div>
             <div ng-show="fallo&&!hecho">
                 <div class="alert alert-danger text-center" role="alert">
-                    <h2>Ha habido un error al recibir datos del Post desde el servidor</h2>
+                    <h2>Ha habido un error al recibir datos de la factura desde el servidor</h2>
                     <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
                     <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
                     <button class="btn btn-primary" ng-click="volver()">Volver</button>

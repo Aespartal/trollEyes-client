@@ -9,13 +9,14 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" ng-class="{'active':(controller=='homeController')}">
-        <a class="nav-link"  href="#!/home/10/1">&#127968; Home</a>
+        <a class="nav-link" href="#!/home/10/1">&#127968; Home</a>
       </li>
       <li class="nav-item" ng-class="{'active':(controller=='productoPlistController')}">
         <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/producto/plist/10/1">Productos</a>
       </li>
-      <li class="nav-item" ng-class="{'active':(controller=='tipoproductoPlistController')}">
-        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/tipoproducto/plist/10/1">Tipo producto</a>
+     
+      <li class="nav-item" ng-class="{'active':(controller=='pedidoPlistController')}">
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/pedido/plist/10/1">Pedidos</a>
       </li>
       <li class="nav-item" ng-class="{'active':(controller=='facturaPlistController')}">
         <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/factura/plist/10/1">Facturas</a>
@@ -24,31 +25,35 @@
         <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/usuario/plist/10/1">Usuarios</a>
       </li>
       <li class="nav-item" ng-class="{'active':(controller=='productofillController')}">
-        <a class="nav-link"  ng-class="{'hidden': session==false}" href="#!/producto/fill">Fill productos</a>
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/producto/fill">Fill productos</a>
       </li>
       <li class="nav-item" ng-class="{'active':(controller=='facturafillController')}">
-        <a class="nav-link"  ng-class="{'hidden': session==false}" href="#!/factura/fill">Fill facturas</a>
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/factura/fill">Fill facturas</a>
       </li>
       <li class="nav-item" ng-class="{'active':(controller=='usuariofillController')}">
-        <a class="nav-link"  ng-class="{'hidden': session==false}" href="#!/usuario/fill">Fill usuarios</a>
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/usuario/fill">Fill usuarios</a>
       </li>
 
     </ul>
     <div class="conection">
-        <ul class="navbar-nav mr-auto">
-      <li class="nav-item" ng-class="{'active': controller=='usuarioLoginController'}">
-        <a class="nav-link"  ng-class="{'hidden': session==true}" href="#!/login">Iniciar Sesión <i
-            class="fas fa-sign-in-alt" ng-class="{'hidden': session==true}"></i></a>
-      </li>
-      <li class="nav-item" ng-class="{'active': controller=='usuarioLogoutController'}"></li>
-      <a class="nav-link" ng-class="{'hidden': session==false}"  href="#!/logout"><span class="font-weight-bold">@{{usuario}}</span></a>
-      </li>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" ng-class="{'active': controller=='usuarioLoginController'}">
+          <a class="nav-link" ng-class="{'hidden': session==true}" href="#!/login">Iniciar Sesión <i
+              class="fas fa-sign-in-alt" ng-class="{'hidden': session==true}"></i></a>
+        </li>
+        <li class="nav-item" ng-class="{'active': controller=='usuarioLogoutController'}"></li>
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/logout"><span
+            class="font-weight-bold">@{{usuario}}</span></a>
+        </li>
 
-      <li class="nav-item" ng-class="{'active': controller=='usuarioLogoutController'}"></li>
-      <a class="nav-link" ng-class="{'hidden': session==false}"  href="#!/logout">Cerrar Sesión <i
-          class="fas fa-sign-out-alt" ng-class="{'hidden': session==false}" ></i></a>
-      </li>
-    </ul>
+        <li class="nav-item" ng-class="{'active': controller=='usuarioLogoutController'}"></li>
+        <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/logout">Cerrar Sesión <i
+            class="fas fa-sign-out-alt" ng-class="{'hidden': session==false}"></i></a>
+        </li>
+        <li class="nav-item" ng-class="{'active':(controller=='carritoPlistController')}">
+            <a class="nav-link" ng-class="{'hidden': session==false}" href="#!/carrito/plist/10/1"><i class="fa fa-icon-list-alt"></i>Carrito</a> 
+          </li>
+      </ul>
+    </div>
   </div>
-</div>
 </nav>

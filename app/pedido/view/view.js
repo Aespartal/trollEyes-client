@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postViewController",
+    "pedidoViewController",
     ['$scope', '$routeParams', 'promesasService',
         function ($scope, $routeParams, promesasService) {
 
@@ -15,12 +15,12 @@ var miControlador = miModulo.controller(
                 $scope.session= false;
             })
 
-            promesasService.ajaxGet('post', $routeParams.id)
+            promesasService.ajaxGet('compra', $routeParams.id)
                 .then(function (response) {
                     $scope.id = response.data.message.id;
-                    $scope.titulo = response.data.message.titulo;
-                    $scope.cuerpo = response.data.message.cuerpo;
-                    $scope.etiquetas = response.data.message.etiquetas;
+                    $scope.cantidad = response.data.message.cantidad;
+                    $scope.producto_id = response.data.message.producto_id;
+                    $scope.factura_id = response.data.message.factura_id;
                 }, function () {
                     $scope.fallo = true;
                 })

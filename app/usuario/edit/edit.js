@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "postEditController",
+    "usuarioEditController",
     ['$scope', '$http', '$routeParams', 'promesasService',
     function ($scope, $http, $routeParams, promesasService) {
         
@@ -16,20 +16,22 @@ var miControlador = miModulo.controller(
          })
 
         $scope.id = $routeParams.id;
-        $scope.controller = "postEditController";
+        $scope.controller = "usuarioEditController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
         $scope.fecha = new Date();
         
 
-        promesasService.ajaxGet('post', $routeParams.id)
+        promesasService.ajaxGet('usuario', $routeParams.id)
             .then(function (response) {
                 $scope.id = response.data.message.id;
-                $scope.titulo = response.data.message.titulo;
-                $scope.cuerpo = response.data.message.cuerpo;
-                $scope.etiquetas = response.data.message.etiquetas;
-                $scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
+                $scope.dni = response.data.message.dni;
+                $scope.nombre = response.data.message.nombre;
+                $scope.apellido1 = response.data.message.apellido1;
+                $scope.apellido2 = response.data.message.apellido2;
+                $scope.email = response.data.message.email;
+                $scope.login = response.data.message.login;
             }, function () {
                 $scope.fallo = true;
             })
@@ -38,17 +40,19 @@ var miControlador = miModulo.controller(
 
             const datos = {
                 id: $routeParams.id,
-                titulo: $scope.titulo,
-                cuerpo: $scope.cuerpo,
-                etiquetas: $scope.etiquetas,
-                fecha: $scope.fecha
+                dni: $scope.dni,
+                nombre: $scope.nombre,
+                apellido1: $scope.apellido1,
+                apellido2: $scope.apellido2,
+                email: $scope.email,
+                login: $scope.login
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
             };
 
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            promesasService.ajaxUpdate('post', { params: jsonToSend })
+            promesasService.ajaxUpdate('usuario', { params: jsonToSend })
                 .then(function (response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -69,13 +73,15 @@ var miControlador = miModulo.controller(
         };
 
         $scope.reset = function () {
-            promesasService.ajaxGet('post', $routeParams.id)
+            promesasService.ajaxGet('usuario', $routeParams.id)
                 .then(function (response) {
                     const respuesta = response.data.message;
-                    $scope.titulo = respuesta.titulo;
-                    $scope.cuerpo = respuesta.cuerpo;
-                    $scope.etiquetas = respuesta.etiquetas;
-                    $scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
+                    $scope.dni = respuesta.titulo;
+                    $scope.nombre = respuesta.cuerpo;
+                    $scope.apellido1 = respuesta.etiquetas;
+                    $scope.apellido2 = respuesta.apellido2;
+                    $scope.email = respuesta.email;
+                    $scope.login = respuesta.login;
                 }, function (error) {
                     $scope.fallo = true;
                 });
