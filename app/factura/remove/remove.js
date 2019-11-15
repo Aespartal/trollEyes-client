@@ -1,20 +1,15 @@
 var miControlador = miModulo.controller(
     "facturaRemoveController",
-    ['$scope', '$routeParams', '$location', 'promesasService', 
-    function ($scope, $routeParams, $location, promesasService) {
+    
+    function ($scope, $routeParams, $location, promesasService,auth) {
         
           
-        promesasService.ajaxCheck()
-        .then(function (response) {
-            if(response.data.status=="200"){
-                $scope.session= true;
-                $scope.usuario=response.data.message;
-            } else {
-                $scope.session= false;
-            }
-        }, function (response) {
-            $scope.session= false;
-        })
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
 
 
         $scope.id = $routeParams.id;
@@ -28,9 +23,11 @@ var miControlador = miModulo.controller(
           promesasService.ajaxGet('factura', $routeParams.id)
           .then(function (response) {
               $scope.id = response.data.message.id;
-              $scope.fecha = response.data.message.fecha;
+              $scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
               $scope.iva = response.data.message.iva;
-              $scope.usuario_id = response.data.message.usuario_id;
+              $scope.usuario_obj_nombre = response.data.message.usuario_obj.nombre;
+              $scope.usuario_obj_apellido1 = response.data.message.usuario_obj.apellido1;
+              $scope.usuario_obj_apellido2 = response.data.message.usuario_obj.apellido2;
           }, function () {
               $scope.fallo = true;
           })
@@ -59,5 +56,5 @@ var miControlador = miModulo.controller(
         $scope.cerrar = function () {
             $location.path('/home/10/1');
         };
-    }]
+    }
 )

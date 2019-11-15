@@ -1,18 +1,14 @@
 var miControlador = miModulo.controller(
     "productoNewController",
-    ['$scope', '$http','$location', 'promesasService', function ($scope, $http,$location, promesasService) {
+
+    function ($scope, $http,$location, promesasService,auth) {
         
-        promesasService.ajaxCheck()
-        .then(function (response) {
-            if(response.data.status=="200"){
-                $scope.session= true;
-                $scope.usuario=response.data.message;
-            } else {
-                $scope.session= false;
-            }
-        }, function (response) {
-            $scope.session= false;
-        })
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
 
         $scope.controller = "productoNewController";
         $scope.fallo = false;
@@ -65,5 +61,5 @@ var miControlador = miModulo.controller(
         $scope.cerrar = function () {
             $location.path('/home/10/1');
         };
-    }]
+    }
 )

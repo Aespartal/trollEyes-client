@@ -1,23 +1,19 @@
 var miControlador = miModulo.controller(
-    "pedidoPlistController",
-    ['$scope', '$routeParams','$http', 'promesasService', '$window', function ($scope, $routeParams,$http, promesasService, $window) {
+    "compraPlistController",
+
+    function ($scope, $routeParams,$http, promesasService, $window,auth) {
           
-        promesasService.ajaxCheck()
-        .then(function (response) {
-            if(response.data.status=="200"){
-                $scope.session= true;
-                $scope.usuario=response.data.message;
-            } else {
-                $scope.session= false;
-            }
-        }, function (response) {
-            $scope.session= false;
-        })
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
 
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
         $scope.rppS = [10, 50, 100];
-        $scope.controller = "pedidoPlistController";
+        $scope.controller = "compraPlistController";
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;
 
@@ -38,7 +34,7 @@ var miControlador = miModulo.controller(
             });
     
             $scope.showSelectValue = function (mySelect) {
-                $window.location.href = `/trollEyes-client/#!/pedido/plist/`+mySelect+`/1`;
+                $window.location.href = `/trollEyes-client/#!/compra/plist/`+mySelect+`/1`;
             }
 
         $scope.search = function(){
@@ -94,5 +90,5 @@ var miControlador = miModulo.controller(
         
        
 
-    }]
+    }
 )

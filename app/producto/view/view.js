@@ -1,19 +1,14 @@
 var miControlador = miModulo.controller(
     "productoViewController",
-    ['$scope', '$routeParams', 'promesasService',
-        function ($scope, $routeParams, promesasService) {
 
-            promesasService.ajaxCheck()
-            .then(function (response) {
-                if(response.data.status=="200"){
-                    $scope.session= true;
-                    $scope.usuario=response.data.message;
-                } else {
-                    $scope.session= false;
-                }
-            }, function (response) {
-                $scope.session= false;
-            })
+        function ($scope, $routeParams, promesasService,auth) {
+
+            if (auth.data.status != 200) {
+                $location.path('/login');
+            } else {
+                $scope.authStatus = auth.data.status;
+                $scope.authUsername = auth.data.message;
+            }
 
             promesasService.ajaxGet('producto', $routeParams.id)
                 .then(function (response) {
@@ -22,9 +17,9 @@ var miControlador = miModulo.controller(
                     $scope.existencias = response.data.message.existencias;
                     $scope.precio = response.data.message.precio;
                     $scope.imagen = response.data.message.imagen;
-                    $scope.tipo_producto_id = response.data.message.tipo_producto_id;   
+                    $scope.tipo_producto_obj = response.data.message.tipo_producto_obj;   
                 }, function () {
                     $scope.fallo = true;
                 })
-        }]
+        }
 )

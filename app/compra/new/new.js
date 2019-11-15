@@ -1,20 +1,16 @@
 var miControlador = miModulo.controller(
-    "pedidoNewController",
-    ['$scope', '$http','$location', 'promesasService', function ($scope, $http,$location, promesasService) {
-        
-        promesasService.ajaxCheck()
-        .then(function (response) {
-            if(response.data.status=="200"){
-                $scope.session= true;
-                $scope.usuario=response.data.message;
-            } else {
-                $scope.session= false;
-            }
-        }, function (response) {
-            $scope.session= false;
-        })
+    "compraNewController",
 
-        $scope.controller = "pedidoNewController";
+    function ($scope, $http,$location, promesasService,auth) {
+        
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
+
+        $scope.controller = "compraNewController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
@@ -34,8 +30,8 @@ var miControlador = miModulo.controller(
         $scope.new = function () {
             const datos = {
                 cantidad: $scope.cantidad,
-                producto_id: $scope.producto_id,
-                factura_id: $scope.factura_id, 
+                producto_obj: $scope.producto_obj.descripcion,
+                factura_obj: $scope.factura_obj.id, 
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
@@ -64,5 +60,5 @@ var miControlador = miModulo.controller(
         $scope.cerrar = function () {
             $location.path('/home/10/1');
         };
-    }]
+    }
 )

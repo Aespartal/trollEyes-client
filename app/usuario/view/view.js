@@ -1,28 +1,26 @@
 var miControlador = miModulo.controller(
     "postViewController",
-    ['$scope', '$routeParams', 'promesasService',
-        function ($scope, $routeParams, promesasService) {
 
-            promesasService.ajaxCheck()
+    function ($scope, $routeParams, promesasService,auth) {
+      
+                    if (auth.data.status != 200) {
+                        $location.path('/login');
+                    } else {
+                        $scope.authStatus = auth.data.status;
+                        $scope.authUsername = auth.data.message;
+                    }
+        
+        promesasService.ajaxGet('usuario', $routeParams.id)
             .then(function (response) {
-                if(response.data.status=="200"){
-                    $scope.session= true;
-                    $scope.usuario=response.data.message;
-                } else {
-                    $scope.session= false;
-                }
-            }, function (response) {
-                $scope.session= false;
+                $scope.id = response.data.message.id;
+                $scope.dni = response.data.message.dni;
+                $scope.nombre = response.data.message.nombre;
+                $scope.apellido1 = response.data.message.apellido1;
+                $scope.apellido2 = response.data.message.apellido2;
+                $scope.email = response.data.message.email;
+                $scope.login = response.data.message.login;
+            }, function () {
+                $scope.fallo = true;
             })
-
-            promesasService.ajaxGet('post', $routeParams.id)
-                .then(function (response) {
-                    $scope.id = response.data.message.id;
-                    $scope.titulo = response.data.message.titulo;
-                    $scope.cuerpo = response.data.message.cuerpo;
-                    $scope.etiquetas = response.data.message.etiquetas;
-                }, function () {
-                    $scope.fallo = true;
-                })
-        }]
+    }
 )

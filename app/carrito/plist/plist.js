@@ -1,18 +1,14 @@
 var miControlador = miModulo.controller(
     "carritoPlistController",
-    ['$scope', '$routeParams','$http', 'promesasService', '$window', function ($scope, $routeParams,$http, promesasService, $window) {
+ 
+    function ($scope, $routeParams,$http, promesasService, $window,auth) {
           
-        promesasService.ajaxCheck()
-        .then(function (response) {
-            if(response.data.status=="200"){
-                $scope.session= true;
-                $scope.usuario=response.data.message;
-            } else {
-                $scope.session= false;
-            }
-        }, function (response) {
-            $scope.session= false;
-        })
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
 
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
@@ -22,9 +18,9 @@ var miControlador = miModulo.controller(
         $scope.order = $routeParams.order;
 
             if ($scope.order == null || $scope.colOrder == null) {
-                request = "http://localhost:8081/trolleyes/json?ob=post&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
+                request = "http://localhost:8081/trolleyes/json?ob=carrito&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
             } else {
-                request = "http://localhost:8081/trolleyes/json?ob=post&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
+                request = "http://localhost:8081/trolleyes/json?ob=carrito&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
             }
 
 
@@ -94,5 +90,5 @@ var miControlador = miModulo.controller(
         
        
 
-    }]
+    }
 )

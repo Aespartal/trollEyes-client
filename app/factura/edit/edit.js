@@ -1,19 +1,14 @@
 var miControlador = miModulo.controller(
     "facturaEditController",
-    ['$scope', '$http', '$routeParams', 'promesasService',
-    function ($scope, $http, $routeParams, promesasService) {
+
+    function ($scope, $http, $routeParams, promesasService,auth) {
         
-         promesasService.ajaxCheck()
-         .then(function (response) {
-             if(response.data.status=="200"){
-                 $scope.session= true;
-                 $scope.usuario=response.data.message;
-             } else {
-                 $scope.session= false;
-             }
-         }, function (response) {
-             $scope.session= false;
-         })
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
 
         $scope.id = $routeParams.id;
         $scope.controller = "facturaEditController";
@@ -73,7 +68,7 @@ var miControlador = miModulo.controller(
                     $scope.id = response.data.message.id;
                     $scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
                     $scope.iva = response.data.message.iva;
-                    $scope.usuario_id = response.data.message.usuario_id;
+                    $scope.usuario_obj = response.data.message.usuario_obj;
                 }, function (error) {
                     $scope.fallo = true;
                 });
@@ -85,6 +80,6 @@ var miControlador = miModulo.controller(
 
         $scope.reset();
 
-    }]
+    }
 
 )

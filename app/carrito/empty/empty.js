@@ -1,19 +1,14 @@
 var miControlador = miModulo.controller(
     "carritoEmptyController",
-    ['$scope', '$http', '$routeParams', 'promesasService',
-    function ($scope, $http, $routeParams, promesasService) {
+
+    function ($scope, $http, $routeParams, promesasService,auth) {
         
-         promesasService.ajaxCheck()
-         .then(function (response) {
-             if(response.data.status=="200"){
-                 $scope.session= true;
-                 $scope.usuario=response.data.message;
-             } else {
-                 $scope.session= false;
-             }
-         }, function (response) {
-             $scope.session= false;
-         })
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
 
         $scope.id = $routeParams.id;
         $scope.controller = "carritoEmptyController";
@@ -87,6 +82,6 @@ var miControlador = miModulo.controller(
 
         $scope.reset();
 
-    }]
+    }
 
 )

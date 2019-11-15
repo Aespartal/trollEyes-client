@@ -1,27 +1,21 @@
 var miControlador = miModulo.controller(
     "productoEditController",
-    ['$scope', '$http', '$routeParams', 'promesasService',
-    function ($scope, $http, $routeParams, promesasService) {
-        
-         promesasService.ajaxCheck()
-         .then(function (response) {
-             if(response.data.status=="200"){
-                 $scope.session= true;
-                 $scope.usuario=response.data.message;
-             } else {
-                 $scope.session= false;
-             }
-         }, function (response) {
-             $scope.session= false;
-         })
+
+    function ($scope, $http, $routeParams, promesasService, auth) {
+
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
 
         $scope.id = $routeParams.id;
         $scope.controller = "productoEditController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
-        //$scope.fecha = new Date();
-        
+
 
         promesasService.ajaxGet('producto', $routeParams.id)
             .then(function (response) {
@@ -30,8 +24,9 @@ var miControlador = miModulo.controller(
                 $scope.existencias = response.data.message.existencias;
                 $scope.precio = response.data.message.precio;
                 $scope.imagen = response.data.message.imagen;
-                $scope.tipo_producto_id = response.data.message.tipo_producto_id;
-                //$scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
+                $scope.descripcion = response.data.message.descripcion;
+                $scope.tipo_producto_obj = response.data.message.tipo_producto_obj.descripcion;
+
             }, function () {
                 $scope.fallo = true;
             })
@@ -43,21 +38,24 @@ var miControlador = miModulo.controller(
                 codigo: $scope.codigo,
                 existencias: $scope.existencias,
                 precio: $scope.precio,
-                tipo_producto_id: $scope.tipo_producto_id
+                descripcion: $scope.descripcion,
+                tipo_producto_obj: $scope.tipo_producto_obj.descripcion
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
             };
 
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            promesasService.ajaxUpdate('producto', { params: jsonToSend })
+            promesasService.ajaxUpdate('producto', {
+                    params: jsonToSend
+                })
                 .then(function (response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
                         $scope.falloMensaje = response.data.message;
                     } else {
                         $scope.fallo = false;
-                        $scope.hecho=true;
+                        $scope.hecho = true;
                     }
                 }, function (error) {
                     $scope.hecho = true;
@@ -79,8 +77,9 @@ var miControlador = miModulo.controller(
                     $scope.existencias = response.data.message.existencias;
                     $scope.precio = response.data.message.precio;
                     $scope.imagen = response.data.message.imagen;
-                    $scope.tipo_producto_id = response.data.message.tipo_producto_id;
-                    // $scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
+                    $scope.descripcion = response.data.message.descripcion;
+                    $scope.tipo_producto_obj = response.data.message.tipo_producto_obj.descripcion;
+
                 }, function (error) {
                     $scope.fallo = true;
                 });
@@ -92,6 +91,6 @@ var miControlador = miModulo.controller(
 
         $scope.reset();
 
-    }]
+    }
 
 )

@@ -1,20 +1,15 @@
 var miControlador = miModulo.controller(
-    "postNewController",
-    ['$scope', '$http','$location', 'promesasService', function ($scope, $http,$location, promesasService) {
-        
-        promesasService.ajaxCheck()
-        .then(function (response) {
-            if(response.data.status=="200"){
-                $scope.session= true;
-                $scope.usuario=response.data.message;
-            } else {
-                $scope.session= false;
-            }
-        }, function (response) {
-            $scope.session= false;
-        })
+    "facturaNewController",
+    function ($scope, $http, $location, promesasService, auth) {
 
-        $scope.controller = "postNewController";
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
+
+        $scope.controller = "facturaNewController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
@@ -33,16 +28,17 @@ var miControlador = miModulo.controller(
 
         $scope.new = function () {
             const datos = {
-                titulo: $scope.titulo,
-                cuerpo: $scope.cuerpo,
-                etiquetas: $scope.etiquetas, 
-                fecha: $scope.fecha
+                fecha: $scope.fecha,
+                iva: $scope.iva,
+                usuario_obj: $scope.usuario_obj.nombre
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
             };
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            promesasService.ajaxNew('post', { params: jsonToSend })
+            promesasService.ajaxNew('factura', {
+                    params: jsonToSend
+                })
                 .then(function successCallback(response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -65,5 +61,5 @@ var miControlador = miModulo.controller(
         $scope.cerrar = function () {
             $location.path('/home/10/1');
         };
-    }]
+    }
 )

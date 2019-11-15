@@ -38,13 +38,13 @@
                 </div>
                 <!--Usuario_ID-->
                 <div class="form-group row">
-                    <label for="usuario_id" class="col-sm-2 col-form-label">Usuario id:</label>
+                    <label for="usuario_obj" class="col-sm-2 col-form-label">Usuario id:</label>
                     <div class="col-sm-10">
-                        <input type="text" ng-model="usuario_id" class="form-control"
-                            ng-class="{ 'is-invalid' : !userForm.usuario_id.$valid && !userForm.usuario_id.$pristine}"
-                            name="usuario_id" ng-required="true" value="{{usuario_id}}" />
-                        <div class="invalid-feedback" ng-show="userForm.usuario_id.$error.pattern">
-                                El usuario_id no puede estar vacio.
+                        <input type="text" ng-model="usuario_obj" class="form-control"
+                            ng-class="{ 'is-invalid' : !userForm.usuario_obj.$valid && !userForm.usuario_obj.$pristine}"
+                            name="usuario_obj" ng-required="true" value="{{usuario_obj.login}}" />
+                        <div class="invalid-feedback" ng-show="userForm.usuario_obj.$error.pattern">
+                                El usuario no puede estar vacio.
                         </div>
                     </div>
                 </div>

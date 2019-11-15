@@ -1,22 +1,17 @@
 var miControlador = miModulo.controller(
-    "pedidoEditController",
-    ['$scope', '$http', '$routeParams', 'promesasService',
-    function ($scope, $http, $routeParams, promesasService) {
+    "compraEditController",
+
+    function ($scope, $http, $routeParams, promesasService,auth) {
         
-         promesasService.ajaxCheck()
-         .then(function (response) {
-             if(response.data.status=="200"){
-                 $scope.session= true;
-                 $scope.usuario=response.data.message;
-             } else {
-                 $scope.session= false;
-             }
-         }, function (response) {
-             $scope.session= false;
-         })
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
 
         $scope.id = $routeParams.id;
-        $scope.controller = "pedidoEditController";
+        $scope.controller = "compraEditController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
@@ -27,8 +22,8 @@ var miControlador = miModulo.controller(
             .then(function (response) {
                 $scope.id = response.data.message.id;
                 $scope.cantidad = response.data.message.cantidad;
-                $scope.producto_id = response.data.message.producto_id;
-                $scope.factura_id = response.data.message.factura_id;
+                $scope.producto_obj = response.data.message.producto_obj.descripcion;
+                $scope.factura_obj = response.data.message.factura_obj.id;
             }, function () {
                 $scope.fallo = true;
             })
@@ -38,8 +33,8 @@ var miControlador = miModulo.controller(
             const datos = {
                 id: $routeParams.id,
                 cantidad: $scope.cantidad,
-                producto_id: $scope.producto_id,
-                factura_id: $scope.factura_id,
+                producto_obj: $scope.producto_obj.descripcion,
+                factura_obj: $scope.producto_obj.id,
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
@@ -71,8 +66,8 @@ var miControlador = miModulo.controller(
                 .then(function (response) {
                     $scope.id = response.data.message.id;
                     $scope.cantidad = response.data.message.cantidad;
-                    $scope.producto_id = response.data.message.producto_id;
-                    $scope.factura_id = response.data.message.factura_id;
+                    $scope.producto_obj = response.data.message.producto_obj.descripcion;
+                    $scope.factura_obj = response.data.message.factura_obj.id;
                 }, function (error) {
                     $scope.fallo = true;
                 });
@@ -84,6 +79,6 @@ var miControlador = miModulo.controller(
 
         $scope.reset();
 
-    }]
+    }
 
 )

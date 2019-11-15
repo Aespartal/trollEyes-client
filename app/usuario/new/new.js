@@ -1,20 +1,17 @@
 var miControlador = miModulo.controller(
-    "postNewController",
-    ['$scope', '$http','$location', 'promesasService', function ($scope, $http,$location, promesasService) {
+    "usuarioNewController",
+ 
+    function ($scope, $http,$location, promesasService,auth) {
         
-        promesasService.ajaxCheck()
-        .then(function (response) {
-            if(response.data.status=="200"){
-                $scope.session= true;
-                $scope.usuario=response.data.message;
-            } else {
-                $scope.session= false;
-            }
-        }, function (response) {
-            $scope.session= false;
-        })
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+        }
 
-        $scope.controller = "postNewController";
+
+        $scope.controller = "usuarioNewController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
@@ -33,16 +30,19 @@ var miControlador = miModulo.controller(
 
         $scope.new = function () {
             const datos = {
-                titulo: $scope.titulo,
-                cuerpo: $scope.cuerpo,
-                etiquetas: $scope.etiquetas, 
-                fecha: $scope.fecha
+                id: $routeParams.id,
+                dni: $scope.dni,
+                nombre: $scope.nombre,
+                apellido1: $scope.apellido1,
+                apellido2: $scope.apellido2,
+                email: $scope.email,
+                login: $scope.login
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
             };
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            promesasService.ajaxNew('post', { params: jsonToSend })
+            promesasService.ajaxNew('usuario', { params: jsonToSend })
                 .then(function successCallback(response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -65,5 +65,5 @@ var miControlador = miModulo.controller(
         $scope.cerrar = function () {
             $location.path('/home/10/1');
         };
-    }]
+    }
 )

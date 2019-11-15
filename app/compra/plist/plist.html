@@ -17,7 +17,7 @@
                 <nav aria-label="Registros por página">
                     <ul class="pagination float-right">
                         <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
-                            <a class="page-link" href="#!/pedido/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
+                            <a class="page-link" href="#!/compra/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
                         </li>
                     </ul>
                 </nav>
@@ -26,7 +26,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/pedido/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="#!/compra/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>
@@ -34,37 +34,37 @@
                 <table class="table">
                     <tr>
                         <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/pedido/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                                <a href="#!/compra/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/pedido/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                <a href="#!/compra/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
                         <th>Cantidad <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/pedido/plist/{{ rppActual }}/{{ paginaActual }}/cantidad/asc"
+                                <a href="#!/compra/plist/{{ rppActual }}/{{ paginaActual }}/cantidad/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/pedido/plist/{{ rppActual }}/{{ paginaActual }}/cantidad/desc"
+                                <a href="#!/compra/plist/{{ rppActual }}/{{ paginaActual }}/cantidad/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
                         <th>Producto <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/pedido/plist/{{ rppActual }}/{{ paginaActual }}/producto/asc"
+                                <a href="#!/compra/plist/{{ rppActual }}/{{ paginaActual }}/producto/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/pedido/plist/{{ rppActual }}/{{ paginaActual }}/producto/desc"
+                                <a href="#!/compra/plist/{{ rppActual }}/{{ paginaActual }}/producto/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
                         <th>Factura <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/pedido/plist/{{ rppActual }}/{{ paginaActual }}/factura/asc"
+                                <a href="#!/compra/plist/{{ rppActual }}/{{ paginaActual }}/factura/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/pedido/plist/{{ rppActual }}/{{ paginaActual }}/factura/desc"
+                                <a href="#!/compra/plist/{{ rppActual }}/{{ paginaActual }}/factura/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
@@ -78,9 +78,9 @@
                         <td>{{fila.producto_obj.descripcion}}</td>
                         <td>{{fila.factura_obj.id}}</td> 
                         <td>
-                            <a href="#!/pedido/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
-                            <a href="#!/pedido/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
-                            <a href="#!/pedido/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
+                            <a href="#!/compra/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
+                            <a href="#!/compra/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
+                            <a href="#!/compra/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
 
@@ -90,7 +90,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/pedido/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="#!/compra/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>

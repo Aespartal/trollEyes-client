@@ -196,57 +196,57 @@ miModulo.config(['$routeProvider',
             }
         })
 
-        //-------pedido------------------------
-        $routeProvider.when('/pedido/plist/:rpp/:page', {
-            templateUrl: 'app/pedido/plist/plist.html', controller: 'pedidoPlistController',
+        //-------compra------------------------
+        $routeProvider.when('/compra/plist/:rpp/:page', {
+            templateUrl: 'app/compra/plist/plist.html', controller: 'compraPlistController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 }
             }
         })
-        $routeProvider.when('/pedido/plist/:rpp/:page/:colOrder?/:order?', {
-            templateUrl: 'app/pedido/plist/plist.html', controller: 'pedidoPlistController',
+        $routeProvider.when('/compra/plist/:rpp/:page/:colOrder?/:order?', {
+            templateUrl: 'app/compra/plist/plist.html', controller: 'compraPlistController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 }
             }
         })
-        $routeProvider.when('/pedido/plist/:rpp/:page/:filter', {
-            templateUrl: 'app/pedido/plist/plist.html', controller: 'pedidoPlistController',
+        $routeProvider.when('/compra/plist/:rpp/:page/:filter', {
+            templateUrl: 'app/compra/plist/plist.html', controller: 'compraPlistController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 }
             }
         })
-        $routeProvider.when('/pedido/remove/:id', {
-            templateUrl: 'app/pedido/remove/remove.html', controller: 'pedidoRemoveController',
+        $routeProvider.when('/compra/remove/:id', {
+            templateUrl: 'app/compra/remove/remove.html', controller: 'compraRemoveController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 }
             }
         })
-        $routeProvider.when('/pedido/view/:id', {
-            templateUrl: 'app/pedido/view/view.html', controller: 'pedidoViewController',
+        $routeProvider.when('/compra/view/:id', {
+            templateUrl: 'app/compra/view/view.html', controller: 'compraViewController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 }
             }
         })
-        $routeProvider.when('/pedido/edit/:id', {
-            templateUrl: 'app/pedido/edit/edit.html', controller: 'pedidoEditController',
+        $routeProvider.when('/compra/edit/:id', {
+            templateUrl: 'app/compra/edit/edit.html', controller: 'compraEditController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 }
             }
         })
-        $routeProvider.when('/pedido/new', {
-            templateUrl: 'app/pedido/new/new.html', controller: 'pedidoNewController',
+        $routeProvider.when('/compra/new', {
+            templateUrl: 'app/compra/new/new.html', controller: 'compraNewController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
@@ -297,7 +297,7 @@ miModulo.config(['$routeProvider',
         })
         //----------------------------------------------
         $routeProvider.when('/login', {
-            templateUrl: 'app/usuario/login/login.html', controller: 'usuarioLoginController', css: 'app/usuario/login/login.css',
+            templateUrl: 'app/usuario/login/login.html', controller: 'login', css: 'app/usuario/login/login.css',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
@@ -305,7 +305,7 @@ miModulo.config(['$routeProvider',
             }
         })
         $routeProvider.when('/logout', {
-            templateUrl: 'app/usuario/logout/logout.html', controller: 'usuarioLogoutController',
+            templateUrl: 'app/usuario/logout/logout.html', controller: 'logout',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
