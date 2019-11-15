@@ -1,3 +1,3 @@
-# blogBuster-client
+# trollEyes-client
 
 La parte de cliente del superblog de DAW
