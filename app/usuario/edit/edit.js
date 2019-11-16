@@ -1,11 +1,6 @@
 var miControlador = miModulo.controller(
     "usuarioEditController",
-<<<<<<< HEAD
     function ($scope, $http, $routeParams, promesasService, auth) {
-=======
-    function ($scope, $http, $routeParams, promesasService,auth) {
-        
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -19,11 +14,6 @@ var miControlador = miModulo.controller(
         $scope.hecho = false;
         $scope.falloMensaje = "";
 
-<<<<<<< HEAD
-=======
-        
-
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
         promesasService.ajaxGet('usuario', $routeParams.id)
             .then(function (response) {
                 $scope.id = response.data.message.id;
@@ -38,10 +28,6 @@ var miControlador = miModulo.controller(
             })
 
         $scope.modificar = function () {
-<<<<<<< HEAD
-=======
-
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
             const datos = {
                 id: $routeParams.id,
                 dni: $scope.dni,
@@ -63,11 +49,7 @@ var miControlador = miModulo.controller(
                         $scope.falloMensaje = response.data.message;
                     } else {
                         $scope.fallo = false;
-<<<<<<< HEAD
                         $scope.hecho = true;
-=======
-                        $scope.hecho=true;
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                     }
                 }, function (error) {
                     $scope.hecho = true;

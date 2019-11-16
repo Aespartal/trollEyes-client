@@ -1,16 +1,7 @@
-<<<<<<< HEAD
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
     <h1><span class="font-weight-bold">Editar producto</span></h1>
 </div>
-=======
-<div class="slide-animate-container">
-        <ng-include src="'app/menu.html'"></ng-include>
-      </div>
-<div class="header shadow">
-    <h1><span class="font-weight-bold">Editar producto</span></h1>
-</div> 
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
 <div class="container">
     <div class="row">
         <div class="col">
@@ -36,17 +27,10 @@
                     <label for="existencias" class="col-sm-2 col-form-label">Existencias:</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-<<<<<<< HEAD
                             <input type="text" ng-model="existencias" class="form-control" ng-model="existencias"
                                 class="form-control"
                                 ng-class="{ 'is-invalid' : !userForm.existencias.$valid && !userForm.existencias.$pristine}"
                                 name="existencias" ng-required="true" value="{{existencias}}"></input>
-=======
-                            <textarea class="form-control rounded-0" rows="10" id="exampleFormControlTextarea2" rows="3"
-                                ng-model="existencias" class="form-control"
-                                ng-class="{ 'is-invalid' : !userForm.existencias.$valid && !userForm.existencias.$pristine}"
-                                name="existencias" ng-required="true" value="{{existencias}}"></textarea>
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                         </div>
                         <div class="invalid-feedback" ng-show="userForm.existencias.$invalid">
                             El campo existencias no puede estar vacio.
@@ -60,11 +44,7 @@
                             ng-class="{ 'is-invalid' : !userForm.precio.$valid && !userForm.precio.$pristine}"
                             name="precio" ng-required="true" value="{{precio}} €" />
                         <div class="invalid-feedback" ng-show="userForm.precio.$error.pattern">
-<<<<<<< HEAD
                             El campo precio no puede estar vacio.
-=======
-                            Debe llevar al menos una etiqueta.
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                         </div>
                     </div>
                 </div>
@@ -75,17 +55,10 @@
                             ng-class="{ 'is-invalid' : !userForm.descripcion.$valid && !userForm.descripcion.$pristine}"
                             name="descripcion" ng-required="true" value="{{descripcion}}" />
                         <div class="invalid-feedback" ng-show="userForm.descripcion.$error.pattern">
-<<<<<<< HEAD
                             El campo descripcion no puede estar vacio.
                         </div>
                     </div>
                 </div>
-=======
-                            Debe llevar al menos una etiqueta.
-                        </div>       
-                    </div>
-                  </div>
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                 <div class="form-group row">
                     <label for="tipo_producto_obj" class="col-sm-2 col-form-label">Tipo producto:</label>
                     <div class="col-sm-10">
@@ -93,7 +66,6 @@
                             ng-class="{ 'is-invalid' : !userForm.tipo_producto_obj.$valid && !userForm.tipo_producto_obj.$pristine}"
                             name="tipo_producto_obj" ng-required="true" value="{{tipo_producto_obj}}" />
                         <div class="invalid-feedback" ng-show="userForm.tipo_producto_obj.$error.pattern">
-<<<<<<< HEAD
                             El campo tipo producto no puede estar vacio.
                         </div>
                     </div>
@@ -104,15 +76,6 @@
                         <button type="button" class="btn btn-primary" ng-click="modificar()">Actualizar los
                             datos</button>
                     </div>
-=======
-                            Debe llevar al menos una etiqueta.
-                        </div>       
-                    </div>
-                  </div>
-                <br>
-                <div class="row">
-                    <button type="button" class="btn btn-primary" ng-click="modificar()">Actualizar los datos</button>
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                 </div>
             </form>
             <div ng-show="!fallo&&hecho">

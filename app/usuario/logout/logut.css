@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 .logout-center {
-=======
-.logout-center{
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -10,7 +6,6 @@
     background-color: rgb(255, 255, 255);
 }
 
-<<<<<<< HEAD
 .logout-container {
     background-color: rgb(255, 255, 255);
     width: 350px;
@@ -18,14 +13,4 @@
     box-sizing: border-box;
     padding: 3rem 0;
     box-shadow: 0 0 .5rem #8A8C8C;
-=======
-.logout-container{
-    background-color: rgb(255, 255, 255);
-    width:350px;
-    border-top:solid .5rem #316280;
-    box-sizing: border-box;
-    padding:3rem 0;
-    box-shadow:0 0 .5rem #8A8C8C;
-    
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
 }

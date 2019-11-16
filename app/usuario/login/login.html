@@ -1,24 +1,11 @@
-<<<<<<< HEAD
 <ng-include src="'app/menu.html'"></ng-include>
-=======
-<div class="slide-animate-container">
-        <ng-include src="'app/menu.html'"></ng-include>
-</div>
-
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
 <div class="form-center">
     <div class="login-container">
         <div class="login-top">
             <img class="login-img" src="" alt="">
             <h2 class="login-title">troll<span>Eyes</span></h2>
         </div>
-<<<<<<< HEAD
         <form name="userForm" class="login-form">
-=======
-
-        <form name="userForm" class="login-form">
-
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
             <input type="text" class="form-control" name="username" ng-model="user.username"
                 ng-class="{ 'is-invalid' : userForm.username.$invalid && !userForm.username.$pristine }" id="Usuario"
                 aria-describedby="Usuario" placeholder="&#128100; username" ng-required="true">
@@ -35,7 +22,6 @@
                 La contraseña está vacia. Por favor, revisa e inténtalo de nuevo.
             </div>
             <div class="alert alert-danger" ng-show="fallo" role="alert">
-<<<<<<< HEAD
                 Error: {{falloMensaje}}
             </div>
             <div class="text-center">
@@ -45,14 +31,3 @@
         </form>
     </div>
 </div>
-=======
-                    Error: {{falloMensaje}}
-            </div>
-
-            <div class="text-center">
-                <button type="button" class="btn btn-primary btn-1" ng-click="login()">Entrar <i class="fas fa-sign-in-alt"></i></button>
-            </div>
-        </form>
-    </div>
-</div>
->>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
