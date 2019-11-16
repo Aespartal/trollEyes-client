@@ -1,7 +1,12 @@
 var miControlador = miModulo.controller(
     "facturaPlistController",
+<<<<<<< HEAD
     function ($scope, $routeParams, $http, promesasService, $window, auth) {
 
+=======
+    function ($scope, $routeParams, $http, promesasService, $window,auth) {
+        
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

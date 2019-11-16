@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 <ng-include src="'app/menu.html'"></ng-include>
+=======
+<div class="slide-animate-container">
+    <ng-include src="'app/menu.html'"></ng-include>
+</div>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
 <div class="header shadow">
     <h1><span class="font-weight-bold">Eliminar producto</span></h1>
 </div>
@@ -13,6 +19,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
+<<<<<<< HEAD
                     <label for="codigo" class="col-sm-2 col-form-label">Código:</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="codigo" class="form-control" name="codigo" value="{{codigo}}"
@@ -26,13 +33,36 @@
                             <input type="text" ng-model="existencias" class="form-control" ng-model="existencias"
                                 class="form-control" name="existencias" value="{{existencias}}" readonly />
                         </div>
+=======
+                    <label for="codigo" class="col-sm-2 col-form-label">Codigo:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="codigo" class="form-control" name="codigo" value="{{codigo}}"
+                            readonly />
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="existencias" class="col-sm-2 col-form-label">existencias:</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <textarea class="form-control rounded-0" rows="10" id="exampleFormControlTextarea2" rows="3"
+                                ng-model="existencias" class="form-control" name="existencias" value="{{existencias}}"
+                                readonly></textarea>
+                        </div>
+
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="precio" class="col-sm-2 col-form-label">precio:</label>
                     <div class="col-sm-10">
+<<<<<<< HEAD
                         <input type="text" ng-model="precio" class="form-control" name="precio" value="{{precio}}"
                             readonly />
+=======
+                        <input type="text" ng-model="precio" class="form-control" name="precio"
+                            value="{{precio}}" readonly />
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                     </div>
                 </div>
                 <div class="form-group row">
@@ -45,9 +75,13 @@
                 <br>
                 <p>¿Seguro que quiere elimnar el producto?</p>
                 <div class="row">
+<<<<<<< HEAD
                     <div class="col text-center">
                         <button type="button" class="btn btn-primary" ng-click="remove()">Eliminar datos</button>
                     </div>
+=======
+                    <button type="button" class="btn btn-primary" ng-click="remove()">Eliminar datos</button>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                 </div>
             </form>
             <div ng-show="!fallo&&hecho">

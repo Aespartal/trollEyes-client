@@ -17,7 +17,6 @@ var miControlador = miModulo.controller(
         $scope.falloMensaje = "";
         $scope.fecha = new Date();
 
-
         promesasService.ajaxGet('compra', $routeParams.id)
             .then(function (response) {
                 $scope.id = response.data.message.id;

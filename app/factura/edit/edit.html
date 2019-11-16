@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 <ng-include src="'app/menu.html'"></ng-include>
+=======
+<div class="slide-animate-container">
+        <ng-include src="'app/menu.html'"></ng-include>
+      </div>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
 <div class="header shadow">
     <h1><span class="font-weight-bold">Editar factura</span></h1>
 </div>
@@ -6,13 +12,18 @@
     <div class="row">
         <div class="col">
             <form name="userForm" ng-show="!fallo&&!hecho">
+<<<<<<< HEAD
                 <!--ID-->
+=======
+                 <!--ID-->
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                 <div class="form-group row">
                     <label for="id" class="col-sm-2 col-form-label">Id:</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="id" value="{{id}}" class="form-control" readonly />
                     </div>
                 </div>
+<<<<<<< HEAD
                 <!--Fecha-->
                 <div class="form-group row">
                     <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
@@ -20,10 +31,20 @@
                         <md-datepicker ng-model="fecha" md-placeholder="Enter date"
                             ng-class="{ 'is-invalid' : !userForm.fecha.$valid && !userForm.fecha.$pristine}"
                             name="fecha" ng-required="true"></md-datepicker>
+=======
+                 <!--Fecha-->
+                <div class="form-group row">
+                    <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
+                    <div class="col-sm-10">
+                            <md-datepicker ng-model="fecha" md-placeholder="Enter date"
+                            ng-class="{ 'is-invalid' : !userForm.fecha.$valid && !userForm.fecha.$pristine}" name="fecha"
+                            ng-required="true"></md-datepicker>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                     </div>
                 </div>
                 <!--Iva-->
                 <div class="form-group row">
+<<<<<<< HEAD
                     <label for="iva" class="col-sm-2 col-form-label">IVA:</label>
                     <div class="col-sm-10">
                         <div class="form-group">
@@ -31,6 +52,15 @@
                         </div>
                         <div class="invalid-feedback" ng-show="userForm.iva.$invalid">
                             El IVA no puede estar vacio.
+=======
+                    <label for="iva" class="col-sm-2 col-form-label">Iva:</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">         
+                            <input type="text" ng-model="iva" value="{{iva}}" class="form-control"/>
+                        </div>
+                        <div class="invalid-feedback" ng-show="userForm.iva.$invalid">
+                            El iva no puede estar vacio.
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                         </div>
                     </div>
                 </div>
@@ -42,6 +72,7 @@
                             ng-class="{ 'is-invalid' : !userForm.usuario_obj.$valid && !userForm.usuario_obj.$pristine}"
                             name="usuario_obj" ng-required="true" value="{{usuario_obj.login}}" />
                         <div class="invalid-feedback" ng-show="userForm.usuario_obj.$error.pattern">
+<<<<<<< HEAD
                             El usuario no puede estar vacio.
                         </div>
                     </div>
@@ -53,6 +84,16 @@
                         <button type="button" class="btn btn-primary" ng-click="modificar()">Actualizar los
                             datos</button>
                     </div>
+=======
+                                El usuario no puede estar vacio.
+                        </div>
+                    </div>
+                </div>
+               
+                <br>
+                <div class="row">
+                    <button type="button" class="btn btn-primary" ng-click="modificar()">Actualizar los datos</button>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                 </div>
             </form>
             <div ng-show="!fallo&&hecho">

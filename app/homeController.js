@@ -56,6 +56,5 @@ var miControlador = miModulo.controller(
                 }
             }
         }
-
     }
 )

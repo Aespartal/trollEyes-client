@@ -315,6 +315,10 @@ miModulo.config(['$routeProvider',
         //----------------------------------------------
 
         $routeProvider.otherwise({
+<<<<<<< HEAD
             redirectTo: '/home/12/1'
+=======
+            redirectTo: '/home/10/1'
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
         })
     }])

@@ -1,18 +1,31 @@
+<<<<<<< HEAD
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
     <h1><span class="font-weight-bold">Eliminar usuario</span></h1>
+=======
+<div class="slide-animate-container">
+    <ng-include src="'app/menu.html'"></ng-include>
+</div>
+<div class="header shadow">
+    <h1><span class="font-weight-bold">Eliminar post</span></h1>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
 </div>
 <div class="container">
     <div class="row">
         <div class="col">
             <form name="userForm" ng-show="!fallo&&!hecho">
                 <div class="form-group row">
+<<<<<<< HEAD
                     <label for="id" class="col-sm-2 col-form-label">Id:</label>
+=======
+                    <label for="titulo" class="col-sm-2 col-form-label">Id:</label>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                     <div class="col-sm-10">
                         <input type="text" ng-model="id" value="{{id}}" class="form-control" readonly />
                     </div>
                 </div>
                 <div class="form-group row">
+<<<<<<< HEAD
                     <label for="dni" class="col-sm-2 col-form-label">DNI:</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="dni" class="form-control" name="dni" value="{{dni}}" readonly />
@@ -49,18 +62,64 @@
                     <div class="col text-center">
                         <button type="button" class="btn btn-primary" ng-click="remove()">Eliminar datos</button>
                     </div>
+=======
+                    <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="titulo" class="form-control" name="titulo" value="{{titulo}}"
+                            readonly />
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <textarea class="form-control rounded-0" rows="10" id="exampleFormControlTextarea2" rows="3"
+                                ng-model="cuerpo" class="form-control" name="cuerpo" value="{{cuerpo}}"
+                                readonly></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="etiquetas" class="col-sm-2 col-form-label" >Fecha:</label>
+                    <div class="col-sm-10">
+                        <h6>{{fecha | stringToDate | date : "dd/MM/yyyy"}}</h6>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="etiquetas" class="form-control" name="etiquetas"
+                            value="{{etiquetas}}" readonly />
+                    </div>
+                </div>
+
+                <br>
+                <p>¿Seguro que quiere elimnar el post?</p>
+                <div class="row">
+                    <button type="button" class="btn btn-primary" ng-click="remove()">Eliminar datos</button>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                 </div>
             </form>
             <div ng-show="!fallo&&hecho">
                 <div class="alert alert-success text-center" role="alert">
+<<<<<<< HEAD
                     <h2>El usuario se ha eliminado con éxito</h2>
+=======
+                    <h2>El Post se ha eliminado con éxito</h2>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                     <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
                     <button class="btn btn-primary" ng-click="volver()">Volver</button>
                 </div>
             </div>
             <div ng-show="fallo&&hecho">
                 <div class="alert alert-danger text-center" role="alert">
+<<<<<<< HEAD
                     <h2>Ha ocurrido un error al eliminar el usuario</h2>
+=======
+                    <h2>Ha ocurrido un error al eliminar el Post</h2>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                     <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
                     <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
                     <button class="btn btn-primary" ng-click="volver()">Volver</button>
@@ -68,7 +127,11 @@
             </div>
             <div ng-show="fallo&&!hecho">
                 <div class="alert alert-danger text-center" role="alert">
+<<<<<<< HEAD
                     <h2>Ha habido un error al recibir datos del usuario desde el servidor</h2>
+=======
+                    <h2>Ha habido un error al recibir datos del Post desde el servidor</h2>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                     <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
                     <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
                     <button class="btn btn-primary" ng-click="volver()">Volver</button>

@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 <ng-include src="'app/menu.html'"></ng-include>
+=======
+<div class="slide-animate-container">
+    <ng-include src="'app/menu.html'"></ng-include>
+</div>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
 <div class="header shadow">
     <h1><span class="font-weight-bold">Lista de facturas</span></h1>
 </div>
@@ -8,10 +14,15 @@
             <div class="wrapper">
                 <nav class="navbar navbar-light bg-light">
                     <form class="form-inline">
+<<<<<<< HEAD
                         <input class="form-control mr-sm-2" type="search" placeholder="Buscar" ng-model="word"
                             aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
                             ng-click="search()">Buscar</button>
+=======
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" ng-model="word" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="search()">Buscar</button>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                     </form>
                 </nav>
                 <nav aria-label="Registros por página">
@@ -51,7 +62,11 @@
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
+<<<<<<< HEAD
                         <th>IVA <div class="btn-group btn-group-toggle" data-toggle="buttons">
+=======
+                        <th>Iva <div class="btn-group btn-group-toggle" data-toggle="buttons">
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                                 <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/iva/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
@@ -76,8 +91,12 @@
                         <td>{{fila.id}}</td>
                         <td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
                         <td>{{fila.iva}}</td>
+<<<<<<< HEAD
                         <td>{{fila.usuario_obj.nombre}} {{fila.usuario_obj.apellido1}} {{fila.usuario_obj.apellido2}}
                         </td>
+=======
+                        <td>{{fila.usuario_obj.nombre}} {{fila.usuario_obj.apellido1}} {{fila.usuario_obj.apellido2}}</td> 
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
                         <td>
                             <a href="#!/factura/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
                             <a href="#!/factura/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>

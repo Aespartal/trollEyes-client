@@ -2,7 +2,6 @@ var miControlador = miModulo.controller(
     "compraFillController",
 
     function ($scope, promesasService, auth) {
-
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -41,8 +40,5 @@ var miControlador = miModulo.controller(
         $scope.cerrar = function () {
             $location.path('/home/10/1');
         };
-
-
     }
-
 )

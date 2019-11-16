@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 <ng-include src="'app/menu.html'"></ng-include>
+=======
+<div class="slide-animate-container">
+        <ng-include src="'app/menu.html'"></ng-include>
+      </div>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
 <div class="header shadow">
     <h1><span class="font-weight-bold">Creación masiva de posts</span></h1>
 </div>
@@ -6,9 +12,15 @@
     <div class="row">
         <div class="col">
             <div class="card-body" ng-show="!hecho">
+<<<<<<< HEAD
                 <button type="button" class="btn btn-primary" ng-click="crear(10)">Crear 10 usuarios</button>
                 <button type="button" class="btn btn-primary" ng-click="crear(50)">Crear 50 usuarios</button>
                 <button type="button" class="btn btn-primary" ng-click="crear(100)">Crear 100 usuarios</button>
+=======
+                <button type="button" class="btn btn-primary" ng-click="crear(10)">Crear 10 posts</button>
+                <button type="button" class="btn btn-primary" ng-click="crear(50)">Crear 50 posts</button>
+                <button type="button" class="btn btn-primary" ng-click="crear(100)">Crear 100 posts</button>
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
             </div>
             <div class="card-body" ng-show="hecho">
                 <h2>{{mensaje}}</h2>

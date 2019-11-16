@@ -1,8 +1,13 @@
 var miControlador = miModulo.controller(
     "productoNewController",
 
+<<<<<<< HEAD
     function ($scope, $http, $location, promesasService, auth) {
 
+=======
+    function ($scope, $http,$location, promesasService,auth) {
+        
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

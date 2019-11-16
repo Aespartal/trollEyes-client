@@ -1,7 +1,12 @@
 var miControlador = miModulo.controller(
     "usuarioPlistController",
 
+<<<<<<< HEAD
     function ($scope, $routeParams, $http, promesasService, $window, auth) {
+=======
+    function ($scope, $routeParams,$http, promesasService, $window,auth) {
+          
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -16,6 +21,7 @@ var miControlador = miModulo.controller(
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;
 
+<<<<<<< HEAD
         if ($scope.order == null || $scope.colOrder == null) {
             request = "http://localhost:8081/trolleyes/json?ob=usuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
         } else {
@@ -86,4 +92,80 @@ var miControlador = miModulo.controller(
             }
         }
     }
+=======
+            if ($scope.order == null || $scope.colOrder == null) {
+                request = "http://localhost:8081/trolleyes/json?ob=usuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
+            } else {
+                request = "http://localhost:8081/trolleyes/json?ob=usuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
+            }
+
+
+            $http({
+                method: "GET",
+                withCredentials: true,
+                url: request
+            }).then(function (response) {
+                $scope.status = response.data.status;
+                $scope.pagina = response.data.message;
+            });
+    
+            $scope.showSelectValue = function (mySelect) {
+                $window.location.href = `/trollEyes-client/#!/usuario/plist/`+mySelect+`/1`;
+            }
+
+        $scope.search = function(){
+            promesasService.ajaxSearch('usuario',$scope.rppActual,$scope.paginaActual,$scope.word)
+            .then(function (response) {
+                if (response.data.status != 200) {
+                    $scope.fallo = true;
+                    $scope.falloMensaje = response.data.message;
+                  
+                } else {
+                    $scope.fallo = false;
+                    $scope.hecho=true;
+                    $scope.pagina = response.data.message;
+                    
+                }
+            }, function (error) {
+                $scope.hecho = true;
+                $scope.fallo = true;
+                $scope.falloMensaje = error.message + " " + error.stack;
+            });
+        }
+        promesasService.ajaxGetCount('usuario')
+        .then(function (response) {
+            $scope.status = response.data.status;
+            $scope.numRegistros = response.data.message;
+            $scope.numPaginas = Math.ceil($scope.numRegistros / $routeParams.rpp);
+            $scope.calcPage = [];
+            for (const p of $scope.rppS) {
+                const res = $scope.paginaActual / $scope.numPaginas;
+                const next = Math.ceil($scope.numRegistros / p);               
+                $scope.calcPage.push(Math.ceil(res * next));             
+            }
+            paginacion(2);
+        })
+
+       
+
+    function paginacion(vecindad) {
+        vecindad++;
+        $scope.botonera = [];
+        for (i = 1; i <= $scope.numPaginas; i++) {
+            if (i == 1) {
+                $scope.botonera.push(i);
+            } else if (i > ($scope.paginaActual - vecindad) && i < ($scope.paginaActual + vecindad)) {
+                $scope.botonera.push(i);
+            } else if (i == $scope.numPaginas) {
+                $scope.botonera.push(i);
+            } else if (i == ($scope.paginaActual - vecindad) || i == ($scope.paginaActual + vecindad)) {
+                $scope.botonera.push('...');
+            }
+        }
+    }
+        
+       
+
+    }
+>>>>>>> e27fa1b6571085e149911219f3e6ad59d85d9b0a
 )
