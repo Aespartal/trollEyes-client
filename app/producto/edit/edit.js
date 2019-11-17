@@ -1,7 +1,8 @@
 var miControlador = miModulo.controller(
     "productoEditController",
 
-    function ($scope, $http, $routeParams, promesasService, auth) {
+    function ($scope, $http, $routeParams, promesasService, auth,level) {
+        $scope.sessionLevel = level.data.message;
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -15,7 +16,7 @@ var miControlador = miModulo.controller(
         $scope.hecho = false;
         $scope.falloMensaje = "";
 
-        promesasService.ajaxGet('producto', $routeParams.id)
+        promesasService.ajaxGet('producto', $routeParams.id,)
             .then(function (response) {
                 $scope.id = response.data.message.id;
                 $scope.codigo = response.data.message.codigo;
@@ -23,7 +24,7 @@ var miControlador = miModulo.controller(
                 $scope.precio = response.data.message.precio;
                 $scope.imagen = response.data.message.imagen;
                 $scope.descripcion = response.data.message.descripcion;
-                $scope.tipo_producto_obj = response.data.message.tipo_producto_obj.descripcion;
+                $scope.tipo_producto_obj_descripcion = response.data.message.tipo_producto_obj.descripcion;
 
             }, function () {
                 $scope.fallo = true;
@@ -36,7 +37,7 @@ var miControlador = miModulo.controller(
                 existencias: $scope.existencias,
                 precio: $scope.precio,
                 descripcion: $scope.descripcion,
-                tipo_producto_obj: $scope.tipo_producto_obj.descripcion
+                tipo_producto_obj: $scope.tipo_producto_obj_descripcion
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)

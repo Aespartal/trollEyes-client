@@ -1,7 +1,8 @@
 var miControlador = miModulo.controller(
     "usuarioPlistController",
 
-    function ($scope, $routeParams, $http, promesasService, $window, auth) {
+    function ($scope, $routeParams, $http, promesasService, $window, auth,level,$location) {
+        $scope.sessionLevel = level.data.message;
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

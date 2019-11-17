@@ -1,8 +1,8 @@
 var miControlador = miModulo.controller(
     "productoPlistController",
 
-    function ($scope, $routeParams, $http, promesasService, $window, auth) {
-
+    function ($scope, $routeParams, $http, promesasService, $window, auth, level) {
+        $scope.sessionLevel = level.data.message;
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -47,7 +47,9 @@ var miControlador = miModulo.controller(
                         $scope.fallo = false;
                         $scope.hecho = true;
                         $scope.pagina = response.data.message;
-
+                        $scope.rppActual = parseInt($routeParams.rpp);
+                        $scope.rppS = [10, 50, 100];
+                 
                     }
                 }, function (error) {
                     $scope.hecho = true;

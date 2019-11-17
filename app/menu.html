@@ -10,30 +10,30 @@
         ng-class="{'active':(controller=='homeController')}">
         <a class="nav-link" href="#!/home/12/1">&#127968; Home</a>
       </li>
-      <li class="nav-item" ng-show="authStatus==200"
+      <li class="nav-item" ng-show="authStatus==200 && sessionLevel == 1"
         ng-class="{'active':(controller=='productoPlistController' || controller=='productoViewController' || controller=='productoRemoveController' || controller=='productoNewController' || controller=='productoEditController')}">
         <a class="nav-link" href="#!/producto/plist/10/1">Productos</a>
       </li>
-      <li class="nav-item" ng-show="authStatus==200"
+      <li class="nav-item" ng-show="authStatus==200 && sessionLevel == 1"
         ng-class="{'active':(controller=='compraPlistController' || controller=='compraViewController' || controller=='compraRemoveController' || controller=='compraNewController' || controller=='compraEditController')}">
         <a class="nav-link" href="#!/compra/plist/10/1">Pedidos</a>
       </li>
-      <li class="nav-item" ng-show="authStatus==200"
+      <li class="nav-item" ng-show="authStatus==200 && sessionLevel == 1"
         ng-class="{'active':(controller=='facturaPlistController' || controller=='facturaViewController' || controller=='facturaRemoveController' || controller=='facturaNewController' || controller=='facturaEditController')}">
         <a class="nav-link" href="#!/factura/plist/10/1">Facturas</a>
       </li>
-      <li class="nav-item" ng-show="authStatus==200"
+      <li class="nav-item" ng-show="authStatus==200 && sessionLevel == 1"
         ng-class="{'active':(controller=='usuarioPlistController' || controller=='usuarioViewController' || controller=='usuarioRemoveController' || controller=='usuarioNewController' || controller=='usuarioEditController')}">
         <a class="nav-link" href="#!/usuario/plist/10/1">Usuarios</a>
       </li>
-      <li class="nav-item" ng-show="authStatus==200" ng-class="{'active':(controller=='productoFillController')}">
-        <a class="nav-link" href="#!/producto/fill">Fill productos</a>
+      <li class="nav-item" ng-show="authStatus==200 && sessionLevel == 1" ng-class="{'active':(controller=='productoFillController')}">
+        <a class="nav-link" href="#!/producto/fill"><span class="fill">Fill productos</span></a>
       </li>
-      <li class="nav-item" ng-show="authStatus==200" ng-class="{'active':(controller=='facturaFillController')}">
-        <a class="nav-link" href="#!/factura/fill">Fill facturas</a>
+      <li class="nav-item" ng-show="authStatus==200 && sessionLevel == 1" ng-class="{'active':(controller=='facturaFillController')}">
+        <a class="nav-link" href="#!/factura/fill"><span class="fill">Fill facturas</span></a>
       </li>
-      <li class="nav-item" ng-show="authStatus==200" ng-class="{'active':(controller=='usuarioFillController')}">
-        <a class="nav-link" href="#!/usuario/fill">Fill usuarios</a>
+      <li class="nav-item" ng-show="authStatus==200 && sessionLevel == 1" ng-class="{'active':(controller=='usuarioFillController')}">
+        <a class="nav-link" href="#!/usuario/fill"><span class="fill">Fill usuarios</span></a>
       </li>
     </ul>
     <div class="conection">
@@ -46,11 +46,11 @@
         </li>
 
         <li class="nav-item" ng-class="{'active': controller=='logout'}"></li>
-        <a class="nav-link" ng-show="authStatus==200" href="#!/logout">Cerrar Sesión <i
+        <a class="nav-link" ng-show="authStatus==200" href="#!/logout"><span class="logout">Cerrar Sesión </span><i
             class="fas fa-sign-out-alt"></i></a>
         </li>
-        <li class="nav-item" ng-class="{'active':(controller=='carritoPlistController')}">
-          <a class="nav-link" href="#!/carrito/plist/10/1"><i class="fa fa-icon-list-alt"></i>Carrito</a>
+        <li class="nav-item" ng-show="sessionLevel != 1" ng-class="{'active':(controller=='carritoPlistController')}">
+          <a class="nav-link" href="#!/carrito/plist"><i class="fas fa-shopping-cart"></i></a>
         </li>
       </ul>
     </div>

@@ -1,9 +1,10 @@
 var miControlador = miModulo.controller(
     "homeController",
 
-    function ($scope, $routeParams, $window, $location, promesasService, auth) {
+    function ($scope, $routeParams, $window, $location, promesasService, auth, level) {
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message;
+        $scope.sessionLevel = level.data.message;
         $scope.controller = "homeController";
         $scope.campo = $routeParams.order;
         $scope.direction = $routeParams.direction;
@@ -17,7 +18,7 @@ var miControlador = miModulo.controller(
             $scope.rppActual = 10;
         } else {
             $scope.rppActual = parseInt($routeParams.rpp);
-        }
+        }    
 
         promesasService.ajaxGetPage('producto', $scope.rppActual, $scope.paginaActual)
             .then(function (response) {

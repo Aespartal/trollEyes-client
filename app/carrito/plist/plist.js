@@ -1,87 +1,51 @@
 var miControlador = miModulo.controller(
     "carritoPlistController",
  
-    function ($scope, $routeParams,$http, promesasService, $window,auth) {
-        $scope.paginaActual = parseInt($routeParams.page);
-        $scope.rppActual = parseInt($routeParams.rpp);
+    function ($scope, $routeParams,$http, promesasService, $window,auth,level) {
+        $scope.sessionLevel = level.data.message;
         $scope.controller = "carritoPlistController";
-        $scope.colOrder = $routeParams.colOrder;
-        $scope.order = $routeParams.order;
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message;
 
-            if ($scope.order == null || $scope.colOrder == null) {
-                request = "http://localhost:8081/trolleyes/json?ob=carrito&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
+
+        promesasService.ajaxListCarrito()
+        .then(function successCallback(response) {
+            if (response.data.status != 200) {
+                $scope.fallo = true;
+                $scope.falloMensaje = response.data.response;
             } else {
-                request = "http://localhost:8081/trolleyes/json?ob=carrito&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
-            }
-
-
-            $http({
-                method: "GET",
-                withCredentials: true,
-                url: request
-            }).then(function (response) {
+                $scope.fallo = false;
+                $scope.hecho = true;
                 $scope.status = response.data.status;
                 $scope.pagina = response.data.message;
-            });
-    
-            $scope.showSelectValue = function (mySelect) {
-                $window.location.href = `/trollEyes-client/#!/carrito/plist/`+mySelect+`/1`;
             }
-
-        $scope.search = function(){
-            promesasService.ajaxSearch('post',$scope.rppActual,$scope.paginaActual,$scope.word)
-            .then(function (response) {
-                if (response.data.status != 200) {
-                    $scope.fallo = true;
-                    $scope.falloMensaje = response.data.message;
-                  
-                } else {
-                    $scope.fallo = false;
-                    $scope.hecho=true;
-                    $scope.pagina = response.data.message;
-                    
-                }
-            }, function (error) {
-                $scope.hecho = true;
-                $scope.fallo = true;
-                $scope.falloMensaje = error.message + " " + error.stack;
-            });
-        }
-        promesasService.ajaxGetCount('post')
-        .then(function (response) {
-            $scope.status = response.data.status;
-            $scope.numRegistros = response.data.message;
-            $scope.numPaginas = Math.ceil($scope.numRegistros / $routeParams.rpp);
-            $scope.calcPage = [];
-            for (const p of $scope.rppS) {
-                const res = $scope.paginaActual / $scope.numPaginas;
-                const next = Math.ceil($scope.numRegistros / p);               
-                $scope.calcPage.push(Math.ceil(res * next));             
-            }
-            paginacion(2);
+            $scope.hecho = true;
         })
+    
 
-       
 
-    function paginacion(vecindad) {
-        vecindad++;
-        $scope.botonera = [];
-        for (i = 1; i <= $scope.numPaginas; i++) {
-            if (i == 1) {
-                $scope.botonera.push(i);
-            } else if (i > ($scope.paginaActual - vecindad) && i < ($scope.paginaActual + vecindad)) {
-                $scope.botonera.push(i);
-            } else if (i == $scope.numPaginas) {
-                $scope.botonera.push(i);
-            } else if (i == ($scope.paginaActual - vecindad) || i == ($scope.paginaActual + vecindad)) {
-                $scope.botonera.push('...');
+        $scope.add = function () {
+            const datos = {
+                id: $scope.id,
+                cantidad: $scope.cantidad,
             }
+            var jsonToSend = {
+                data: JSON.stringify(datos)
+            };
+            promesasService.ajaxAddCarrito(id, cantidad)
+                .then(function successCallback(response) {
+                    if (response.data.status != 200) {
+                        $scope.fallo = true;
+                        $scope.falloMensaje = response.data.response;
+                    } else {
+                        $scope.fallo = false;
+                        $scope.hecho = true;
+                        $location.path("/carrito/plist");
+                    }
+                    $scope.hecho = true;
+                })
         }
-    }
         
-       
 
     }
 )

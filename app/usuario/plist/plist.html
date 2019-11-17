@@ -17,7 +17,7 @@
                 <nav aria-label="Registros por página">
                     <ul class="pagination float-right">
                         <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
-                            <a class="page-link" href="#!/post/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
+                            <a class="page-link" href="#!/usuario/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
                         </li>
                     </ul>
                 </nav>
@@ -26,7 +26,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/post/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="#!/usuario/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>
@@ -34,10 +34,10 @@
                 <table class="table">
                     <tr>
                         <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/post/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
@@ -91,10 +91,10 @@
 
                         </th>
                         <th>Tipo usuario <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/tipo_usuario/asc"
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/tipo_usuario_obj/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/tipo_usuario/desc"
+                                <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/tipo_usuario_obj/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
@@ -123,7 +123,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/post/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="#!/usuario/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>
