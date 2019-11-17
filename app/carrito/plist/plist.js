@@ -7,6 +7,8 @@ var miControlador = miModulo.controller(
         $scope.controller = "carritoPlistController";
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;
+        $scope.authStatus = auth.data.status;
+        $scope.authUsername = auth.data.message;
 
             if ($scope.order == null || $scope.colOrder == null) {
                 request = "http://localhost:8081/trolleyes/json?ob=carrito&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
