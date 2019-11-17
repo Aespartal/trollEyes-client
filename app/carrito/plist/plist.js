@@ -4,7 +4,6 @@ var miControlador = miModulo.controller(
     function ($scope, $routeParams,$http, promesasService, $window,auth) {
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
-        $scope.rppS = [10, 50, 100];
         $scope.controller = "carritoPlistController";
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;

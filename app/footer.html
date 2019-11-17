@@ -1,3 +1,25 @@
-<footer class="footer mt-auto py-3 text-center font-weight-bold">
-    <span class="text-muted">Copyright &copy; TROLLEYES está disponible en código abierto.</span>
+<footer class="page-footer text-center font-weight-bold">
+    <!-- Footer Elements -->
+    <div class="container footer">
+
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2" ng-show="authStatus!=200">
+            <li class="list-inline-item">
+                <h5 class="mb-1">Inicia para comprar</h5>
+            </li>
+            <li class="list-inline-item">
+                <a href="#!/login" class="btn btn-outline-white btn-rounded">Sign up!</a>
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+        <div class="container-fluid">
+            <!-- Copyright -->
+            <div class="footer-copyright py-3">
+                Copyright &copy; TROLLEYES está disponible en código abierto.
+            </div>
+            <!-- Copyright -->
+        </div>
+    </div>
+    <!-- Footer Elements -->
 </footer>

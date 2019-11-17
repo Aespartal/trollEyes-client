@@ -26,7 +26,7 @@ var miControlador = miModulo.controller(
                         } else {
                             $scope.session = true;
                             $scope.fallo = false;
-                            $location.path("/home/10/1");
+                            $location.path("/home/12/1");
                         }
                         $scope.hecho = true;
                     }, function (error) {
