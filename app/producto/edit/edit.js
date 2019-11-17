@@ -2,7 +2,6 @@ var miControlador = miModulo.controller(
     "productoEditController",
 
     function ($scope, $http, $routeParams, promesasService, auth) {
-
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -15,7 +14,6 @@ var miControlador = miModulo.controller(
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
-
 
         promesasService.ajaxGet('producto', $routeParams.id)
             .then(function (response) {
@@ -32,7 +30,6 @@ var miControlador = miModulo.controller(
             })
 
         $scope.modificar = function () {
-
             const datos = {
                 id: $routeParams.id,
                 codigo: $scope.codigo,
@@ -47,8 +44,8 @@ var miControlador = miModulo.controller(
 
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
             promesasService.ajaxUpdate('producto', {
-                    params: jsonToSend
-                })
+                params: jsonToSend
+            })
                 .then(function (response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -90,7 +87,6 @@ var miControlador = miModulo.controller(
         };
 
         $scope.reset();
-
     }
 
 )

@@ -1,14 +1,11 @@
 var miControlador = miModulo.controller(
     "login",
-    function ($scope, $location, promesasService,auth) {
-
+    function ($scope, $location, promesasService, auth) {
         $scope.controller = "login";
-        $scope.usuario ="";
-
+        $scope.usuario = "";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
-
 
         if (auth.data.status != 200) {
             $location.path('/login');
@@ -16,7 +13,6 @@ var miControlador = miModulo.controller(
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message;
         }
-
 
         $scope.login = function () {
             usuario = $scope.user.username;
@@ -30,7 +26,7 @@ var miControlador = miModulo.controller(
                         } else {
                             $scope.session = true;
                             $scope.fallo = false;
-                            $location.path("/home/10/1");
+                            $location.path("/home/12/1");
                         }
                         $scope.hecho = true;
                     }, function (error) {
@@ -38,11 +34,9 @@ var miControlador = miModulo.controller(
                         $scope.hecho = true;
                         $scope.fallo = true;
                         $scope.falloMensaje = error.message + " " + error.stack;
-                    
+
                     });
             }
         }
-
-
     }
 )

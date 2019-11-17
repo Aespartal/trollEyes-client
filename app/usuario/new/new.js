@@ -1,15 +1,13 @@
 var miControlador = miModulo.controller(
     "usuarioNewController",
- 
-    function ($scope, $http,$location, promesasService,auth) {
-        
+
+    function ($scope, $http, $location, promesasService, auth) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message;
         }
-
 
         $scope.controller = "usuarioNewController";
         $scope.fallo = false;

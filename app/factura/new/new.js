@@ -37,8 +37,8 @@ var miControlador = miModulo.controller(
             };
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
             promesasService.ajaxNew('factura', {
-                    params: jsonToSend
-                })
+                params: jsonToSend
+            })
                 .then(function successCallback(response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;

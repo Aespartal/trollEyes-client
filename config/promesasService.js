@@ -1,23 +1,23 @@
 miModulo.factory('promesasService', ['$http',
     function ($http) {
         return {
-            ajaxGet: function (objeto,identificador){
-                return  $http.get('http://localhost:8081/trolleyes/json?ob='+objeto+'&op=get&id=' + identificador);
+            ajaxGet: function (objeto, identificador) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=get&id=' + identificador);
             },
-            ajaxUpdate: function (objeto,datos){
-                return $http.get('http://localhost:8081/trolleyes/json?ob='+objeto+'&op=update', datos);
+            ajaxUpdate: function (objeto, datos) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=update', datos);
             },
-            ajaxNew: function(objeto,datos){
-                return $http.get('http://localhost:8081/trolleyes/json?ob='+objeto+'&op=insert', datos);
+            ajaxNew: function (objeto, datos) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=insert', datos);
             },
-            ajaxGetCount: function(objeto){
-                return $http.get('http://localhost:8081/trolleyes/json?ob='+objeto+'&op=getcount');
+            ajaxGetCount: function (objeto) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount');
             },
-            ajaxGetPage: function(objeto,rpp,page){
-                return $http.get('http://localhost:8081/trolleyes/json?ob='+objeto+'&op=getpage&rpp=' + rpp + '&page=' + page);
+            ajaxGetPage: function (objeto, rpp, page) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page);
             },
-            ajaxRemove: function(objeto,identificador){
-                return $http.get('http://localhost:8081/trolleyes/json?ob='+objeto+'&op=remove&id='+ identificador);
+            ajaxRemove: function (objeto, identificador) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=remove&id=' + identificador);
             },
             ajaxLogin: function (username, password) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=login&username=' + username + '&password=' + forge_sha256(password));
@@ -31,8 +31,8 @@ miModulo.factory('promesasService', ['$http',
             ajaxFill: function (objeto, number) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=fill&number=' + number);
             },
-            ajaxSearch: function (objeto,rpp,page,word) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob='+objeto+'&op=getpage&rpp=' + rpp + '&page=' + page + '&filter='+ word);
+            ajaxSearch: function (objeto, rpp, page, word) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page + '&filter=' + word);
             }
         }
     }])

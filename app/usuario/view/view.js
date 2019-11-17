@@ -1,15 +1,15 @@
 var miControlador = miModulo.controller(
-    "postViewController",
+    "usuarioViewController",
 
-    function ($scope, $routeParams, promesasService,auth) {
-      
-                    if (auth.data.status != 200) {
-                        $location.path('/login');
-                    } else {
-                        $scope.authStatus = auth.data.status;
-                        $scope.authUsername = auth.data.message;
-                    }
-        
+    function ($scope, $routeParams, promesasService, auth) {
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+            $scope.controller = "usuarioViewController";
+        }
+
         promesasService.ajaxGet('usuario', $routeParams.id)
             .then(function (response) {
                 $scope.id = response.data.message.id;

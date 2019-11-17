@@ -1,8 +1,8 @@
 var miControlador = miModulo.controller(
     "facturaEditController",
 
-    function ($scope, $http, $routeParams, promesasService,auth) {
-        
+    function ($scope, $http, $routeParams, promesasService, auth) {
+
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -16,7 +16,7 @@ var miControlador = miModulo.controller(
         $scope.hecho = false;
         $scope.falloMensaje = "";
         $scope.fecha = new Date();
-        
+
 
         promesasService.ajaxGet('factura', $routeParams.id)
             .then(function (response) {
@@ -48,7 +48,7 @@ var miControlador = miModulo.controller(
                         $scope.falloMensaje = response.data.message;
                     } else {
                         $scope.fallo = false;
-                        $scope.hecho=true;
+                        $scope.hecho = true;
                     }
                 }, function (error) {
                     $scope.hecho = true;

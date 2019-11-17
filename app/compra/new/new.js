@@ -1,8 +1,7 @@
 var miControlador = miModulo.controller(
     "compraNewController",
 
-    function ($scope, $http,$location, promesasService,auth) {
-        
+    function ($scope, $http, $location, promesasService, auth) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -31,7 +30,7 @@ var miControlador = miModulo.controller(
             const datos = {
                 cantidad: $scope.cantidad,
                 producto_obj: $scope.producto_obj.descripcion,
-                factura_obj: $scope.factura_obj.id, 
+                factura_obj: $scope.factura_obj.id,
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)

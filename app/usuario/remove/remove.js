@@ -2,23 +2,17 @@ var miControlador = miModulo.controller(
     "usuarioRemoveController",
 
     function ($scope, $routeParams, $location, promesasService,auth) {
-
-
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message;
         }
-
-
         $scope.id = $routeParams.id;
         $scope.controller = "usuarioRemoveController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
-
-
 
         promesasService.ajaxGet('usuario', $routeParams.id)
             .then(function (response) {

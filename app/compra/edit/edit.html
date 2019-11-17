@@ -1,6 +1,4 @@
-<div class="slide-animate-container">
-    <ng-include src="'app/menu.html'"></ng-include>
-</div>
+<ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
     <h1><span class="font-weight-bold">Editar pedido</span></h1>
 </div>
@@ -23,7 +21,7 @@
                             <input type="text" ng-model="cantidad" value="{{cantidad}}" class="form-control" />
                         </div>
                         <div class="invalid-feedback" ng-show="userForm.cantidad.$invalid">
-                             La cantidad no puede estar vacia.
+                            La cantidad no puede estar vacia.
                         </div>
                     </div>
                 </div>
@@ -54,7 +52,10 @@
 
                 <br>
                 <div class="row">
-                    <button type="button" class="btn btn-primary" ng-click="modificar()">Actualizar los datos</button>
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-primary" ng-click="modificar()">Actualizar los
+                            datos</button>
+                    </div>
                 </div>
             </form>
             <div ng-show="!fallo&&hecho">
@@ -83,4 +84,3 @@
         </div>
     </div>
 </div>
-<ng-include src="'./app/footer.html'"></ng-include>

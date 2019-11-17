@@ -1,4 +1,4 @@
-miModulo.config(['$httpProvider', function($httpProvider) {
+miModulo.config(['$httpProvider', function ($httpProvider) {
   $httpProvider.defaults.withCredentials = true;
 }])
 
@@ -17,9 +17,9 @@ datelocale
 miModulo.config(function ($mdDateLocaleProvider) {
   // Example of a Spanish localization.
   $mdDateLocaleProvider.months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
   $mdDateLocaleProvider.shortMonths = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
-      'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
   $mdDateLocaleProvider.days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'];
   $mdDateLocaleProvider.shortDays = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'];
   // Can change week display to start on Monday.
@@ -30,12 +30,12 @@ miModulo.config(function ($mdDateLocaleProvider) {
   // In addition to date display, date components also need localized messages
   // for aria-labels for screen-reader users.
   $mdDateLocaleProvider.weekNumberFormatter = function (weekNumber) {
-      return 'Semana ' + weekNumber;
+    return 'Semana ' + weekNumber;
   };
   $mdDateLocaleProvider.msgCalendar = 'Calendario';
   $mdDateLocaleProvider.msgOpenCalendar = 'Abrir calendario';
   $mdDateLocaleProvider.formatDate = function (date) {
-      return moment(date).format('DD-MM-YYYY');
+    return moment(date).format('DD-MM-YYYY');
   };
 
 })

@@ -2,17 +2,8 @@ var miControlador = miModulo.controller(
     "carritoPlistController",
  
     function ($scope, $routeParams,$http, promesasService, $window,auth) {
-          
-        if (auth.data.status != 200) {
-            $location.path('/login');
-        } else {
-            $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message;
-        }
-
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
-        $scope.rppS = [10, 50, 100];
         $scope.controller = "carritoPlistController";
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;

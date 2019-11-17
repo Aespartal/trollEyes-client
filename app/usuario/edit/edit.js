@@ -1,7 +1,6 @@
 var miControlador = miModulo.controller(
     "usuarioEditController",
-    function ($scope, $http, $routeParams, promesasService,auth) {
-        
+    function ($scope, $http, $routeParams, promesasService, auth) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -14,8 +13,6 @@ var miControlador = miModulo.controller(
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
-
-        
 
         promesasService.ajaxGet('usuario', $routeParams.id)
             .then(function (response) {
@@ -31,7 +28,6 @@ var miControlador = miModulo.controller(
             })
 
         $scope.modificar = function () {
-
             const datos = {
                 id: $routeParams.id,
                 dni: $scope.dni,
@@ -53,7 +49,7 @@ var miControlador = miModulo.controller(
                         $scope.falloMensaje = response.data.message;
                     } else {
                         $scope.fallo = false;
-                        $scope.hecho=true;
+                        $scope.hecho = true;
                     }
                 }, function (error) {
                     $scope.hecho = true;

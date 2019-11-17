@@ -1,4 +1,4 @@
-var miModulo = angular.module("TrollEyesApp",[
+var miModulo = angular.module("TrollEyesApp", [
     'ngRoute',
     'angularCSS',
     'ngMaterial'
