@@ -1,7 +1,8 @@
 var miControlador = miModulo.controller(
     "usuarioFillController",
 
-    function ($scope, promesasService, auth) {
+    function ($scope, promesasService, auth,level) {
+        $scope.sessionLevel = level.data.message;
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -15,7 +16,7 @@ var miControlador = miModulo.controller(
         $scope.hecho = false;
         //--
         $scope.crear = function (numero) {
-            promesasService.ajaxFill('post', numero).then(function (response) {
+            promesasService.ajaxFill('usuario', numero).then(function (response) {
                 if (response.data.status == 200) {
                     $scope.fallo = false;
                     $scope.hecho = true;

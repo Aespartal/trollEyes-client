@@ -28,11 +28,29 @@ miModulo.factory('promesasService', ['$http',
             ajaxCheck: function () {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=check');
             },
+            ajaxSessionLevel: function () {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=sessionlevel');
+            },
             ajaxFill: function (objeto, number) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=fill&number=' + number);
             },
             ajaxSearch: function (objeto, rpp, page, word) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page + '&filter=' + word);
+            },
+            ajaxAddCarrito: function(id, cantidad) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=add&id=' + id + '&cantidad='+ cantidad);
+            },
+            ajaxRemoveCarrito: function(id, cantidad) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=remove&id=' + id + '&cantidad='+ cantidad);
+            },
+            ajaxListCarrito: function(id, cantidad) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=list');
+            },
+            ajaxEmptyCarrito: function(objeto, id, cantidad) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=empty');
+            },
+            ajaxBuy: function(objeto, id, cantidad) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=buy');
             }
         }
     }])

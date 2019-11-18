@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "facturaNewController",
-    function ($scope, $http, $location, promesasService, auth) {
-
+    function ($scope, $http, $location, promesasService, auth,level) {
+        $scope.sessionLevel = level.data.message;
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

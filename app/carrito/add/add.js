@@ -3,33 +3,18 @@ var miControlador = miModulo.controller(
 
     function ($scope, $http,$location, promesasService,auth) {
         
-        if (auth.data.status != 200) {
-            $location.path('/login');
-        } else {
+   
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message;
-        }
 
         $scope.controller = "carritoNewController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
 
-        promesasService.ajaxCheck()
-            .then(function (response) {
-                if (response.data.status == 200) {
-                    $scope.session = true;
-                    $scope.usuario = response.data.message;
-                } else {
-                    $scope.session = false;
-                }
-            }, function (response) {
-                $scope.session = false;
-            })
-
-        $scope.new = function () {
+        $scope.add = function () {
             const datos = {
-                titulo: $scope.titulo,
+                titulo: $scope.codigo,
                 cuerpo: $scope.cuerpo,
                 etiquetas: $scope.etiquetas, 
                 fecha: $scope.fecha

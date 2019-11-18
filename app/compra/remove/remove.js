@@ -1,6 +1,7 @@
 var miControlador = miModulo.controller(
     "compraRemoveController",
     function ($scope, $routeParams, $location, promesasService, auth) {
+        $scope.sessionLevel = level.data.message;
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

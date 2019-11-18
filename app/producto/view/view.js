@@ -1,10 +1,12 @@
 var miControlador = miModulo.controller(
     "productoViewController",
 
-    function ($scope, $routeParams, promesasService, auth) {
+    function ($scope, $routeParams, promesasService, auth,$location,level) {
+        $scope.sessionLevel = level.data.message;
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message;
         $scope.controller = "productoViewController";
+        $scope.cantidad = 1;
 
         promesasService.ajaxGet('producto', $routeParams.id)
             .then(function (response) {
@@ -13,9 +15,37 @@ var miControlador = miModulo.controller(
                 $scope.existencias = response.data.message.existencias;
                 $scope.precio = response.data.message.precio;
                 $scope.imagen = response.data.message.imagen;
+                $scope.descripcion = response.data.message.descripcion;
                 $scope.tipo_producto_obj = response.data.message.tipo_producto_obj;
             }, function () {
                 $scope.fallo = true;
             })
+        $scope.menos = function(){
+            if($scope.cantidad == 1){
+                $scope.cantidad = 1;
+            } else {
+                $scope.cantidad--;
+            }
+        }
+        $scope.mas = function(){
+            $scope.cantidad++;
+        }    
+        $scope.add = function () {
+            promesasService.ajaxAddCarrito( $scope.id, $scope.cantidad)
+                .then(function successCallback(response) {
+                    if (response.data.status != 200) {
+                        $scope.fallo = true;
+                        $scope.falloMensaje = response.data.response;
+                    } else {
+                        $scope.fallo = false;
+                        $scope.hecho = true;
+                        $location.path("/carrito/plist");
+                    }
+                    $scope.hecho = true;
+                })
+        }
     }
+
+
+
 )
