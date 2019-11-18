@@ -1,0 +1,31 @@
+<ng-include src="'app/menu.html'"></ng-include>
+<div class="header shadow">
+    <h1><span class="font-weight-bold"><i class="fas fa-user-tag"></i> Nuevo producto</span></h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ng-form name="userForm" ng-show="formulario" class="col-10 col-lg-8 mx-auto">
+                <div class="mt-4 form-group" ng-class="{'is-invalid': userForm.descripcion.$invalid}">
+                    <label>Descripción:</label>
+                    <input type="text" name="descripcion" class="form-control" ng-model="descripcion" ng-maxlength="50"
+                        required>
+                    <p ng-show="userForm.descripcion.$invalid && !userForm.descripcion.$pristine"
+                        class="help-block red-text">
+                        Formato de descripción inválido.
+                    </p>
+                </div>
+                <div class="text-center mt-3" ng-show="botones">
+                    <button type="button" class="btn btn-primary mt-2 mx-2" ng-click="new()">Crear tipo de
+                        usuario</button>
+                    <button type="button" class="btn btn-danger mt-2 mx-2" ng-click="volver()">Volver atrás</button>
+                </div>
+            </ng-form>
+
+            <div class="col-10 col-lg-8 mx-auto mt-4 text-center alert alert-success" role="alert" ng-show="correcto">
+                Tipo de usuario creado correctamente
+                <button type="button" class="btn btn-primary mx-2" ng-click="volver()">Volver atrás</button>
+            </div>
+        </div>
+    </div>
+</div>

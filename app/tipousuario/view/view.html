@@ -1,22 +1,27 @@
-<main role="main" class="container margenes">
-
-    <h1 class="text-center"><i class="fas fa-user-tag"></i> Ver tipo usuario {{data.id}}</h1>
-
-    <form>
-        <div class="row form-group text-center mx-auto mt-5 table-responsive">
-            <table class="table table-striped text-center">
-                <tr>
-                    <th>ID</th>
-                    <td class="align-middle">{{data.id}}</td>
-                </tr>
-                <tr>
-                    <th>Descripción</th>
-                    <td class="align-middle">{{data.descripcion}}</td>
-                </tr>
-            </table>
+<ng-include src="'app/menu.html'"></ng-include>
+<div class="header shadow">
+    <h1 class="text-center"><i class="fas fa-user-tag"></i> Ver tipo usuario</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form>
+                <div class="row form-group text-center mx-auto mt-5 table-responsive">
+                    <table class="table table-striped text-center">
+                        <tr>
+                            <th>ID</th>
+                            <td class="align-middle">{{data.id}}</td>
+                        </tr>
+                        <tr>
+                            <th>Descripción</th>
+                            <td class="align-middle">{{data.descripcion}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="text-center mt-5">
+                    <button type="button" class="btn btn-danger" ng-click="volver()">Volver atrás</button>
+                </div>
+            </form>
         </div>
-        <div class="text-center mt-5">
-            <button type="button" class="btn btn-danger" ng-click="volver()">Volver atrás</button>
-        </div>
-    </form>
-</main>
+    </div>
+</div>

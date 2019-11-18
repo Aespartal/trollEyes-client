@@ -1,13 +1,14 @@
 var miControlador = miModulo.controller(
     "usuarioRemoveController",
 
-    function ($scope, $routeParams, $location, promesasService,auth,level) {
-        $scope.sessionLevel = level.data.message;
+    function ($scope, $routeParams, $location, promesasService,level) {
+
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message;
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         }
         $scope.id = $routeParams.id;
         $scope.controller = "usuarioRemoveController";

@@ -1,14 +1,13 @@
 var miControlador = miModulo.controller(
     "homeController",
 
-    function ($scope, $routeParams, $window, $location, promesasService, auth, level) {
+    function ($scope, $routeParams, $window, $location, promesasService, auth) {
         $scope.authStatus = auth.data.status;
-        $scope.authUsername = auth.data.message;
-        $scope.sessionLevel = level.data.message;
+        $scope.authUsername = auth.data.message.login;
+        $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         $scope.controller = "homeController";
         $scope.campo = $routeParams.order;
         $scope.direction = $routeParams.direction;
-        $scope.authLevel = auth.data.message.id;
 
         if (!$routeParams.page) {
             $scope.paginaActual = 1;
