@@ -74,7 +74,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group row" ng-class="{'has-error': form.tipo_usuario_obj.$invalid}">
+        <div class="form-group row" ng-class="{'is-invalid': form.tipo_usuario_obj.$invalid}">
           <tipousuario-selection class="modal fade" id="cadd-location-modal" obj="tipo_usuario_obj"
             on-tipousuario-set="tipoUsuarioRefresh(this,false)">
           </tipousuario-selection>
@@ -93,14 +93,14 @@
                 ng-model-options="{debounce: 1000}">
               <div class="input-group-append">
                 <span class="input-group-text">
-                  <a href="tipousuario/view/{{tipo_usuario_obj.id}}">
+                  <a href="#!/tipousuario/view/{{tipo_usuario_obj.id}}">
                     <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
                     Tipo de usuario: {{tipo_usuario_obj.descripcion}}
                   </a>
                 </span>
               </div>
             </div>
-            <p ng-show="form.tipo_usuario_obj.$invalid && !form.tipo_usuario_obj.$pristine" class="help-block red-text">
+            <p ng-show="userForm.tipo_usuario_obj.$invalid && !userForm.tipo_usuario_obj.$pristine" class="help-block red-text">
               Id de usuario inválido.
             </p>
           </div>

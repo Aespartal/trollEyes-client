@@ -64,15 +64,15 @@ var miControlador = miModulo.controller(
                 if (consultar) {
                     $http({
                         method: 'GET',
-                        url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=' + $scope.tipo_usuario_obj.id
+                        url: 'http://localhost:8081/trolleyes/json?ob=tipo_usuario&op=get&id=' + $scope.tipo_usuario_obj.id
                     }).then(function (response) {
                         $scope.tipo_usuario_obj = response.data.message;
-                        form.form.tipo_usuario_obj.$setValidity('valid', true);
+                        form.userForm.tipo_usuario_obj.$setValidity('valid', true);
                     }, function () {
-                        form.form.tipo_usuario_obj.$setValidity('valid', false);
+                        form.userForm.tipo_usuario_obj.$setValidity('valid', false);
                     });
                 } else {
-                    form.form.tipo_usuario_obj.$setValidity('valid', true);
+                    form.userForm.tipo_usuario_obj.$setValidity('valid', true);
                 }
             } else {
                 $scope.tipo_usuario_obj.desc = "";
