@@ -57,11 +57,32 @@ var miControlador = miModulo.controller(
 
                 });
         }
+
+        $scope.tipoUsuarioRefresh = function (f, consultar) {
+            var form = f;
+            if ($scope.obj_tipoUsuario.id != null) {
+                if (consultar) {
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=' + $scope.obj_tipoUsuario.id
+                    }).then(function (response) {
+                        $scope.obj_tipoUsuario = response.data.message;
+                        form.form.obj_tipoUsuario.$setValidity('valid', true);
+                    }, function () {
+                        form.form.obj_tipoUsuario.$setValidity('valid', false);
+                    });
+                } else {
+                    form.form.obj_tipoUsuario.$setValidity('valid', true);
+                }
+            } else {
+                $scope.obj_tipoUsuario.desc = "";
+            }
+        };
         $scope.volver = function () {
             window.history.back();
         };
         $scope.cerrar = function () {
-            $location.path('/home/10/1');
+            $location.path('/home/12/1');
         };
     }
 )
