@@ -1,10 +1,10 @@
 var miControlador = miModulo.controller(
     "productoViewController",
 
-    function ($scope, $routeParams, promesasService, auth,$location,level) {
-        $scope.sessionLevel = level.data.message;
+    function ($scope, $routeParams, promesasService, auth,$location) {
         $scope.authStatus = auth.data.status;
-        $scope.authUsername = auth.data.message;
+        $scope.authUsername = auth.data.message.login;
+        $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         $scope.controller = "productoViewController";
         $scope.cantidad = 1;
 

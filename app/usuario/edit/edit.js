@@ -5,11 +5,13 @@ var miControlador = miModulo.controller(
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message;
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.controller = "usuarioEditController";
         }
 
         $scope.id = $routeParams.id;
-        $scope.controller = "usuarioEditController";
+     
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";

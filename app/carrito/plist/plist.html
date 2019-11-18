@@ -8,14 +8,17 @@
             <div class="wrapper">
                 <table class="table">
                     <tr>
+                        <th>Imagen</th>
                         <th>Producto</th>
                         <th>Cantidad</th>
-                        <th>Precio</th>
+                        <th>Precio Unitario</th>
                     </tr>
                     <tr ng-repeat="compra in pagina">
-                        <td>{{compra.descripcion}}</td>
+             
+                        <td><img width="150" height="100" ng-src={{compra.producto_obj.imagen}}"></td>
+                        <td>{{compra.producto_obj.descripcion}}</td>
                         <td>{{compra.cantidad}}</td>
-                        <td>{{compra.precio}}</td>
+                        <td>{{compra.producto_obj.precio}}</td>
                     </tr>
                 </table>
                 <div class="row">

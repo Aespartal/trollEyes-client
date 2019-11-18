@@ -1,11 +1,11 @@
 var miControlador = miModulo.controller(
     "carritoPlistController",
  
-    function ($scope, $routeParams,$http, promesasService, $window,auth,level) {
-        $scope.sessionLevel = level.data.message;
+    function ($scope, $routeParams,$http, promesasService, $window,auth) {
         $scope.controller = "carritoPlistController";
         $scope.authStatus = auth.data.status;
-        $scope.authUsername = auth.data.message;
+        $scope.authUsername = auth.data.message.login;
+        $scope.authLevel =  auth.data.message.tipo_usuario_obj;
 
 
         promesasService.ajaxListCarrito()
@@ -23,11 +23,11 @@ var miControlador = miModulo.controller(
         })
     
 
-
         $scope.add = function () {
             const datos = {
                 id: $scope.id,
                 cantidad: $scope.cantidad,
+                
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)

@@ -1,13 +1,13 @@
 var miControlador = miModulo.controller(
     "compraPlistController",
 
-    function ($scope, $routeParams, $http, promesasService, $window, auth,level) {
-        $scope.sessionLevel = level.data.message;
+    function ($scope, $routeParams, $http, promesasService, $window, auth) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message;
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         }
 
         $scope.paginaActual = parseInt($routeParams.page);

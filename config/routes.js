@@ -7,9 +7,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/producto/plist/:rpp/:page/:colOrder?/:order?', {
@@ -18,9 +15,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/producto/plist/:rpp/:page/:filter', {
@@ -29,9 +23,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/producto/remove/:id', {
@@ -40,9 +31,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/producto/view/:id', {
@@ -51,9 +39,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/producto/edit/:id', {
@@ -62,9 +47,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/producto/new', {
@@ -73,9 +55,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/producto/fill', {
@@ -84,9 +63,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         //---------Producto-----------------
@@ -96,9 +72,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/producto/plist/:rpp/:page/:colOrder?/:order?', {
@@ -107,9 +80,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipoproducto/plist/:rpp/:page/:filter', {
@@ -118,9 +88,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipoproducto/remove/:id', {
@@ -129,9 +96,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipoproducto/view/:id', {
@@ -140,9 +104,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipoproducto/edit/:id', {
@@ -151,9 +112,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         //-------usuario------------------------
@@ -163,9 +121,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/usuario/plist/:rpp/:page/:colOrder?/:order?', {
@@ -174,9 +129,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/usuario/plist/:rpp/:page/:filter', {
@@ -185,9 +137,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/usuario/remove/:id', {
@@ -196,9 +145,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/usuario/view/:id', {
@@ -207,9 +153,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/usuario/edit/:id', {
@@ -218,9 +161,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/usuario/new', {
@@ -229,9 +169,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/usuario/fill', {
@@ -240,9 +177,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         //-------tipousuario------------------------
@@ -252,9 +186,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipousuario/plist/:rpp/:page/:colOrder?/:order?', {
@@ -263,9 +194,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipousuario/plist/:rpp/:page/:filter', {
@@ -274,9 +202,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipousuario/remove/:id', {
@@ -285,9 +210,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipousuario/view/:id', {
@@ -296,9 +218,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipousuario/edit/:id', {
@@ -307,9 +226,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipousuario/new', {
@@ -318,9 +234,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/tipousuario/fill', {
@@ -329,9 +242,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         //-------factura------------------------
@@ -341,9 +251,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/factura/plist/:rpp/:page/:colOrder?/:order?', {
@@ -352,9 +259,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/factura/plist/:rpp/:page/:filter', {
@@ -363,9 +267,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/factura/remove/:id', {
@@ -374,9 +275,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/factura/view/:id', {
@@ -385,9 +283,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/factura/edit/:id', {
@@ -396,9 +291,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/factura/new', {
@@ -407,9 +299,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/factura/fill', {
@@ -418,9 +307,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
 
@@ -431,9 +317,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/compra/plist/:rpp/:page/:colOrder?/:order?', {
@@ -442,9 +325,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/compra/plist/:rpp/:page/:filter', {
@@ -453,9 +333,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/compra/remove/:id', {
@@ -464,9 +341,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/compra/view/:id', {
@@ -475,9 +349,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/compra/edit/:id', {
@@ -486,9 +357,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/compra/new', {
@@ -497,9 +365,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         //-------Carrito---------------------------
@@ -509,9 +374,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/carrito/remove/:id', {
@@ -520,9 +382,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/carrito/empty/:rpp/:page', {
@@ -531,9 +390,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/carrito/add/:id', {
@@ -542,9 +398,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         //-------Home---------------------------
@@ -554,9 +407,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         //----------------------------------------------
@@ -566,9 +416,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         $routeProvider.when('/logout', {
@@ -577,9 +424,6 @@ miModulo.config(['$routeProvider',
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
-                level: function (promesasService) {
-                    return promesasService.ajaxSessionLevel();
-                }
             }
         })
         //----------------------------------------------
