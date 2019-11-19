@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "homeController",
 
-    function ($scope, $routeParams, $window, $location, promesasService, auth) {
+    function ($scope, $routeParams, $window, promesasService, auth) {
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message.login;
         $scope.authLevel =  auth.data.message.tipo_usuario_obj;
