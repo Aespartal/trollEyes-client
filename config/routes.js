@@ -114,6 +114,14 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
+        $routeProvider.when('/tipoproducto/new', {
+            templateUrl: 'app/tipoproducto/new/new.html', controller: 'tipoproductoNewController',
+            resolve: {
+                auth: function (promesasService) {
+                    return promesasService.ajaxCheck();
+                },
+            }
+        })
         //-------usuario------------------------
         $routeProvider.when('/usuario/plist/:rpp/:page', {
             templateUrl: 'app/usuario/plist/plist.html', controller: 'usuarioPlistController',
@@ -228,16 +236,17 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
-        $routeProvider.when('/tipousuario/new', {
-            templateUrl: 'app/tipousuario/new/new.html', controller: 'tipousuarioNewController',
+        $routeProvider.when('/tipousuario/fill', {
+            templateUrl: 'app/tipousuario/fill/fill.html', controller: 'tipousuarioFillController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
             }
         })
-        $routeProvider.when('/tipousuario/fill', {
-            templateUrl: 'app/tipousuario/fill/fill.html', controller: 'tipousuarioFillController',
+         //-------perfilusuario------------------------
+         $routeProvider.when('/perfil', {
+            templateUrl: 'app/perfil/view.html', controller: 'usuarioViewPerfilController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();

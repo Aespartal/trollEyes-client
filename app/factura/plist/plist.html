@@ -76,8 +76,8 @@
                         <td>{{fila.id}}</td>
                         <td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
                         <td>{{fila.iva}}</td>
-                        <td>{{fila.usuario_obj.nombre}} {{fila.usuario_obj.apellido1}} {{fila.usuario_obj.apellido2}}
-                        </td>
+                        <td>
+                            <a href="#!/usuario/view/{{fila.usuario_obj.id}}">{{fila.usuario_obj.nombre}} {{fila.usuario_obj.apellido1}} {{fila.usuario_obj.apellido2}}</td>
                         <td>
                             <a href="#!/factura/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
                             <a href="#!/factura/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>

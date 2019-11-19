@@ -87,7 +87,7 @@
                         <td>{{fila.codigo}}</td>
                         <td>{{fila.existencias}}</td>
                         <td>{{fila.precio}} €</td>
-                        <td>{{fila.tipo_producto_obj.descripcion}}</td>
+                        <td><a href="#!/tipoproducto/view/{{fila.tipo_producto_obj.id}}">{{fila.tipo_producto_obj.descripcion}}</a></td>
                         <!--<td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>-->
                         <td>
                             <a href="#!/producto/view/{{fila.id}}"><i class="fa fa-eye"></i></a>

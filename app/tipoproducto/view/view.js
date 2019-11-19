@@ -1,7 +1,13 @@
 'use strict';
 var miControlador = miModulo.controller('tipoproductoViewController',
-    function ($scope, $http, toolService, $routeParams, $anchorScroll) {
-        $anchorScroll();
+    function ($scope, $http, $routeParams, auth) {
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+        }
         
         if (!$routeParams.id) {
             $scope.id = 1;
@@ -11,13 +17,13 @@ var miControlador = miModulo.controller('tipoproductoViewController',
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=tipoproducto&op=get&id=' + $scope.id
+            url: 'http://localhost:8081/trolleyes/json?ob=tipo_producto&op=get&id=' + $scope.id
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxData = response.data.message;
+            $scope.data = response.data.message;
         }, function (response) {
             $scope.status = response.status;
-            $scope.ajaxData = response.data.message || 'Request failed';
+            $scope.data = response.data.message || 'Request failed';
         });
 
         $scope.volver = function () {

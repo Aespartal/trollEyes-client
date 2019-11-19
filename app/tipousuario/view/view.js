@@ -1,7 +1,13 @@
 'use strict';
 var miControlador = miModulo.controller('tipousuarioViewController',
-    function ($scope, $http, $routeParams, $anchorScroll) {
-        $anchorScroll();
+    function ($scope, $http, $routeParams, auth) {
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+        }
 
         if (!$routeParams.id) {
             $scope.id = 1;
