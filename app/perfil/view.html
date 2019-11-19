@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold"><i class="fas fa-user"></i> Este es tu perfil, @{{authlogin}}</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-user"></i> Este es tu perfil @{{authUsername}}</span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -30,7 +30,7 @@
                         </tr>
                         <tr>
                             <th>Nombre de usuario</th>
-                            <td class="align-middle">{{authlogin}}</td>
+                            <td class="align-middle">{{authUsername}}</td>
                         </tr>
                     </table>
                 </div>

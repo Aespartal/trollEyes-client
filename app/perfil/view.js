@@ -11,7 +11,7 @@ var miControlador = miModulo.controller('usuarioViewPerfilController',
             $scope.authapellido1 = auth.data.message.apellido1;
             $scope.authapellido2 = auth.data.message.apellido2;
             $scope.authemail = auth.data.message.email;
-            $scope.authlogin = auth.data.message.login;
+            $scope.authUsername = auth.data.message.login;
             $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
