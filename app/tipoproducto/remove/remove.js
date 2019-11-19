@@ -1,6 +1,14 @@
 'use strict';
 var miControlador = miModulo.controller('tipoproductoRemoveController',
-    function ($scope, $http, toolService, $routeParams, $anchorScroll) {
+    function ($scope, $http, toolService, $routeParams, $anchorScroll,auth) {
+        
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+        }
         $anchorScroll();
         
         $scope.botones = true;

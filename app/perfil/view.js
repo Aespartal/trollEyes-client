@@ -1,6 +1,6 @@
 'use strict';
 var miControlador = miModulo.controller('usuarioViewPerfilController',
-    function ($scope, auth) {
+    function ($scope, auth,$location) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

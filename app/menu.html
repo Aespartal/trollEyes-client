@@ -45,7 +45,7 @@
         <li class="nav-item" ng-show="authStatus!=200" ng-class="{'active': controller=='login'}">
           <a class="nav-link" href="#!/login">Iniciar Sesión <i class="fas fa-sign-in-alt"></i></a>
         </li>
-        <li class="nav-item" ng-show="authStatus==200" ng-class="{'active':(controller=='usuarioviewController||usuarioViewPerfilController')}">
+        <li class="nav-item" ng-show="authStatus==200" ng-class="{'active':(controller=='usuarioviewController'||controller=='usuarioViewPerfilController')}">
           <a href="#!/perfil"><span class="nav-link font-weight-bold">@{{authUsername}} <span ng-show="authStatus==200 && authLevel.id == 1">({{authLevel.descripcion}})<span></span></a>
         </li>
 

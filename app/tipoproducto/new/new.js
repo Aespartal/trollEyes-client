@@ -1,7 +1,6 @@
 'use strict';
 var miControlador = miModulo.controller('tipoproductoNewController',
-    function ($scope, $http, auth) {
-        $scope.sessionLevel = level.data.message;
+    function ($scope, $http, auth,$location) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

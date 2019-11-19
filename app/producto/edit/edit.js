@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "productoEditController",
 
-    function ($scope, $http, $routeParams, promesasService, auth) {
+    function ($scope, $http, $routeParams, promesasService,$location, auth) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

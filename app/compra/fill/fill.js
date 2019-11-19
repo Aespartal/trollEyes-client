@@ -1,8 +1,8 @@
 var miControlador = miModulo.controller(
     "compraFillController",
 
-    function ($scope, promesasService, auth,level) {
-        $scope.sessionLevel = level.data.message;
+    function ($scope, promesasService,$location, auth) {
+
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

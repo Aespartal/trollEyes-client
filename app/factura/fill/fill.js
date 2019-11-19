@@ -1,6 +1,6 @@
 var miControlador = miModulo.controller(
     "facturaFillController",
-    function ($scope, promesasService, auth) {
+    function ($scope, promesasService,$location, auth) {
     
         if (auth.data.status != 200) {
             $location.path('/login');
