@@ -1,6 +1,14 @@
 'use strict';
 var miControlador = miModulo.controller('tipousuarioEditController',
-    function ($scope, $http, $routeParams, $anchorScroll) {
+    function ($scope, $http, $routeParams, $anchorScroll,auth,$location) {
+        if (auth.data.status != 200) {
+            $location.path('/login');
+        } else {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+        }
+        
         $anchorScroll();
         
         $scope.formulario = true;

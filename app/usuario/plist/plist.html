@@ -108,8 +108,8 @@
                         <td>{{fila.nombre}}</td>
                         <td>{{fila.apellido1}} {{fila.apellido2}}</td>
                         <td>{{fila.email}}</td>
-                        <td>{{fila.login}}</td>
-                        <td>{{fila.tipo_usuario_obj.descripcion}}</td>
+                        <td><a href="#!/usuario/view/{{fila.id}}">{{fila.login}}</a></td>
+                        <td><a href="#!/tipousuario/view/{{fila.tipo_usuario_obj.id}}">{{fila.tipo_usuario_obj.descripcion}}</a></td>
                         <td>
                             <a href="#!/usuario/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
                             <a href="#!/usuario/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>

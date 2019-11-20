@@ -75,8 +75,8 @@
                     <tr ng-repeat="fila in pagina">
                         <td>{{fila.id}}</td>
                         <td>{{fila.cantidad}}</td>
-                        <td>{{fila.producto_obj.descripcion}}</td>
-                        <td>{{fila.factura_obj.id}}</td>
+                        <td><a href="#!/producto/view/{{fila.producto_obj.id}}">{{fila.producto_obj.descripcion}}</a></td>
+                        <td><a href="#!/factura/view/{{fila.factura_obj.id}}">{{fila.factura_obj.id}}</a></td>
                         <td>
                             <a href="#!/compra/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
                             <a href="#!/compra/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
