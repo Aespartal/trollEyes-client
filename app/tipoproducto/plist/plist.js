@@ -2,103 +2,46 @@
 var miControlador = miModulo.controller('tipoproductoPlistController',
     function ($scope, $http, $location, $routeParams, $anchorScroll) {
         $anchorScroll();
-        
-        $scope.totalPages = 1;
-        $scope.registros = true;
-        $scope.alerta = false;
 
-        if (!$routeParams.order) {
-            $scope.orderURLServidor = "";
-            $scope.orderURLCliente = "";
+        $scope.paginaActual = parseInt($routeParams.page);
+        $scope.rppActual = parseInt($routeParams.rpp);
+        $scope.rppS = [10, 50, 100];
+        $scope.controller = "tipoproductoPlistController";
+        $scope.colOrder = $routeParams.colOrder;
+        $scope.order = $routeParams.order;
+
+        if ($scope.order == null || $scope.colOrder == null) {
+            request = "http://localhost:8081/trolleyes/json?ob=tipoproducto&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
         } else {
-            $scope.orderURLServidor = "&order=" + $routeParams.order;
-            $scope.orderURLCliente = $routeParams.order;
+            request = "http://localhost:8081/trolleyes/json?ob=tipoproducto&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
         }
 
-        if (!$routeParams.rpp) {
-            $scope.rpp = "5";
-        } else {
-            $scope.rpp = $routeParams.rpp;
-        }
+        promesasService.ajaxGetCount('tipoproducto')
+            .then(function (response) {
+                $scope.status = response.data.status;
+                $scope.numRegistros = response.data.message;
+                $scope.numPaginas = Math.ceil($scope.numRegistros / $routeParams.rpp);
+                $scope.calcPage = [];
+                for (const p of $scope.rppS) {
+                    const res = $scope.paginaActual / $scope.numPaginas;
+                    const next = Math.ceil($scope.numRegistros / p);
+                    $scope.calcPage.push(Math.ceil(res * next));
+                }
+                paginacion(2);
+            })
 
-        if (!$routeParams.page) {
-            $scope.page = 1;
-        } else {
-            if ($routeParams.page >= 1) {
-                $scope.page = $routeParams.page;
-            } else {
-                $scope.page = 1;
-            }
-        }
-
-        $scope.resetOrder = function () {
-            $location.url(`tipoproducto/plist/` + $scope.rpp + `/` + $scope.page);
-        };
-        
-        $scope.crear = function () {
-            $location.url('tipoproducto/create');
-        };
-
-        $scope.ordenar = function (order, align) {
-            if ($scope.orderURLServidor === "") {
-                $scope.orderURLServidor = "&order=" + order + "," + align;
-                $scope.orderURLCliente = order + "," + align;
-            } else {
-                $scope.orderURLServidor = $scope.orderURLServidor + "-" + order + "," + align;
-                $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
-            }
-            $location.url(`tipoproducto/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
-        };
-
-        $http({
-            method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=tipoproducto&op=getcount'
-        }).then(function (response) {
-            $scope.status = response.status;
-            $scope.ajaxDataNumber = response.data.message;
-            if($scope.ajaxDataNumber === 0){
-                $scope.registros = false;
-                $scope.alerta = true;
-            }
-            $scope.totalPages = Math.ceil($scope.ajaxDataNumber / $scope.rpp);
-            if ($scope.page > $scope.totalPages) {
-                $scope.page = $scope.totalPages;
-            }
-            pagination();
-        }, function (response) {
-            $scope.ajaxDataNumber = response.data.message || 'Request failed';
-            $scope.status = response.status;
-        });
-
-        $http({
-            method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=tipoproducto&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
-        }).then(function (response) {
-            $scope.status = response.status;
-            $scope.ajaxData = response.data.message;
-        }, function (response) {
-            $scope.status = response.status;
-            $scope.ajaxData = response.data.message || 'Request failed';
-        });
-
-        $scope.update = function () {
-            $scope.page = 1;
-            $location.url(`tipoproducto/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
-        };
-
-        function pagination() {
-            $scope.list = [];
-            $scope.valorNeighbourhood = 1;
-            $scope.prev_1 = ($scope.page - $scope.valorNeighbourhood);
-            $scope.prev_2 = ($scope.page - $scope.valorNeighbourhood-1);
-            $scope.post_1 = ($scope.page - -$scope.valorNeighbourhood);
-            $scope.post_2 = ($scope.page - -$scope.valorNeighbourhood+1);
-
-            for (var i = 2; i <= $scope.totalPages-1; i++) {
-                if (i >= $scope.prev_1 && i <= $scope.post_1) {
-                    $scope.list.push(i);
-                } else if (i === $scope.prev_2 || i === $scope.post_2) {
-                    $scope.list.push("...");
+        function paginacion(vecindad) {
+            vecindad++;
+            $scope.botonera = [];
+            for (i = 1; i <= $scope.numPaginas; i++) {
+                if (i == 1) {
+                    $scope.botonera.push(i);
+                } else if (i > ($scope.paginaActual - vecindad) && i < ($scope.paginaActual + vecindad)) {
+                    $scope.botonera.push(i);
+                } else if (i == $scope.numPaginas) {
+                    $scope.botonera.push(i);
+                } else if (i == ($scope.paginaActual - vecindad) || i == ($scope.paginaActual + vecindad)) {
+                    $scope.botonera.push('...');
                 }
             }
         }

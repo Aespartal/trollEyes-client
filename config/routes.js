@@ -74,7 +74,7 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
-        $routeProvider.when('/producto/plist/:rpp/:page/:colOrder?/:order?', {
+        $routeProvider.when('/tipoproducto/plist/:rpp/:page/:colOrder?/:order?', {
             templateUrl: 'app/tipoproducto/plist/plist.html', controller: 'tipoproductoPlistController',
             resolve: {
                 auth: function (promesasService) {
