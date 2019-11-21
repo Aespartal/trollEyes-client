@@ -1,14 +1,13 @@
 var miControlador = miModulo.controller(
     "productoRemoveController",
-
     function ($scope, $routeParams, $location, promesasService, auth) {
-  
+
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         $scope.id = $routeParams.id;
@@ -30,7 +29,6 @@ var miControlador = miModulo.controller(
             })
 
         $scope.remove = function () {
-
             promesasService.ajaxRemove('producto', $routeParams.id)
                 .then(function (response) {
                     if (response.data.status != 200) {

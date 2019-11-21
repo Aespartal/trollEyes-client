@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "compraPlistController",
 
-    function ($scope, $routeParams, $http, promesasService, $window,$location, auth) {
+    function ($scope, $routeParams, $http, promesasService, $window, auth) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

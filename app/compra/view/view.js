@@ -1,14 +1,14 @@
 var miControlador = miModulo.controller(
     "compraViewController",
 
-    function ($scope, $routeParams, promesasService,$location, auth) {
-
+    function ($scope, $routeParams, promesasService, auth) {
+        $scope.controller = "compraViewController";
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message;
-            $scope.controller = "compraViewController";
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         }
 
         promesasService.ajaxGet('compra', $routeParams.id)

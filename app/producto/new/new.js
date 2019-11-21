@@ -1,14 +1,13 @@
 var miControlador = miModulo.controller(
     "productoNewController",
 
-    function ($scope, $http, $location, promesasService, auth) {
-        $scope.sessionLevel = level.data.message;
+    function ($scope, $http, $location, promesasService, auth,$routeParams) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         $scope.controller = "productoNewController";
@@ -33,7 +32,9 @@ var miControlador = miModulo.controller(
                 codigo: $scope.codigo,
                 existencias: $scope.existencias,
                 precio: $scope.precio,
-                tipo_producto_id: $scope.tipo_producto_id
+                imagen: $scope.imagen,
+                descripcion: $scope.descripcion,
+                tipo_producto_id: $scope.tipo_producto_obj.id
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
@@ -56,11 +57,31 @@ var miControlador = miModulo.controller(
 
                 });
         }
+
+        $scope.tipoProductoRefresh = function (f, consultar) {
+            var form = f;
+            if ($scope.tipo_producto_obj.id != null) {
+                if (consultar) {
+                    promesasService.ajaxGet('producto', $routeParams.id)
+                        .then(function (response) {
+                            $scope.tipo_producto_obj = response.data.message;
+                            form.userForm.tipo_producto_obj.$setValidity('valid', true);
+                        }, function () {
+                            form.userForm.tipo_producto_obj.$setValidity('valid', false);
+                        });
+                } else {
+                    form.userForm.tipo_producto_obj.$setValidity('valid', true);
+                }
+            } else {
+                $scope.tipo_producto_obj.desc = "";
+            }
+        };
+
         $scope.volver = function () {
             window.history.back();
         };
         $scope.cerrar = function () {
-            $location.path('/home/10/1');
+            $location.path('/home/12/1');
         };
     }
 )

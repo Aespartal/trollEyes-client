@@ -1,16 +1,16 @@
 var miControlador = miModulo.controller(
     "facturaViewController",
-
-    function ($scope, $routeParams, promesasService,$location, auth) {
-
+    function ($scope, $routeParams, promesasService, auth) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
+
         $scope.controller = "facturaViewController";
+
         promesasService.ajaxGet('factura', $routeParams.id)
             .then(function (response) {
                 $scope.id = response.data.message.id;

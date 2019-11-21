@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "carritoPlistController",
  
-    function ($scope, $routeParams,$http, promesasService, $window,auth) {
+    function ($scope, $routeParams,$http, promesasService, $window,auth,$location) {
         $scope.controller = "carritoPlistController";
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message.login;
@@ -21,7 +21,6 @@ var miControlador = miModulo.controller(
             }
             $scope.hecho = true;
         })
-    
 
         $scope.add = function () {
             const datos = {
@@ -45,7 +44,31 @@ var miControlador = miModulo.controller(
                     $scope.hecho = true;
                 })
         }
-        
+        $scope.buy =  function () {
+        promesasService.ajaxBuy()
+            .then(function successCallback(response) {
+                if (response.data.status != 200) {
+                    $scope.fallo = true;
+                    $scope.falloMensaje = response.data.response;
+                    $scope.compraRealizada =false;
+                } else {
+                    $scope.fallo = false;
+                    $scope.hecho = true;
+                    $scope.compraRealizada =true;
+                }
+                $scope.hecho = true;
+            }, function (error) {
+                $scope.hecho = true;
+                $scope.fallo = true;
+                $scope.falloMensaje = error.message + " " + error.stack;
 
+            });
+        }
+        $scope.volver = function () {
+            window.history.back();
+        };
+        $scope.cerrar = function () {
+            $location.path('/home/12/1');
+        };
     }
 )

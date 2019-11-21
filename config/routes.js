@@ -34,7 +34,7 @@ miModulo.config(['$routeProvider',
             }
         })
         $routeProvider.when('/producto/view/:id', {
-            templateUrl: 'app/producto/view/view.html', controller: 'productoViewController', css: 'app/producto/view/view.css',
+            templateUrl: 'app/producto/view/view.html', controller: 'productoViewController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
@@ -244,8 +244,8 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
-         //-------perfilusuario------------------------
-         $routeProvider.when('/perfil', {
+        //-------perfilusuario------------------------
+        $routeProvider.when('/perfil', {
             templateUrl: 'app/perfil/view.html', controller: 'usuarioViewPerfilController',
             resolve: {
                 auth: function (promesasService) {
@@ -378,7 +378,7 @@ miModulo.config(['$routeProvider',
         })
         //-------Carrito---------------------------
         $routeProvider.when('/carrito/plist', {
-            templateUrl: 'app/carrito/plist/plist.html', controller: 'carritoPlistController',
+            templateUrl: 'app/carrito/plist/plist.html', controller: 'carritoPlistController', 
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
@@ -412,6 +412,15 @@ miModulo.config(['$routeProvider',
         //-------Home---------------------------
         $routeProvider.when('/home/:rpp/:page', {
             templateUrl: 'app/homeTemplate.html', controller: 'homeController',
+            resolve: {
+                auth: function (promesasService) {
+                    return promesasService.ajaxCheck();
+                },
+            }
+        })
+        //-------About---------------------------
+        $routeProvider.when('/about', {
+            templateUrl: 'app/about.html', controller: 'aboutController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();

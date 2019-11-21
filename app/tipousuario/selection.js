@@ -89,14 +89,14 @@ function cController($http) {
             url: 'http://localhost:8081/trolleyes/json?ob=' + self.ob + '&op=getcount'
         }).then(function (response) {
             self.status = response.status;
-            self.ajaxDataProductosNumber = response.data.message;
-            self.totalPages = Math.ceil(self.ajaxDataProductosNumber / self.rpp);
+            self.ajaxDatasUsuariosNumber = response.data.message;
+            self.totalPages = Math.ceil(self.ajaxDatasUsuariosNumber / self.rpp);
             if (self.page > self.totalPages) {
                 self.page = self.totalPages;
             }
             pagination();
         }, function (response) {
-            self.ajaxDataProductosNumber = response.data.message || 'Request failed';
+            self.ajaxDatasUsuariosNumber = response.data.message || 'Request failed';
             self.status = response.status;
         });
 

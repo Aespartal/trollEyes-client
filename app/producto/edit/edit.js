@@ -1,13 +1,12 @@
 var miControlador = miModulo.controller(
     "productoEditController",
-
-    function ($scope, $http, $routeParams, promesasService,$location, auth) {
+    function ($scope, $http, $routeParams, promesasService, auth) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         $scope.id = $routeParams.id;
@@ -16,16 +15,14 @@ var miControlador = miModulo.controller(
         $scope.hecho = false;
         $scope.falloMensaje = "";
 
-        promesasService.ajaxGet('producto', $routeParams.id,)
+        promesasService.ajaxGet('producto', $routeParams.id)
             .then(function (response) {
-                $scope.id = response.data.message.id;
                 $scope.codigo = response.data.message.codigo;
                 $scope.existencias = response.data.message.existencias;
                 $scope.precio = response.data.message.precio;
                 $scope.imagen = response.data.message.imagen;
                 $scope.descripcion = response.data.message.descripcion;
-                $scope.tipo_producto_obj_descripcion = response.data.message.tipo_producto_obj.descripcion;
-
+                $scope.tipo_producto_id = response.data.message.tipo_producto_obj.id;
             }, function () {
                 $scope.fallo = true;
             })
@@ -35,9 +32,10 @@ var miControlador = miModulo.controller(
                 id: $routeParams.id,
                 codigo: $scope.codigo,
                 existencias: $scope.existencias,
+                imagen: $scope.imagen,
                 precio: $scope.precio,
                 descripcion: $scope.descripcion,
-                tipo_producto_obj: $scope.tipo_producto_obj_descripcion
+                tipo_producto_id: $scope.tipo_producto_obj.id
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
@@ -62,6 +60,25 @@ var miControlador = miModulo.controller(
                 });
         };
 
+        $scope.tipoProductoRefresh = function (f, consultar) {
+            var form = f;
+            if ($scope.tipo_producto_obj.id != null) {
+                if (consultar) {
+                    promesasService.ajaxGet('producto', $routeParams.id)
+                        .then(function (response) {
+                            $scope.tipo_producto_obj = response.data.message;
+                            form.userForm.tipo_producto_obj.$setValidity('valid', true);
+                        }, function () {
+                            form.userForm.tipo_producto_obj.$setValidity('valid', false);
+                        });
+                } else {
+                    form.userForm.tipo_producto_obj.$setValidity('valid', true);
+                }
+            } else {
+                $scope.tipo_producto_obj.desc = "";
+            }
+        };
+
         $scope.volver = function () {
             window.history.back();
         };
@@ -84,10 +101,9 @@ var miControlador = miModulo.controller(
         }
 
         $scope.cerrar = function () {
-            $location.path('/home/10/1');
+            $location.path('/home/12/1');
         };
 
         $scope.reset();
     }
-
 )

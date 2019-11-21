@@ -1,13 +1,12 @@
 var miControlador = miModulo.controller(
     "facturaNewController",
     function ($scope, $http, $location, promesasService, auth) {
-        $scope.sessionLevel = level.data.message;
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         $scope.controller = "facturaNewController";
@@ -31,7 +30,7 @@ var miControlador = miModulo.controller(
             const datos = {
                 fecha: $scope.fecha,
                 iva: $scope.iva,
-                usuario_obj: $scope.usuario_obj.nombre
+                usuario_id: $scope.usuario_obj.id
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
@@ -53,14 +52,34 @@ var miControlador = miModulo.controller(
                     $scope.hecho = true;
                     $scope.fallo = true;
                     $scope.falloMensaje = error.message + " " + error.stack;
-
                 });
         }
+
+        $scope.tipoUsuarioRefresh = function (f, consultar) {
+            var form = f;
+            if ($scope.usuario_obj.id != null) {
+                if (consultar) {
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=get&id=' + $scope.tipo_usuario_obj.id
+                    }).then(function (response) {
+                        $scope.usuario_obj = response.data.message;
+                        form.userForm.usuario_obj.$setValidity('valid', true);
+                    }, function () {
+                        form.userForm.usuario_obj.$setValidity('valid', false);
+                    });
+                } else {
+                    form.userForm.usuario_obj.$setValidity('valid', true);
+                }
+            } else {
+                $scope.usuario_obj.desc = "";
+            }
+        };
         $scope.volver = function () {
             window.history.back();
         };
         $scope.cerrar = function () {
-            $location.path('/home/10/1');
+            $location.path('/home/12/1');
         };
     }
 )

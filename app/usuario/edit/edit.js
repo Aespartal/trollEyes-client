@@ -6,25 +6,27 @@ var miControlador = miModulo.controller(
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
             $scope.controller = "usuarioEditController";
         }
 
         $scope.id = $routeParams.id;
-     
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
 
         promesasService.ajaxGet('usuario', $routeParams.id)
             .then(function (response) {
-                $scope.id = response.data.message.id;
                 $scope.dni = response.data.message.dni;
                 $scope.nombre = response.data.message.nombre;
                 $scope.apellido1 = response.data.message.apellido1;
                 $scope.apellido2 = response.data.message.apellido2;
                 $scope.email = response.data.message.email;
                 $scope.login = response.data.message.login;
+                $scope.password = response.data.message.password;
+                $scope.tipo_usuario_obj = response.data.message.tipo_usuario_obj;
+                $scope.tipo_usuario_obj_id = response.data.message.tipo_usuario_obj.id;
+                $scope.tipo_usuario_obj_desc = response.data.message.tipo_usuario_obj.descripcion;
             }, function () {
                 $scope.fallo = true;
             })
@@ -37,7 +39,9 @@ var miControlador = miModulo.controller(
                 apellido1: $scope.apellido1,
                 apellido2: $scope.apellido2,
                 email: $scope.email,
-                login: $scope.login
+                login: $scope.login,
+                password: forge_sha256($scope.password),
+                tipo_usuario_id: $scope.tipo_usuario_obj_id
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
@@ -58,6 +62,25 @@ var miControlador = miModulo.controller(
                     $scope.fallo = true;
                     $scope.falloMensaje = error.message + " " + error.stack;
                 });
+        };
+
+        $scope.tipoUsuarioRefresh = function (f, consultar) {
+            var form = f;
+            if ($scope.tipo_usuario_obj_id != null) {
+                if (consultar) {
+                    promesasService.ajaxGet('tipo_usuario', $routeParams.id)
+                        .then(function (response) {
+                            $scope.tipo_usuario_obj = response.data.message;
+                            form.userForm.tipo_usuario_obj.$setValidity('valid', true);
+                        }, function () {
+                            form.userForm.tipo_usuario_obj.$setValidity('valid', false);
+                        });
+                } else {
+                    form.userForm.tipo_usuario_obj.$setValidity('valid', true);
+                }
+            } else {
+                $scope.tipo_usuario_obj.desc = "";
+            }
         };
 
         $scope.volver = function () {
@@ -86,5 +109,4 @@ var miControlador = miModulo.controller(
         $scope.reset();
 
     }
-
 )

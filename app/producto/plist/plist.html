@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold">Lista de productos</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-box"></i> Lista de productos</span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -33,53 +33,62 @@
                 </nav>
                 <table class="table">
                     <tr>
-                        <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true">
-                                    <i class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true">
-                                    <i class="fas fa-sort-down"></i></i></a>
-                            </div>
-                        </th>
-                        <th>Codigo <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/codigo/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true">
-                                    <i class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/codigo/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true">
-                                    <i class="fas fa-sort-down"></i></i></a>
-                            </div>
-                        </th>
-                        <th>Existencias <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/existencias/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/existencias/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-down"></i></i></a>
-                            </div>
-                        </th>
-                        <th>Precio <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/precio/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/precio/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-down"></i></i></a>
-                            </div>
-                        </th>
-                        </th>
-                        <th>Tipo producto <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/tipo_producto_obj.descripcion/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/tipo_producto_obj.descripcion/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-down"></i></i></a>
-                            </div>
+                        <div>
+                            <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">
+                                        <i class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">
+                                        <i class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Código <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/codigo/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">
+                                        <i class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/codigo/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">
+                                        <i class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Existencias <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/existencias/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/existencias/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Precio <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/precio/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/precio/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Tipo producto <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/tipo_producto_obj.descripcion/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/producto/plist/{{ rppActual }}/{{ paginaActual }}/tipo_producto_obj.descripcion/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
 
-                        </th>
+                            </th>
+                        </div>
                         <th>Acciones</th>
                     </tr>
                     <tr ng-repeat="fila in pagina">
@@ -87,7 +96,9 @@
                         <td>{{fila.codigo}}</td>
                         <td>{{fila.existencias}}</td>
                         <td>{{fila.precio}} €</td>
-                        <td><a href="#!/tipoproducto/view/{{fila.tipo_producto_obj.id}}">{{fila.tipo_producto_obj.descripcion}}</a></td>
+                        <td><a
+                                href="#!/tipoproducto/view/{{fila.tipo_producto_obj.id}}">{{fila.tipo_producto_obj.descripcion}}</a>
+                        </td>
                         <!--<td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>-->
                         <td>
                             <a href="#!/producto/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
@@ -102,7 +113,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/producto/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="#!/post/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>

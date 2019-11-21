@@ -1,23 +1,21 @@
 var miControlador = miModulo.controller(
     "productoFillController",
 
-    function ($scope, promesasService,$location, auth) {
-     
+    function ($scope, promesasService, auth, $location) {
+
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
-        //--
         $scope.controller = "productoFillController";
-        //--
         $scope.mensaje = "";
         $scope.fallo = false;
         $scope.hecho = false;
-        //--
+
         $scope.crear = function (numero) {
             promesasService.ajaxFill('producto', numero).then(function (response) {
                 if (response.data.status == 200) {
@@ -35,7 +33,7 @@ var miControlador = miModulo.controller(
                 $scope.mensaje = "No se ha podido realizar la operación.";
             });
         }
-        //--
+
         $scope.volver = function () {
             window.history.back();
         };
@@ -45,5 +43,4 @@ var miControlador = miModulo.controller(
 
 
     }
-
 )

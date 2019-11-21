@@ -1,13 +1,12 @@
 var miControlador = miModulo.controller(
     "usuarioNewController",
-
-    function ($scope, $http, $location, promesasService, auth) {
+    function ($scope, $http, $location, promesasService, $routeParams, auth) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         $scope.controller = "usuarioNewController";
@@ -29,13 +28,14 @@ var miControlador = miModulo.controller(
 
         $scope.new = function () {
             const datos = {
-                id: $routeParams.id,
                 dni: $scope.dni,
                 nombre: $scope.nombre,
                 apellido1: $scope.apellido1,
                 apellido2: $scope.apellido2,
                 email: $scope.email,
-                login: $scope.login
+                login: $scope.login,
+                password: forge_sha256($scope.password),
+                tipo_usuario_id: $scope.tipo_usuario_obj.id
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
@@ -63,15 +63,13 @@ var miControlador = miModulo.controller(
             var form = f;
             if ($scope.tipo_usuario_obj.id != null) {
                 if (consultar) {
-                    $http({
-                        method: 'GET',
-                        url: 'http://localhost:8081/trolleyes/json?ob=tipo_usuario&op=get&id=' + $scope.tipo_usuario_obj.id
-                    }).then(function (response) {
-                        $scope.tipo_usuario_obj = response.data.message;
-                        form.userForm.tipo_usuario_obj.$setValidity('valid', true);
-                    }, function () {
-                        form.userForm.tipo_usuario_obj.$setValidity('valid', false);
-                    });
+                    promesasService.ajaxGet('tipo_usuario', $routeParams.id)
+                        .then(function (response) {
+                            $scope.tipo_usuario_obj = response.data.message;
+                            form.userForm.tipo_usuario_obj.$setValidity('valid', true);
+                        }, function () {
+                            form.userForm.tipo_usuario_obj.$setValidity('valid', false);
+                        });
                 } else {
                     form.userForm.tipo_usuario_obj.$setValidity('valid', true);
                 }

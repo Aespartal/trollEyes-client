@@ -1,58 +1,48 @@
 var miControlador = miModulo.controller(
     "carritoRemoveController",
-
-    function ($scope, $routeParams, $location, promesasService,auth) {
-        
-          
-        if (auth.data.status != 200) {
-            $location.path('/login');
-        } else {
-            $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message;
-        }
-
-
-        $scope.id = $routeParams.id;
+    function ($scope, $routeParams, promesasService, auth, $location) {
+        $scope.authStatus = auth.data.status;
+        $scope.authUsername = auth.data.message.login;
+        $scope.authLevel = auth.data.message.tipo_usuario_obj;
         $scope.controller = "carritoRemoveController";
-        $scope.fallo = false;
-        $scope.hecho = false;
-        $scope.falloMensaje = "";
+        $scope.cantidad = 1;
 
-       
-
-          promesasService.ajaxGet('post', $routeParams.id)
-          .then(function (response) {
-              $scope.id = response.data.message.id;
-              $scope.titulo = response.data.message.titulo;
-              $scope.cuerpo = response.data.message.cuerpo;
-              $scope.etiquetas = response.data.message.etiquetas;
-          }, function () {
-              $scope.fallo = true;
-          })
-
-        $scope.remove = function () {
-
-            promesasService.ajaxRemove('post', $routeParams.id)
+        promesasService.ajaxGet('producto', $routeParams.id)
             .then(function (response) {
-                if (response.data.status != 200) {
-                    $scope.fallo = true;
-                    $scope.falloMensaje = response.data.message;
-                } else {
-                    $scope.fallo = false;
-                    $scope.hecho=true;
-                }
-            }, function (error) {
-                $scope.hecho = true;
+                $scope.id = response.data.message.id;
+                $scope.codigo = response.data.message.codigo;
+                $scope.existencias = response.data.message.existencias;
+                $scope.precio = response.data.message.precio;
+                $scope.imagen = response.data.message.imagen;
+                $scope.descripcion = response.data.message.descripcion;
+                $scope.tipo_producto_obj = response.data.message.tipo_producto_obj;
+            }, function () {
                 $scope.fallo = true;
-                $scope.falloMensaje = error.message + " " + error.stack;
-            });
-        }
-        $scope.volver = function () {
-            window.history.back();
-        };
+            })
 
-        $scope.cerrar = function () {
-            $location.path('/home/10/1');
-        };
+        $scope.menos = function () {
+            if ($scope.cantidad == 1) {
+                $scope.cantidad = 1;
+            } else {
+                $scope.cantidad--;
+            }
+        }
+        $scope.mas = function () {
+            $scope.cantidad++;
+        }
+        $scope.remove = function () {
+            promesasService.ajaxRemoveCarrito($scope.id, $scope.cantidad)
+                .then(function successCallback(response) {
+                    if (response.data.status != 200) {
+                        $scope.fallo = true;
+                        $scope.falloMensaje = response.data.response;
+                    } else {
+                        $scope.fallo = false;
+                        $scope.hecho = true;
+                        $location.path("/carrito/plist");
+                    }
+                    $scope.hecho = true;
+                })
+        }
     }
 )

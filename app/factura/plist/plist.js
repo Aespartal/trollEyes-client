@@ -1,13 +1,13 @@
 var miControlador = miModulo.controller(
     "facturaPlistController",
-    function ($scope, $routeParams, $http, promesasService,$location, $window, auth) {
+    function ($scope, $routeParams, $http, promesasService, $window, auth) {
 
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         $scope.paginaActual = parseInt($routeParams.page);
@@ -22,7 +22,6 @@ var miControlador = miModulo.controller(
         } else {
             request = "http://localhost:8081/trolleyes/json?ob=factura&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
         }
-
 
         $http({
             method: "GET",
@@ -56,6 +55,7 @@ var miControlador = miModulo.controller(
                     $scope.falloMensaje = error.message + " " + error.stack;
                 });
         }
+
         promesasService.ajaxGetCount('factura')
             .then(function (response) {
                 $scope.status = response.data.status;
@@ -69,8 +69,6 @@ var miControlador = miModulo.controller(
                 }
                 paginacion(2);
             })
-
-
 
         function paginacion(vecindad) {
             vecindad++;
@@ -87,8 +85,5 @@ var miControlador = miModulo.controller(
                 }
             }
         }
-
-
-
     }
 )

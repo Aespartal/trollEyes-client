@@ -1,13 +1,12 @@
 var miControlador = miModulo.controller(
     "usuarioPlistController",
-
-    function ($scope, $routeParams, $http, promesasService, $window, auth,$location) {
+    function ($scope, $routeParams, $http, promesasService, $window, auth, $location) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         $scope.paginaActual = parseInt($routeParams.page);
@@ -55,6 +54,7 @@ var miControlador = miModulo.controller(
                     $scope.falloMensaje = error.message + " " + error.stack;
                 });
         }
+        
         promesasService.ajaxGetCount('usuario')
             .then(function (response) {
                 $scope.status = response.data.status;
@@ -68,8 +68,6 @@ var miControlador = miModulo.controller(
                 }
                 paginacion(2);
             })
-
-
 
         function paginacion(vecindad) {
             vecindad++;

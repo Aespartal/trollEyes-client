@@ -1,11 +1,11 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold"><i class="fas fa-user-tag"></i> Nuevo producto</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-boxes"></i> Nuevo tipo de producto</span></h1>
 </div>
 <div class="container">
     <div class="row">
         <div class="col">
-            <ng-form name="userForm" ng-show="formulario" class="col-10 col-lg-8 mx-auto">
+            <form name="userForm" ng-show="!fallo&&!hecho">
                 <div class="mt-4 form-group" ng-class="{'is-invalid': userForm.descripcion.$invalid}">
                     <label>Descripción:</label>
                     <input type="text" name="descripcion" class="form-control" ng-model="descripcion" ng-maxlength="50"
@@ -17,14 +17,24 @@
                 </div>
                 <div class="text-center mt-3" ng-show="botones">
                     <button type="button" class="btn btn-primary mt-2 mx-2" ng-click="new()">Crear tipo de
-                        usuario</button>
+                        producto</button>
                     <button type="button" class="btn btn-danger mt-2 mx-2" ng-click="volver()">Volver atrás</button>
                 </div>
-            </ng-form>
-
-            <div class="col-10 col-lg-8 mx-auto mt-4 text-center alert alert-success" role="alert" ng-show="correcto">
-                Tipo de usuario creado correctamente
-                <button type="button" class="btn btn-primary mx-2" ng-click="volver()">Volver atrás</button>
+            </form>
+            <div ng-show="!fallo&&hecho">
+                <div class="alert alert-success text-center" role="alert">
+                    <h2>Se ha añadido un nuevo post.</h2>
+                    <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
+                </div>
+            </div>
+            <div ng-show="fallo&&hecho">
+                <div class="alert alert-danger text-center" role="alert">
+                    <h2>Ha ocurrido un error al añadir el Post</h2>
+                    <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+                    <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
+                </div>
             </div>
         </div>
     </div>

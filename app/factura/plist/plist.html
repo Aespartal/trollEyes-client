@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold">Lista de facturas</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-file-invoice"></i> Lista de facturas</span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -33,43 +33,50 @@
                 </nav>
                 <table class="table">
                     <tr>
-                        <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-down"></i></i></a>
-                            </div>
+                        <div>
+                            <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                        </div>
                         </th>
-                        <th>Fecha <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/fecha/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/fecha/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-down"></i></i></a>
-                            </div>
+                        <div>
+                            <th>Fecha <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/fecha/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/fecha/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                        </div>
                         </th>
-                        <th>IVA <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/iva/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/iva/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-down"></i></i></a>
-                            </div>
-                        </th>
-                        <th>Usuario <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/usuario_obj/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/usuario_obj/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-down"></i></i></a>
-                            </div>
-                        </th>
-                        </th>
+                        <div>
+                            <th>IVA <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/iva/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/iva/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
+                            <th>Usuario <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/usuario_obj/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/usuario_obj/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
                         <th>Acciones</th>
                     </tr>
                     <tr ng-repeat="fila in pagina">
@@ -77,7 +84,8 @@
                         <td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
                         <td>{{fila.iva}}</td>
                         <td>
-                            <a href="#!/usuario/view/{{fila.usuario_obj.id}}">{{fila.usuario_obj.nombre}} {{fila.usuario_obj.apellido1}} {{fila.usuario_obj.apellido2}}</td>
+                            <a href="#!/usuario/view/{{fila.usuario_obj.id}}">{{fila.usuario_obj.nombre}}
+                                {{fila.usuario_obj.apellido1}} {{fila.usuario_obj.apellido2}}</td>
                         <td>
                             <a href="#!/factura/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
                             <a href="#!/factura/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>

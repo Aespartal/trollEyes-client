@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-  <h1><span class="font-weight-bold">Nuevo usuario</span></h1>
+  <h1><span class="font-weight-bold"><i class="fas fa-user"></i> Nuevo usuario</span></h1>
 </div>
 <div class="container">
   <div class="row">
@@ -75,36 +75,49 @@
           </div>
         </div>
         <div class="form-group row">
+          <label for="password" class="col-sm-2 col-form-label">Password:</label>
+          <div class="col-sm-10">
+            <input type="password" ng-model="password" class="form-control"
+              ng-class="{ 'is-invalid' : !userForm.password.$valid && !userForm.password.$pristine}" name="password"
+              ng-required="true" />
+            <div class="invalid-feedback" ng-show="userForm.password.$error.pattern">
+              Debe llevar al menos una etiqueta.
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
           <tipousuario-selection class="modal fade" id="cadd-location-modal" obj="tipo_usuario_obj"
             on-tipousuario-set="tipoUsuarioRefresh(this,false)">
           </tipousuario-selection>
           <label for="tipo_usuario_obj" class="col-sm-2 col-form-label">Tipo de usuario:</label>
           <div class="col-sm-10">
-          <div class="control">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" data-toggle="modal" data-target="#cadd-location-modal">
-                  <span class="fas fa-search"></span>
-                </span>
+            <div class="control">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" data-toggle="modal" data-target="#cadd-location-modal">
+                    <span class="fas fa-search"></span>
+                  </span>
+                </div>
+                <input ng-model="tipo_usuario_obj.id" ng-change="tipoUsuarioRefresh(this,true)"
+                  aria-describedby="basic-addon2" class="form-control" id="tipo_usuario_obj" name="tipo_usuario_obj"
+                  type="number"
+                  ng-class="{'is-invalid': !userForm.tipo_usuario_obj.$valid  && !userForm.tipo_usuario_obj.$pristine }"
+                  min="1" max="100" ng-pattern="/^[1-9][0-9]?$|^100$/" ng-required="true"
+                  ng-model-options="{debounce: 1000}">
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <a href="tipousuario/view/{{tipo_usuario_obj.id}}">
+                      <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
+                      Tipo de usuario: {{tipo_usuario_obj.descripcion}}
+                    </a>
+                  </span>
+                </div>
               </div>
-              <input ng-model="tipo_usuario_obj.id" ng-change="tipoUsuarioRefresh(this,true)"
-                aria-describedby="basic-addon2" class="form-control" id="tipo_usuario_obj" name="tipo_usuario_obj"
-                type="number" ng-class="{'is-invalid': !userForm.tipo_usuario_obj.$valid  && !userForm.tipo_usuario_obj.$pristine }" min="1" max="100" ng-pattern="/^[1-9][0-9]?$|^100$/" ng-required="true"
-                ng-model-options="{debounce: 1000}">
-              <div class="input-group-append">
-                <span class="input-group-text">
-                  <a href="tipousuario/view/{{tipo_usuario_obj.id}}">
-                    <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
-                    Tipo de usuario: {{tipo_usuario_obj.descripcion}}
-                  </a>
-                </span>
+              <div class="invalid-feedback" ng-show="userForm.tipo_usuario_obj.$error.pattern">
+                Id de usuario inválido.
               </div>
-            </div>
-            <div class="invalid-feedback" ng-show="userForm.tipo_usuario_obj.$error.pattern" >
-              Id de usuario inválido.
             </div>
           </div>
-        </div>
         </div>
         <br>
         <div class="row">

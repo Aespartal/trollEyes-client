@@ -1,6 +1,7 @@
-'use strict';
-var miControlador = miModulo.controller('tipousuarioPlistController',
-    function ($scope, $http, $location, $routeParams, $anchorScroll,auth) {
+var miControlador = miModulo.controller(
+    "tipousuarioPlistController",
+    function ($scope, $routeParams, $http, promesasService, $window, auth) {
+
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -8,9 +9,6 @@ var miControlador = miModulo.controller('tipousuarioPlistController',
             $scope.authUsername = auth.data.message.login;
             $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         }
-
-        $anchorScroll();
-        $anchorScroll();
 
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
@@ -20,12 +18,45 @@ var miControlador = miModulo.controller('tipousuarioPlistController',
         $scope.order = $routeParams.order;
 
         if ($scope.order == null || $scope.colOrder == null) {
-            request = "http://localhost:8081/trolleyes/json?ob=tipousuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
+            request = "http://localhost:8081/trolleyes/json?ob=tipo_usuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
         } else {
-            request = "http://localhost:8081/trolleyes/json?ob=tipousuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
+            request = "http://localhost:8081/trolleyes/json?ob=tipo_usuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
         }
 
-        promesasService.ajaxGetCount('tipousuario')
+
+        $http({
+            method: "GET",
+            withCredentials: true,
+            url: request
+        }).then(function (response) {
+            $scope.status = response.data.status;
+            $scope.pagina = response.data.message;
+        });
+
+        $scope.showSelectValue = function (mySelect) {
+            $window.location.href = `/trollEyes-client/#!/tipo_usuario/plist/` + mySelect + `/1`;
+        }
+
+        $scope.search = function () {
+            promesasService.ajaxSearch('tipo_usuario', $scope.rppActual, $scope.paginaActual, $scope.word)
+                .then(function (response) {
+                    if (response.data.status != 200) {
+                        $scope.fallo = true;
+                        $scope.falloMensaje = response.data.message;
+
+                    } else {
+                        $scope.fallo = false;
+                        $scope.hecho = true;
+                        $scope.pagina = response.data.message;
+
+                    }
+                }, function (error) {
+                    $scope.hecho = true;
+                    $scope.fallo = true;
+                    $scope.falloMensaje = error.message + " " + error.stack;
+                });
+        }
+        promesasService.ajaxGetCount('tipo_usuario')
             .then(function (response) {
                 $scope.status = response.data.status;
                 $scope.numRegistros = response.data.message;
@@ -38,6 +69,8 @@ var miControlador = miModulo.controller('tipousuarioPlistController',
                 }
                 paginacion(2);
             })
+
+
 
         function paginacion(vecindad) {
             vecindad++;
@@ -54,10 +87,8 @@ var miControlador = miModulo.controller('tipousuarioPlistController',
                 }
             }
         }
-        
-        $scope.atras = function () {
-            window.history.back();
-        };
-    }
 
+
+
+    }
 )

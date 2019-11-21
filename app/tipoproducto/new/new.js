@@ -1,14 +1,14 @@
 'use strict';
 var miControlador = miModulo.controller('tipoproductoNewController',
-    function ($scope, $http, auth,$location) {
+    function ($scope, $http, auth, promesasService) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
-        
+
         $scope.formulario = true;
         $scope.botones = true;
         $scope.correcto = false;
@@ -18,14 +18,14 @@ var miControlador = miModulo.controller('tipoproductoNewController',
         };
 
         $scope.new = function () {
-                const datos = {
-                    descripcion: $scope.descripcion
-                }
-                var jsonToSend = {
-                    data: JSON.stringify(datos)
-                };
-                $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                promesasService.ajaxNew('tipo_producto', { params: jsonToSend })
+            const datos = {
+                descripcion: $scope.descripcion
+            }
+            var jsonToSend = {
+                data: JSON.stringify(datos)
+            };
+            $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+            promesasService.ajaxNew('tipo_producto', { params: jsonToSend })
                 .then(function successCallback(response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -41,7 +41,6 @@ var miControlador = miModulo.controller('tipoproductoNewController',
                     $scope.falloMensaje = error.message + " " + error.stack;
 
                 });
-            
         };
     }
 );

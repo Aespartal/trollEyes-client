@@ -7,7 +7,7 @@ var miControlador = miModulo.controller(
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
             $scope.controller = "usuarioViewController";
         }
 
@@ -23,5 +23,13 @@ var miControlador = miModulo.controller(
             }, function () {
                 $scope.fallo = true;
             })
+
+        $scope.volver = function () {
+            window.history.back();
+        };
+
+        $scope.cerrar = function () {
+            $location.path('/home/12/1');
+        };
     }
 )

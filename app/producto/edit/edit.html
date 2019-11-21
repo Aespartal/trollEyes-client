@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold">Editar producto</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-box"></i> Editar producto</span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -19,7 +19,7 @@
                             ng-class="{ 'is-invalid' :!userForm.codigo.$valid && !userForm.codigo.$pristine}"
                             name="codigo" ng-required="true" value="{{codigo}}" />
                         <div class="invalid-feedback" ng-show="userForm.codigo.$invalid">
-                            El codigo no puede estar vacio.
+                            El código no puede estar vacio.
                         </div>
                     </div>
                 </div>
@@ -27,8 +27,7 @@
                     <label for="existencias" class="col-sm-2 col-form-label">Existencias:</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" ng-model="existencias" class="form-control"
-                                class="form-control"
+                            <input type="text" ng-model="existencias" class="form-control" class="form-control"
                                 ng-class="{ 'is-invalid' : !userForm.existencias.$valid && !userForm.existencias.$pristine}"
                                 name="existencias" ng-required="true" value="{{existencias}}"></input>
                         </div>
@@ -49,24 +48,59 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="imagen" class="col-sm-2 col-form-label">Imagen:</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model="imagen" class="form-control"
+                            ng-class="{ 'is-invalid' : !userForm.imagen.$valid && !userForm.imagen.$pristine}"
+                            name="imagen" ng-required="true" value="{{imagen}}" />
+                        <div class="invalid-feedback" ng-show="userForm.imagen.$error.pattern">
+                            El campo imagen no puede estar vacio.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="descripcion" class="col-sm-2 col-form-label">Descripcion:</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="descripcion" class="form-control"
                             ng-class="{ 'is-invalid' : !userForm.descripcion.$valid && !userForm.descripcion.$pristine}"
                             name="descripcion" ng-required="true" value="{{descripcion}}" />
                         <div class="invalid-feedback" ng-show="userForm.descripcion.$error.pattern">
-                            El campo descripcion no puede estar vacio.
+                            El campo descripción no puede estar vacio.
                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="tipo_producto_obj_descripcion" class="col-sm-2 col-form-label">Tipo producto:</label>
+                    <tipoproducto-selection class="modal fade" id="cadd-location-modal" obj="tipo_producto_obj"
+                        on-tipoproducto-set="tipoProductoRefresh(this,false)">
+                    </tipoproducto-selection>
+                    <label for="tipo_producto_obj" class="col-sm-2 col-form-label">Tipo de producto:</label>
                     <div class="col-sm-10">
-                        <input type="text" ng-model="tipo_producto_obj_descripcion" class="form-control"
-                            ng-class="{ 'is-invalid' : !userForm.tipo_producto_obj_descripcion.$valid && !userForm.tipo_producto_obj_descripcion.$pristine}"
-                            name="tipo_producto_obj_descripcion" ng-required="true" value="{{tipo_producto_obj_descripcion}}" />
-                        <div class="invalid-feedback" ng-show="userForm.tipo_producto_obj_descripcion.$error.pattern">
-                            El campo tipo producto no puede estar vacio.
+                        <div class="control">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" data-toggle="modal"
+                                        data-target="#cadd-location-modal">
+                                        <span class="fas fa-search"></span>
+                                    </span>
+                                </div>
+                                <input ng-model="tipo_producto_obj.id" ng-change="tipoProductoRefresh(this,true)"
+                                    aria-describedby="basic-addon2" class="form-control" id="tipo_producto_obj"
+                                    name="tipo_producto_obj" type="number"
+                                    ng-class="{'is-invalid': !userForm.tipo_producto_obj.$valid  && !userForm.tipo_producto_obj.$pristine }"
+                                    min="1" max="100" ng-pattern="/^[1-9][0-9]?$|^100$/" ng-required="true"
+                                    ng-model-options="{debounce: 1000}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <a href="tipoproducto/view/{{tipo_producto_obj.id}}">
+                                            <span class="p-2 bd-highlight"><i class="fas fa-boxes fa-1x"></i></span>
+                                            Tipo de producto: {{tipo_producto_obj.descripcion}}
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback" ng-show="userForm.tipo_producto_obj.$error.pattern">
+                                Id de producto inválido.
+                            </div>
                         </div>
                     </div>
                 </div>

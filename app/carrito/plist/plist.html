@@ -12,6 +12,7 @@
                         <th>Producto</th>
                         <th>Cantidad</th>
                         <th>Precio Unitario</th>
+                        <th>Eliminar</th>
                     </tr>
                     <tr ng-repeat="compra in pagina">
              
@@ -19,13 +20,21 @@
                         <td>{{compra.producto_obj.descripcion}}</td>
                         <td>{{compra.cantidad}}</td>
                         <td>{{compra.producto_obj.precio}}</td>
+                        <th><a href="#!/carrito/remove/{{compra.producto_obj.id}}"><i class="fas fa-times"></i></a></th>
                     </tr>
                 </table>
                 <div class="row">
                     <div class="col text-center">
-                        <button type="button" class="btn btn-primary" ng-click="comprar()">Comprar</button>
+                        <button type="button" class="btn btn-primary" ng-click="buy()">Comprar</button>
                     </div>
                 </div>
+                <div ng-show="!fallo&&hecho&&compraRealizada">
+                        <div class="alert alert-success text-center" role="alert">
+                          <h2>Compra realizada.</h2>
+                          <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+                          <button class="btn btn-primary" ng-click="volver()">Volver</button>
+                        </div>
+                 </div>
             </div>
         </div>
     </div>

@@ -1,109 +1,84 @@
-<header-component></header-component>
-<main role="main" class="container margenes">
-
-    <div class="container-fluid pt-4">
-        <div class="row">
-            <div class="col-8 border-bottom text-center mx-auto">
-                <h2><i class="fas fa-user-tag"></i> Tipos de usuario</h2>
-                <button type="button" class="btn btn-outline-primary mb-2" ng-click="crear()">Crear</button>
-                <button type="button" class="btn btn-outline-danger mb-2" ng-click="atras()">Volver atrás</button>
-            </div>
-        </div>
-
-        <div class="row mt-3" ng-show="registros">
-            <div class="col-12">
-                <h5 class="text-center">Selecciona Registros: </h5>
-            </div>
-            <div class="col-12">
-                <select class="form-control mx-auto col-6 col-lg-4" ng-change="update()" ng-model="rpp">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                </select>
-            </div>
-            <div class="col-12 text-center mt-2">
-                <button type="button" class="btn btn-outline-primary" ng-click="resetOrder()">Resetear Orden</button>
-            </div>
-        </div>
-
-        <div class="row text-center mx-auto mt-5 table-responsive" ng-show="registros">
-            <table class="table table-striped">
-                <tr>
-                    <th>
-                        <p>ID</p>
-                        <div class="btn-group">
-                            <button type="button" class="btn" ng-click="ordenar('id', 'asc')">
-                                <i class="fas fa-long-arrow-alt-up"></i>
-                            </button>
-                            <button type="button" class="btn" ng-click="ordenar('id', 'desc')">
-                                <i class="fas fa-long-arrow-alt-down"></i>
-                            </button>
+<ng-include src="'app/menu.html'"></ng-include>
+<div class="header shadow">
+    <h1><span class="font-weight-bold"><i class="fas fa-user-tag"></i> Lista de tipo usuario</span></h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="wrapper">
+                <nav class="navbar navbar-light bg-light">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" ng-model="word"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                            ng-click="search()">Buscar</button>
+                    </form>
+                </nav>
+                <nav aria-label="Registros por página">
+                    <ul class="pagination float-right">
+                        <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
+                            <a class="page-link" href="#!/tipousuario/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav aria-label="Paginación">
+                    <ul class="pagination">
+                        <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                            ng-repeat="p in botonera track by $index">
+                            <a class="page-link" ng-if="p != '...'"
+                                href="#!/tipousuario/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+                        </li>
+                    </ul>
+                </nav>
+                <table class="table">
+                    <tr>
+                        <div>
+                            <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/tipousuario/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/tipousuario/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
                         </div>
-                    </th>
-                    <th>
-                        <p>Descripción</p>
-                        <div class="btn-group">
-                            <button type="button" class="btn" ng-click="ordenar('tipousuario.desc', 'asc')">
-                                <i class="fas fa-long-arrow-alt-up"></i>
-                            </button>
-                            <button type="button" class="btn" ng-click="ordenar('tipousuario.desc', 'desc')">
-                                <i class="fas fa-long-arrow-alt-down"></i>
-                            </button>
+                        <div>
+                            <th>descripcion <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/tipousuario/plist/{{ rppActual }}/{{ paginaActual }}/descripcion/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/tipousuario/plist/{{ rppActual }}/{{ paginaActual }}/descripcion/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
                         </div>
-                    </th>
-                    <th>Operaciones</th>
-                </tr>
-                <tr ng-repeat="fila in ajaxData">
-                    <td class="align-middle">{{fila.id}}</td>
-                    <td class="align-middle">{{fila.desc}}</td>
-                    <td>
-                        <div class="btn-group">
-                            <a role="button" class="btn btn-outline-primary fas fa-eye" href="tipousuario/view/{{fila.id}}"></a>
-                            <a role="button" class="btn btn-outline-primary fas fa-edit" href="tipousuario/update/{{fila.id}}"></a>
-                            <a role="button" class="btn btn-outline-primary fas fa-trash-alt" href="tipousuario/remove/{{fila.id}}"></a>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                        <th>Acciones</th>
+                    </tr>
+                    <tr ng-repeat="fila in pagina">
+                        <td>{{fila.id}}</td>
+                        <td>{{fila.descripcion}}</td>
+                        <td>
+                            <a href="#!/tipousuario/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
+                            <a href="#!/tipousuario/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
+                            <a href="#!/tipousuario/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
+                        </td>
+                    </tr>
 
-        <div class="row mt-5" ng-show="registros">
-            <nav aria-label="paginacion" class="mx-auto">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item" ng-class="{'disabled':(page == 1)}">
-                        <a class="page-link" href="tipousuario/plist/{{rpp}}/1/{{orderURLCliente}}"><span>&laquo;</span></a>
-                    </li>
-                    <li class="page-item" ng-class="{'disabled':(page == 1)}">
-                        <a class="page-link" href="tipousuario/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}"><span>&lsaquo;</span></a>
-                    </li>
-                    <li class="page-item" ng-class="{'disabled':(page == 1)}">
-                        <a class="page-link" href="tipousuario/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
-                    </li>
-
-                    <li class="page-item" ng-class="{'active':(p == page), 'disabled':(p === '...')}" ng-repeat="p in list track by $index">
-                        <a class="page-link" href="tipousuario/plist/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
-                    </li>
-
-                    <li class="page-item" ng-class="{'disabled':(page == totalPages), 'ng-hide':(totalPages == 1)}">
-                        <a class="page-link" href="tipousuario/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
-                    </li>
-                    <li class="page-item" ng-class="{'disabled':(page == totalPages)}">
-                        <a class="page-link" href="tipousuario/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}"><span>&rsaquo;</span></a>
-                    </li>
-                    <li class="page-item" ng-class="{'disabled':(page == totalPages)}">
-                        <a class="page-link" href="tipousuario/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}"><span>&raquo;</span></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="row" ng-show="alerta">
-            <div class="mx-auto mt-4 alert alert-warning text-center" role="alert">
-                No existen tipos de usuario
+                </table>
+                <nav aria-label="Paginación">
+                    <ul class="pagination">
+                        <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                            ng-repeat="p in botonera track by $index">
+                            <a class="page-link" ng-if="p != '...'"
+                                href="#!/tipousuario/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-
     </div>
-</main>
-<footer-component></footer-component>
+</div>

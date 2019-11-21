@@ -13,7 +13,14 @@ var miControlador = miModulo.controller('usuarioViewPerfilController',
             $scope.authemail = auth.data.message.email;
             $scope.authUsername = auth.data.message.login;
             $scope.authLevel = auth.data.message.tipo_usuario_obj;
+            $scope.controller = "usuarioViewPerfilController";
         }
-
+        
+        $scope.volver = function () {
+            window.history.back();
+        };
+        $scope.cerrar = function () {
+            $location.path('/home/12/1');
+        };
     }
 );

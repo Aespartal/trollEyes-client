@@ -1,10 +1,9 @@
 var miControlador = miModulo.controller(
     "productoViewController",
-
-    function ($scope, $routeParams, promesasService, auth,$location) {
+    function ($scope, $routeParams, promesasService, auth, $location) {
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message.login;
-        $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+        $scope.authLevel = auth.data.message.tipo_usuario_obj;
         $scope.controller = "productoViewController";
         $scope.cantidad = 1;
 
@@ -20,18 +19,18 @@ var miControlador = miModulo.controller(
             }, function () {
                 $scope.fallo = true;
             })
-        $scope.menos = function(){
-            if($scope.cantidad == 1){
+        $scope.menos = function () {
+            if ($scope.cantidad == 1) {
                 $scope.cantidad = 1;
             } else {
                 $scope.cantidad--;
             }
         }
-        $scope.mas = function(){
+        $scope.mas = function () {
             $scope.cantidad++;
-        }    
+        }
         $scope.add = function () {
-            promesasService.ajaxAddCarrito( $scope.id, $scope.cantidad)
+            promesasService.ajaxAddCarrito($scope.id, $scope.cantidad)
                 .then(function successCallback(response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -45,7 +44,4 @@ var miControlador = miModulo.controller(
                 })
         }
     }
-
-
-
 )

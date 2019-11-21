@@ -1,79 +1,77 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold">Eliminar post</span></h1>
+    <h1><i class="fas fa-box"></i> Borrar producto del carrito</h1>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col-lg-4">
+            <img ng-src="{{imagen}}" />
+        </div>
+        <div class="col-lg-8">
             <form name="userForm" ng-show="!fallo&&!hecho">
-                <div class="form-group row">
-                    <label for="titulo" class="col-sm-2 col-form-label">Id:</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="id" value="{{id}}" class="form-control" readonly />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="titulo" class="form-control" name="titulo" value="{{titulo}}"
-                            readonly />
+                <div class="form-container">
+                    <div class="col-sm-12 t-p">
+                        <h3><strong>{{descripcion}}</strong></h3>
 
+                        <span class="baseprice">{{precio}}</span>
+                        <span class="euro">€</span>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
-                    <div class="col-sm-10">
-                        <div class="form-group">
-                            <textarea class="form-control rounded-0" rows="10" id="exampleFormControlTextarea2" rows="3"
-                                ng-model="cuerpo" class="form-control" name="cuerpo" value="{{cuerpo}}"
-                                readonly></textarea>
+
+                    <div class="col-sm-12 t-p2">
+
+                        <div class="form-group row" ng-show="authStatus==200 && sessionLevel == 1">
+                            <label for="id" class="col-sm-3 col-form-label"><strong>Id:</strong></label>
+                            <div class="col-sm-9 col-form-label">
+                                <p>{{id}}</p>
+                            </div>
                         </div>
 
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="etiquetas" class="col-sm-2 col-form-label" >Fecha:</label>
-                    <div class="col-sm-10">
-                        <h6>{{fecha | stringToDate | date : "dd/MM/yyyy"}}</h6>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="etiquetas" class="form-control" name="etiquetas"
-                            value="{{etiquetas}}" readonly />
-                    </div>
-                </div>
+                        <div class="form-group row">
+                            <label for="codigo" class="col-sm-3 col-form-label"><strong>Codigo:</strong></label>
+                            <div class="col-sm-9 col-form-label">
+                                <p class="font-weight-bold">{{codigo}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="existencias"
+                                class="col-sm-3 col-form-label"><strong>Existencias:</strong></label>
+                            <div class="col-sm-9 col-form-label">
+                                <p>{{existencias}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tipo_producto_obj" class="col-sm-3 col-form-label"><strong>Tipo
+                                    Producto:</strong></label>
+                            <div class="col-sm-9 col-form-label">
+                                <p>{{tipo_producto_obj.descripcion}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
 
-                <br>
-                <p>¿Seguro que quiere elimnar el post?</p>
-                <div class="row">
-                    <button type="button" class="btn btn-primary" ng-click="remove()">Eliminar datos</button>
+                            <label for="cantidad" class="col-sm-3 col-form-label"><strong>Cantidad:</strong></label>
+                            <div class="col-sm-9 col-form-label">
+                                <div class="cantidad_container">
+                                    <div class="btn-group mas-menos">
+                                        <button class="btn btn-secondary2 quantify-modify quantify-sub"
+                                            ng-click="menos()"><i class="fas fa-minus"></i></button>
+                                        <input id="article-quantity" class="form-control input-units" type="text"
+                                            name="cantidad" value="{{cantidad}}" ng-model="cantidad" data-max="9999"
+                                            autocomplete="off" data-refubrished="false" data-digital="false">
+                                        <button class="btn btn-secondary2 quantify-modify quantify-add"
+                                            ng-click="mas()"><i class="fas fa-plus"></i></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <p>¿Seguro que quieres borrar este producto del carrito?</p>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" ng-click="remove()">Borrar</button>
+                        </div>
+                    </div>
                 </div>
             </form>
-            <div ng-show="!fallo&&hecho">
-                <div class="alert alert-success text-center" role="alert">
-                    <h2>El carrito se ha eliminado con éxito</h2>
-                    <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
-                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
-                </div>
-            </div>
-            <div ng-show="fallo&&hecho">
-                <div class="alert alert-danger text-center" role="alert">
-                    <h2>Ha ocurrido un error al eliminar el carrito</h2>
-                    <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
-                    <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
-                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
-                </div>
-            </div>
-            <div ng-show="fallo&&!hecho">
-                <div class="alert alert-danger text-center" role="alert">
-                    <h2>Ha habido un error al recibir datos del carrito desde el servidor</h2>
-                    <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
-                    <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
-                    <button class="btn btn-primary" ng-click="volver()">Volver</button>
-                </div>
-            </div>
         </div>
     </div>
+</div>
 </div>

@@ -1,13 +1,12 @@
 var miControlador = miModulo.controller(
     "productoPlistController",
-
-    function ($scope, $routeParams, $http, promesasService, $window,$location, auth) {
+    function ($scope, $routeParams, $http, promesasService, $window, auth,$location) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         $scope.paginaActual = parseInt($routeParams.page);
@@ -49,7 +48,7 @@ var miControlador = miModulo.controller(
                         $scope.pagina = response.data.message;
                         $scope.rppActual = parseInt($routeParams.rpp);
                         $scope.rppS = [10, 50, 100];
-                 
+
                     }
                 }, function (error) {
                     $scope.hecho = true;
@@ -57,6 +56,7 @@ var miControlador = miModulo.controller(
                     $scope.falloMensaje = error.message + " " + error.stack;
                 });
         }
+        
         promesasService.ajaxGetCount('producto')
             .then(function (response) {
                 $scope.status = response.data.status;
@@ -70,7 +70,6 @@ var miControlador = miModulo.controller(
                 }
                 paginacion(2);
             })
-
 
 
         function paginacion(vecindad) {
@@ -88,8 +87,6 @@ var miControlador = miModulo.controller(
                 }
             }
         }
-
-
 
     }
 )

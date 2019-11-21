@@ -1,13 +1,13 @@
 var miControlador = miModulo.controller(
     "facturaFillController",
-    function ($scope, promesasService,$location, auth) {
-    
+    function ($scope, promesasService, auth, $location) {
+
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         //--
@@ -42,7 +42,5 @@ var miControlador = miModulo.controller(
             $location.path('/home/10/1');
         };
 
-
     }
-
 )

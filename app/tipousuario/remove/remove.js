@@ -1,47 +1,52 @@
-'use strict';
-var miControlador = miModulo.controller('tipousuarioRemoveController',
-    function ($scope, $http, $routeParams, $anchorScroll) {
-        $anchorScroll();
-        
-        $scope.botones = true;
-        $scope.alerta = false;
-        $scope.formulario = true;
+var miControlador = miModulo.controller(
+    "tipousuarioRemoveController",
 
-        if (!$routeParams.id) {
-            $scope.id = 1;
+    function ($scope, $routeParams, $location, promesasService, auth) {
+
+        if (auth.data.status != 200) {
+            $location.path('/login');
         } else {
-            $scope.id = $routeParams.id;
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         }
+        $scope.id = $routeParams.id;
+        $scope.controller = "tipousuarioRemoveController";
+        $scope.fallo = false;
+        $scope.hecho = false;
+        $scope.falloMensaje = "";
 
-        $http({
-            method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=get&id=' + $scope.id
-        }).then(function (response) {
-            $scope.status = response.status;
-            $scope.ajaxData = response.data.message;
-        }, function (response) {
-            $scope.status = response.status;
-            $scope.ajaxData = response.data.message || 'Request failed';
-        });
+        promesasService.ajaxGet('tipo_usuario', $routeParams.id)
+            .then(function (response) {
+                $scope.id = response.data.message.id;
+                $scope.descripcion = response.data.message.descripcion;
+            }, function () {
+                $scope.fallo = true;
+            })
 
+        $scope.remove = function () {
+
+            promesasService.ajaxRemove('tipo_usuario', $routeParams.id)
+                .then(function (response) {
+                    if (response.data.status != 200) {
+                        $scope.fallo = true;
+                        $scope.falloMensaje = response.data.message;
+                    } else {
+                        $scope.fallo = false;
+                        $scope.hecho = true;
+                    }
+                }, function (error) {
+                    $scope.hecho = true;
+                    $scope.fallo = true;
+                    $scope.falloMensaje = error.message + " " + error.stack;
+                });
+        }
         $scope.volver = function () {
             window.history.back();
         };
 
-        $scope.borrar = function () {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/trolleyes/json?ob=tipousuario&op=remove&id=' + $scope.id
-            }).then(function (response) {
-                $scope.status = response.status;
-                $scope.ajaxData = response.data.message;
-                $scope.formulario = false;
-                $scope.botones = false;
-                $scope.alerta = true;
-            }, function (response) {
-                $scope.status = response.status;
-                $scope.ajaxData = response.data.message || 'Request failed';
-            });
+        $scope.cerrar = function () {
+            $location.path('/home/12/1');
         };
     }
-);
+)
