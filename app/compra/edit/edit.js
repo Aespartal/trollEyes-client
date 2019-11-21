@@ -22,8 +22,8 @@ var miControlador = miModulo.controller(
             .then(function (response) {
                 $scope.id = response.data.message.id;
                 $scope.cantidad = response.data.message.cantidad;
-                $scope.producto_obj_descripcion = response.data.message.producto_obj.descripcion;
-                $scope.factura_obj_id = response.data.message.factura_obj.id;
+                $scope.producto_obj = response.data.message.producto_obj;
+                $scope.factura_obj = response.data.message.factura_obj;
             }, function () {
                 $scope.fallo = true;
             })
@@ -33,8 +33,8 @@ var miControlador = miModulo.controller(
             const datos = {
                 id: $routeParams.id,
                 cantidad: $scope.cantidad,
-                producto_obj: $scope.producto_obj_descripcion,
-                factura_obj: $scope.factura_obj_id,
+                producto_id: $scope.producto_obj.id,
+                factura_id: $scope.factura_obj.id,
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)

@@ -15,10 +15,13 @@ var miControlador = miModulo.controller(
             .then(function (response) {
                 $scope.id = response.data.message.id;
                 $scope.cantidad = response.data.message.cantidad;
-                $scope.producto_obj = response.data.message.producto_obj.descripcion;
-                $scope.factura_obj = response.data.message.factura_obj.id;
+                $scope.producto_obj = response.data.message.producto_obj;
+                $scope.factura_obj = response.data.message.factura_obj;
             }, function () {
                 $scope.fallo = true;
             })
+            $scope.volver = function () {
+                window.history.back();
+            };
     }
 )
