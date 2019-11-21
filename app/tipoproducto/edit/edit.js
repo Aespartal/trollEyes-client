@@ -27,11 +27,15 @@ var miControlador = miModulo.controller('tipoproductoEditController',
         $scope.volver = function () {
             window.history.back();
         };
-
+        
+       
         $scope.editar = function () {
-            var json = {
+            const datos = {
                 id: $scope.id,
-                desc: $scope.descripcion
+                descripcion: $scope.descripcion
+            }
+            var jsonToSend = {
+                data: JSON.stringify(datos)
             };
             promesasService.ajaxUpdate('tipo_producto', { params: jsonToSend })
                 .then(function (response) {
@@ -43,8 +47,8 @@ var miControlador = miModulo.controller('tipoproductoEditController',
                         $scope.hecho = true;
                     }
                 }, function (response) {
-                    $scope.status = response.data.status;
-                    $scope.falloMensaje = response.data.message;
+                    $scope.fallo = true;
+                    $scope.hecho = true;
                 });
         };
     }

@@ -82,7 +82,7 @@
                   ng-model-options="{debounce: 1000}">
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <a href="tipoproducto/view/{{tipo_producto_obj.id}}">
+                    <a>
                       <span class="p-2 bd-highlight"><i class="fas fa-boxes fa-1x"></i></span>
                       Tipo de producto: {{tipo_producto_obj.descripcion}}
                     </a>
@@ -104,15 +104,15 @@
       </form>
       <div ng-show="!fallo&&hecho">
         <div class="alert alert-success text-center" role="alert">
-          <h2>Se ha añadido un nuevo post.</h2>
+          <h2>Se ha añadido un nuevo producto.</h2>
           <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
           <button class="btn btn-primary" ng-click="volver()">Volver</button>
         </div>
       </div>
       <div ng-show="fallo&&hecho">
         <div class="alert alert-danger text-center" role="alert">
-          <h2>Ha ocurrido un error al añadir el Post</h2>
-          <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+          <h2>Ha ocurrido un error al añadir el producto</h2>
+          <p ng-show="falloMensaje!=''&& authLevel==1">{{falloMensaje}}</p>
           <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
           <button class="btn btn-primary" ng-click="volver()">Volver</button>
         </div>
