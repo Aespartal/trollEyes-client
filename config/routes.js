@@ -99,7 +99,7 @@ miModulo.config(['$routeProvider',
             }
         })
         $routeProvider.when('/tipoproducto/view/:id', {
-            templateUrl: 'app/tipoproducto/view/view.html', controller: 'tipoproductoViewController', css: 'app/producto/view/view.css',
+            templateUrl: 'app/tipoproducto/view/view.html', controller: 'tipoproductoViewController', 
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
@@ -395,14 +395,6 @@ miModulo.config(['$routeProvider',
         })
         $routeProvider.when('/carrito/empty/:rpp/:page', {
             templateUrl: 'app/carrito/empty/empty.html', controller: 'carritoEmptyController',
-            resolve: {
-                auth: function (promesasService) {
-                    return promesasService.ajaxCheck();
-                },
-            }
-        })
-        $routeProvider.when('/carrito/add/:id', {
-            templateUrl: 'app/carrito/add/add.html', controller: 'carritoAddController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();

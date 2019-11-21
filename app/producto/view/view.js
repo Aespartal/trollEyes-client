@@ -43,5 +43,8 @@ var miControlador = miModulo.controller(
                     $scope.hecho = true;
                 })
         }
+        $scope.volver = function () {
+            window.history.back();
+        };
     }
 )

@@ -2,13 +2,12 @@ var miControlador = miModulo.controller(
     "usuarioViewController",
 
     function ($scope, $routeParams, promesasService, auth) {
-        if (auth.data.status != 200) {
+        if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel = auth.data.message.tipo_usuario_obj;
-            $scope.controller = "usuarioViewController";
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         }
 
         promesasService.ajaxGet('usuario', $routeParams.id)
@@ -20,6 +19,8 @@ var miControlador = miModulo.controller(
                 $scope.apellido2 = response.data.message.apellido2;
                 $scope.email = response.data.message.email;
                 $scope.login = response.data.message.login;
+                $scope.tipo_usuario_obj = response.data.message.tipo_usuario_obj.descripcion;
+
             }, function () {
                 $scope.fallo = true;
             })

@@ -1,13 +1,13 @@
 var miControlador = miModulo.controller(
     "compraRemoveController",
     function ($scope, $routeParams, $location, promesasService, auth) {
-        $scope.sessionLevel = level.data.message;
-        if (auth.data.status != 200) {
+        if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message;
-        }
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+        }  
 
         $scope.id = $routeParams.id;
         $scope.controller = "compraRemoveController";

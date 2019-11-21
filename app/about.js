@@ -1,6 +1,6 @@
 var miControlador = miModulo.controller(
     "aboutController",
-    function ($scope, auth,$location) {
+    function ($scope, auth,$location,$routeParams) {
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message.login;
         $scope.authLevel = auth.data.message.tipo_usuario_obj;

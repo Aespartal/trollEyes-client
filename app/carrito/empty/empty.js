@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "carritoEmptyController",
 
-    function ($scope, $http, $routeParams, promesasService,auth) {
+    function ($scope, $http, $routeParams, promesasService,auth,$location) {
         
         if (auth.data.status != 200) {
             $location.path('/login');

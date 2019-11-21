@@ -1,6 +1,6 @@
 'use strict';
 var miControlador = miModulo.controller('tipoproductoViewController',
-    function ($scope, $http, $routeParams, auth) {
+    function ($scope, $routeParams, auth,promesasService,$location) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

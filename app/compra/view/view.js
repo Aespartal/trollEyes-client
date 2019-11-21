@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "compraViewController",
 
-    function ($scope, $routeParams, promesasService, auth) {
+    function ($scope, $routeParams,$location, promesasService, auth) {
         $scope.controller = "compraViewController";
         if (auth.data.status != 200) {
             $location.path('/login');
