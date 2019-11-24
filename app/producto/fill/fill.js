@@ -38,7 +38,7 @@ var miControlador = miModulo.controller(
             window.history.back();
         };
         $scope.cerrar = function () {
-            $location.path('/home/10/1');
+            $location.path('/home/12/1');
         };
 
 

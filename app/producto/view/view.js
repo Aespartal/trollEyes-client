@@ -43,5 +43,33 @@ var miControlador = miModulo.controller(
                     $scope.hecho = true;
                 })
         }
+
+        $scope.volver = function () {
+            window.history.back();
+        };
+        
+        /*Notifis mediante lista de carrito*/
+        promesasService.ajaxListCarrito()
+        .then(function successCallback(response) {
+            if (response.data.status != 200) {
+                $scope.falloMensaje = response.data.message;
+            } else {     
+                if(isEmpty(response.data.message)){
+                    $scope.count=0;
+                } else{
+                    $scope.count = Object.keys(response.data.message).length;       
+                }
+                                 
+            }
+        }, function (response) {
+            $scope.mensaje = "Ha ocurrido un error";
+        });
+        function isEmpty(obj) {
+            for(var key in obj) {
+                if(obj.hasOwnProperty(key))
+                    return false;
+            }
+            return true;
+        };
     }
 )

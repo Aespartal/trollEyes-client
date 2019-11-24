@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "facturaEditController",
-    function ($scope, $http, $routeParams, promesasService, auth) {
-        if (auth.data.status != 200) {
+    function ($scope, $http, $routeParams, promesasService, auth, $location) {
+        if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
@@ -21,7 +21,7 @@ var miControlador = miModulo.controller(
                 $scope.id = response.data.message.id;
                 $scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
                 $scope.iva = response.data.message.iva;
-                $scope.usuario_id = response.data.message.usuario_id;
+                $scope.usuario_id = response.data.message.usuario_obj.id;
             }, function () {
                 $scope.fallo = true;
             })
@@ -32,7 +32,7 @@ var miControlador = miModulo.controller(
                 id: $routeParams.id,
                 fecha: $scope.fecha,
                 iva: $scope.iva,
-                usuario_id: $scope.usuario_id,
+                usuario_id: $scope.usuario_id
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
@@ -73,7 +73,7 @@ var miControlador = miModulo.controller(
         }
 
         $scope.cerrar = function () {
-            $location.path('/home/10/1');
+            $location.path('/home/12/1');
         };
 
         $scope.reset();

@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-  <h1><span class="font-weight-bold"><i class="fas fa-user"></i> Nuevo usuario</span></h1>
+  <h1><span class="font-weight-bold"><i class="fas fa-user"></i> Nuevo usuario <i class="fas fa-plus-square"></i></span></h1>
 </div>
 <div class="container">
   <div class="row">
@@ -106,7 +106,7 @@
                   ng-model-options="{debounce: 1000}">
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <a href="tipousuario/view/{{tipo_usuario_obj.id}}">
+                    <a>
                       <span class="p-2 bd-highlight"><i class="fas fa-users fa-1x"></i></span>
                       Tipo de usuario: {{tipo_usuario_obj.descripcion}}
                     </a>

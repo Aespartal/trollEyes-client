@@ -1,6 +1,6 @@
 'use strict';
 var miControlador = miModulo.controller('tipousuarioViewController',
-    function ($scope, $http, $routeParams, auth) {
+    function ($scope, $http, $routeParams, auth, $location) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

@@ -1,8 +1,6 @@
 var miControlador = miModulo.controller(
     "usuarioRemoveController",
-
     function ($scope, $routeParams, $location, promesasService, auth) {
-
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

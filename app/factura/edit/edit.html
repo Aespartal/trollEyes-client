@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold"><i class="fas fa-file-invoice"></i> Editar factura</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-file-invoice"></i> Editar factura <i class="fas fa-edit"></i></span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -36,11 +36,11 @@
                 </div>
                 <!--Usuario_ID-->
                 <div class="form-group row">
-                    <label for="usuario_obj" class="col-sm-2 col-form-label">Usuario id:</label>
+                    <label for="usuario_obj" class="col-sm-2 col-form-label">ID de usuario:</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="usuario_obj" class="form-control"
                             ng-class="{ 'is-invalid' : !userForm.usuario_obj.$valid && !userForm.usuario_obj.$pristine}"
-                            name="usuario_obj" ng-required="true" value="{{usuario_obj.login}}" />
+                            name="usuario_obj" ng-required="true" ng-value="usuario_obj.id" />
                         <div class="invalid-feedback" ng-show="userForm.usuario_obj.$error.pattern">
                             El usuario no puede estar vacio.
                         </div>

@@ -216,14 +216,34 @@ button#dropdownMenuButton {
 
 
 }
+.card_img{
+    background-color: #dbdbdb;
+    position: relative;
 
-.card:hover {
-    border: 2px solid black;
-    -webkit-box-shadow: 0px 13px 14px 0px rgba(164, 193, 196, 0.555);
-    -moz-box-shadow: 0px 13px 14px 0px rgba(164, 193, 196, 0.555);
-    box-shadow: 0px 13px 14px 0px rgba(164, 193, 196, 0.555);
-    background-color: rgba(164, 193, 196, 0.555);
 }
+.card_img_link {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+.card_img_link:hover {
+    opacity: 0.3;
+}
+.cursor {
+    cursor:pointer;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
 
 .color-b {
     color: #316280
@@ -273,107 +293,26 @@ section.container-posts {
     background-image: url(carro.png);
 }
 
+.noti{
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    padding: .25rem .4rem .25rem .4rem;
+    font-size: .85rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #fff;
+    border-radius: 50%;
+    border: 1px solid #316280;
+    top:8px;
+    right:30px;
+    background: radial-gradient(ellipse at center,#ef4f4a 1%,#ef4f4a 98%,#fff 0,#fff 100%,#fff 0);
+}
+
 .footer-copyright.py-3 a {
     color: white;
-}
-
-.form-container{
-    padding:10px;
-}
-.baseprice{
-    font-size: 40px;
-    color:#316280;
-    margin: 0;
-}
-
-.euro{
-    font-size: 32px;
-    color:#316280;
-    margin-left: 0;
-}
-
-.t-p{
-    padding:10px;
-    border-bottom: 0.5px solid rgb(199, 199, 199);
-}
-
-.t-p2{
-    padding:20px;
-    background-color: rgb(219, 241, 255);
-}
-
-
-.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-}
-.btn-group>.btn:first-child {
-    margin-left: 0;
-}
-.btn-group.mas-menos button {
-    background: #fff;
-    padding: 5.5px 5px;
-}
-.btn-group>.btn {
-    float: left;
-}
-.btn-group-vertical>.btn, .btn-group>.btn {
-    position: relative;
-}
-.btn-secondary2 {
-    color: #444;
-    background-color: #e2e2e2;
-    border-color: #d2d2d2;
-    padding-bottom: 0px!Important;
-}
-
-
-
-.btn-group.mas-menos .form-control {
-    border-radius: 0;
-    float: left;
-    font-weight: 700;
-    height: 32px;
-    line-height: 19px;
-    margin: 0 -1px;
-    padding: 6px;
-    position: relative;
-    text-align: center;
-    top: 0;
-    width: 38px;
-}
-
-.form-control {
-    display: block;
-    width: 100%;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #55595c;
-    background-color: #f2f2f2;
-    border: 1px solid #dcdcdc;
-    border-radius: .2143rem;
-   /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;*/
-}
-
-.cantidad .cantidad_container {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-}
-.btn-group {
-    position: relative;
-    vertical-align: middle;
-}
-.btn-group.mas-menos {
-    margin: .2rem;
-}
-.cantidad .mas-menos {
-    position: relative;
-    top: -9px;
-    margin-right: 10px;
 }

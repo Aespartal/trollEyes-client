@@ -18,7 +18,8 @@
                     <label for="cantidad" class="col-sm-2 col-form-label">Cantidad:</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" ng-model="cantidad" value="{{cantidad}}" class="form-control" />
+                            <input type="text" ng-model="cantidad" value="{{cantidad}}" 
+                            class="form-control" ng-required="true"/>
                         </div>
                         <div class="invalid-feedback" ng-show="userForm.cantidad.$invalid">
                             La cantidad no puede estar vacia.
@@ -30,9 +31,10 @@
                     <label for="producto_obj" class="col-sm-2 col-form-label">Producto:</label>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <input type="text" ng-model="producto_obj" value="{{producto_obj}}" class="form-control" />
+                            <input type="text" ng-model="producto_obj" 
+                            ng-value="producto_obj.id" class="form-control" ng-required="true" />
                         </div>
-                        <div class="invalid-feedback" ng-show="userForm.producto_id.$invalid">
+                        <div class="invalid-feedback" ng-show="userForm.producto_obj.$invalid">
                             El producto no puede estar vacio.
                         </div>
                     </div>
@@ -43,7 +45,7 @@
                     <div class="col-sm-10">
                         <input type="text" ng-model="factura_obj" class="form-control"
                             ng-class="{ 'is-invalid' : !userForm.factura_obj.$valid && !userForm.factura_obj.$pristine}"
-                            name="factura_obj" ng-required="true" value="{{factura_obj}}" />
+                            name="factura_obj" ng-required="true" ng-value="factura_obj.id"  />
                         <div class="invalid-feedback" ng-show="userForm.factura_obj.$error.pattern">
                             La factura no puede estar vacia.
                         </div>
@@ -68,7 +70,7 @@
             <div ng-show="fallo&&hecho">
                 <div class="alert alert-danger text-center" role="alert">
                     <h2>Ha ocurrido un error al actualizar el pedido</h2>
-                    <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+                    <p ng-show="falloMensaje!='' && authLevel.id!=1">{{falloMensaje}}</p>
                     <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
                     <button class="btn btn-primary" ng-click="volver()">Volver</button>
                 </div>
@@ -76,7 +78,7 @@
             <div ng-show="fallo&&!hecho">
                 <div class="alert alert-danger text-center" role="alert">
                     <h2>Ha habido un error al recibir datos del pedido desde el servidor</h2>
-                    <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+                    <p ng-show="falloMensaje!='' && authLevel.id!=1">{{falloMensaje}}</p>
                     <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
                     <button class="btn btn-primary" ng-click="volver()">Volver</button>
                 </div>

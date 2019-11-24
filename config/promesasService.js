@@ -40,8 +40,8 @@ miModulo.factory('promesasService', ['$http',
             ajaxAddCarrito: function (id, cantidad) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=add&id=' + id + '&cantidad=' + cantidad);
             },
-            ajaxRemoveCarrito: function (id, cantidad) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=remove&id=' + id + '&cantidad=' + cantidad);
+            ajaxRemoveCarrito: function (id) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=remove&id=' + id);
             },
             ajaxListCarrito: function () {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=list');

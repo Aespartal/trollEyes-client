@@ -1,7 +1,6 @@
 var miControlador = miModulo.controller(
     "tipousuarioPlistController",
-    function ($scope, $routeParams, $http, promesasService, $window, auth) {
-
+    function ($scope, $routeParams, $http, promesasService, $window, auth, $location) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {

@@ -77,7 +77,7 @@ var miControlador = miModulo.controller(
         }
 
         $scope.cerrar = function () {
-            $location.path('/home/10/1');
+            $location.path('/home/12/1');
         };
 
         $scope.reset();

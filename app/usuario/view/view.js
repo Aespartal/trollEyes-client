@@ -1,7 +1,6 @@
 var miControlador = miModulo.controller(
     "usuarioViewController",
-
-    function ($scope, $routeParams, promesasService, auth) {
+    function ($scope, $routeParams, promesasService, auth, $location) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -20,6 +19,7 @@ var miControlador = miModulo.controller(
                 $scope.apellido2 = response.data.message.apellido2;
                 $scope.email = response.data.message.email;
                 $scope.login = response.data.message.login;
+                $scope.tipo_usuario_obj = response.data.message.tipo_usuario_obj.descripcion;
             }, function () {
                 $scope.fallo = true;
             })

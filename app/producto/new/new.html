@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-  <h1><span class="font-weight-bold"><i class="fas fa-box"></i> Nuevo producto</span></h1>
+  <h1><span class="font-weight-bold"><i class="fas fa-box"></i> Nuevo producto <i class="fas fa-plus-square"></i></span></h1>
 </div>
 <div class="container">
   <div class="row">
@@ -78,11 +78,10 @@
                   aria-describedby="basic-addon2" class="form-control" id="tipo_producto_obj" name="tipo_producto_obj"
                   type="number"
                   ng-class="{'is-invalid': !userForm.tipo_producto_obj.$valid  && !userForm.tipo_producto_obj.$pristine }"
-                  min="1" ng-pattern="/^[1-9][0-9]?$|^100$/" ng-required="true"
-                  ng-model-options="{debounce: 1000}">
+                  min="1" ng-pattern="/^[1-9][0-9]?$|^100$/" ng-required="true" ng-model-options="{debounce: 1000}">
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <a href="tipoproducto/view/{{tipo_producto_obj.id}}">
+                    <a>
                       <span class="p-2 bd-highlight"><i class="fas fa-boxes fa-1x"></i></span>
                       Tipo de producto: {{tipo_producto_obj.descripcion}}
                     </a>
@@ -104,14 +103,14 @@
       </form>
       <div ng-show="!fallo&&hecho">
         <div class="alert alert-success text-center" role="alert">
-          <h2>Se ha añadido un nuevo post.</h2>
+          <h2>Se ha añadido un nuevo producto.</h2>
           <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
           <button class="btn btn-primary" ng-click="volver()">Volver</button>
         </div>
       </div>
       <div ng-show="fallo&&hecho">
         <div class="alert alert-danger text-center" role="alert">
-          <h2>Ha ocurrido un error al añadir el Post</h2>
+          <h2>Ha ocurrido un error al añadir el producto</h2>
           <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
           <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
           <button class="btn btn-primary" ng-click="volver()">Volver</button>

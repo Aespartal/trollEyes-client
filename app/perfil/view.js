@@ -1,6 +1,6 @@
 'use strict';
 var miControlador = miModulo.controller('usuarioViewPerfilController',
-    function ($scope, auth,$location) {
+    function ($scope, auth, $location,promesasService) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -13,9 +13,32 @@ var miControlador = miModulo.controller('usuarioViewPerfilController',
             $scope.authemail = auth.data.message.email;
             $scope.authUsername = auth.data.message.login;
             $scope.authLevel = auth.data.message.tipo_usuario_obj;
-            $scope.controller = "usuarioViewPerfilController";
         }
-        
+        /*Notifis mediante lista de carrito*/
+        promesasService.ajaxListCarrito()
+        .then(function successCallback(response) {
+            if (response.data.status != 200) {
+                $scope.falloMensaje = response.data.message;
+            } else {     
+                
+                if(isEmpty(response.data.message)){
+                    $scope.count=0;
+                } else{
+                    $scope.count = Object.keys(response.data.message).length;       
+                }
+                                 
+            }
+        }, function (response) {
+            $scope.mensaje = "Ha ocurrido un error";
+        });
+        function isEmpty(obj) {
+            for(var key in obj) {
+                if(obj.hasOwnProperty(key))
+                    return false;
+            }
+            return true;
+        };
+
         $scope.volver = function () {
             window.history.back();
         };

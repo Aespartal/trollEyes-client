@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold"><i class="fas fa-box"></i> Editar producto</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-box"></i> Editar producto <i class="fas fa-edit"></i></span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -87,11 +87,11 @@
                                     aria-describedby="basic-addon2" class="form-control" id="tipo_producto_obj"
                                     name="tipo_producto_obj" type="number"
                                     ng-class="{'is-invalid': !userForm.tipo_producto_obj.$valid  && !userForm.tipo_producto_obj.$pristine }"
-                                    min="1" max="100" ng-pattern="/^[1-9][0-9]?$|^100$/" ng-required="true"
+                                    min="1" ng-pattern="/^[1-9][0-9]?$|^100$/" ng-required="true"
                                     ng-model-options="{debounce: 1000}">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
-                                        <a href="tipoproducto/view/{{tipo_producto_obj.id}}">
+                                        <a>
                                             <span class="p-2 bd-highlight"><i class="fas fa-boxes fa-1x"></i></span>
                                             Tipo de producto: {{tipo_producto_obj.descripcion}}
                                         </a>

@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold"><i class="fas fa-user"></i> Lista de usuarios</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-user"></i> Lista de usuarios <i class="fas fa-list"></i></span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -118,7 +118,7 @@
                         <td>{{fila.nombre}}</td>
                         <td>{{fila.apellido1}} {{fila.apellido2}}</td>
                         <td>{{fila.email}}</td>
-                        <td><a href="#!/usuario/view/{{fila.id}}">{{fila.login}}</a></td>
+                        <td>{{fila.login}}</td>
                         <td><a
                                 href="#!/tipousuario/view/{{fila.tipo_usuario_obj.id}}">{{fila.tipo_usuario_obj.descripcion}}</a>
                         </td>

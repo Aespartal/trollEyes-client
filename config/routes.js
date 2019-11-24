@@ -34,7 +34,7 @@ miModulo.config(['$routeProvider',
             }
         })
         $routeProvider.when('/producto/view/:id', {
-            templateUrl: 'app/producto/view/view.html', controller: 'productoViewController',
+            templateUrl: 'app/producto/view/view.html', controller: 'productoViewController', css: 'app/producto/view/view.css',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
@@ -376,17 +376,17 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
-        //-------Carrito---------------------------
-        $routeProvider.when('/carrito/plist', {
-            templateUrl: 'app/carrito/plist/plist.html', controller: 'carritoPlistController', 
+        $routeProvider.when('/compra/fill', {
+            templateUrl: 'app/compra/fill/fill.html', controller: 'compraFillController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
             }
         })
-        $routeProvider.when('/carrito/remove/:id', {
-            templateUrl: 'app/carrito/remove/remove.html', controller: 'carritoRemoveController',
+        //-------Carrito---------------------------
+        $routeProvider.when('/carrito/plist', {
+            templateUrl: 'app/carrito/plist/plist.html', controller: 'carritoPlistController',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();

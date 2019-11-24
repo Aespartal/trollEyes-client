@@ -1,31 +1,29 @@
-'use strict';
-var miControlador = miModulo.controller('tipoproductoNewController',
-    function ($scope, $http, auth, promesasService, $location) {
-        if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
-            $location.path('/login');
-        } else {
+var miControlador = miModulo.controller(
+    "carritoNewController",
+
+    function ($scope, $http,$location, promesasService,auth) {
+        
+   
             $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message.login;
-            $scope.authLevel = auth.data.message.tipo_usuario_obj;
-        }
+            $scope.authUsername = auth.data.message;
 
-        $scope.formulario = true;
-        $scope.botones = true;
-        $scope.correcto = false;
+        $scope.controller = "carritoNewController";
+        $scope.fallo = false;
+        $scope.hecho = false;
+        $scope.falloMensaje = "";
 
-        $scope.volver = function () {
-            window.history.back();
-        };
-
-        $scope.new = function () {
+        $scope.add = function () {
             const datos = {
-                descripcion: $scope.descripcion
+                titulo: $scope.codigo,
+                cuerpo: $scope.cuerpo,
+                etiquetas: $scope.etiquetas, 
+                fecha: $scope.fecha
             }
             var jsonToSend = {
                 data: JSON.stringify(datos)
             };
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            promesasService.ajaxNew('tipo_producto', { params: jsonToSend })
+            promesasService.ajaxNew('post', { params: jsonToSend })
                 .then(function successCallback(response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -41,6 +39,12 @@ var miControlador = miModulo.controller('tipoproductoNewController',
                     $scope.falloMensaje = error.message + " " + error.stack;
 
                 });
+        }
+        $scope.volver = function () {
+            window.history.back();
+        };
+        $scope.cerrar = function () {
+            $location.path('/home/12/1');
         };
     }
-);
+)

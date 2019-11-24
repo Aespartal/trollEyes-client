@@ -1,6 +1,6 @@
 var miControlador = miModulo.controller(
     "facturaViewController",
-    function ($scope, $routeParams, promesasService, auth) {
+    function ($scope, $routeParams, promesasService, auth, $location) {
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -22,5 +22,16 @@ var miControlador = miModulo.controller(
             }, function () {
                 $scope.fallo = true;
             })
+            /*Notifis mediante lista de carrito*/
+        promesasService.ajaxListCarrito()
+        .then(function successCallback(response) {
+            if (response.data.status != 200) {
+                $scope.falloMensaje = response.data.message;
+            } else {
+                $scope.count = Object.keys(response.data.message).length;
+            }
+        }, function (response) {
+            $scope.mensaje = "Ha ocurrido un error";
+        });
     }
 )
