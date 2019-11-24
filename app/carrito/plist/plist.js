@@ -32,8 +32,10 @@ var miControlador = miModulo.controller(
                         $scope.count = Object.keys(response.data.message).length;       
                     }
                     for (i = 0; i < $scope.count; i++) {
-                        total = parseFloat(total) + parseFloat($scope.pagina[i].producto_obj.precio);
-                        total *= $scope.pagina[i].cantidad;                       
+                        cantidad = $scope.pagina[i].cantidad;
+                        precioUniCant = parseFloat($scope.pagina[i].producto_obj.precio);
+                        total += precioUniCant*cantidad;
+                        
                     }
                     $scope.total = total.toFixed(2);
 
