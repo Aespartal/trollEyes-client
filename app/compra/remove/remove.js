@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "compraRemoveController",
     function ($scope, $routeParams, $location, promesasService, auth) {
-        if (auth.data.status != 200) {
+        if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;

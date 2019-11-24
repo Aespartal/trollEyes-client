@@ -6,7 +6,7 @@ var miControlador = miModulo.controller(
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel = auth.data.message.tipo_usuario_obj;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         }
 
         //--

@@ -1,13 +1,13 @@
 var miControlador = miModulo.controller(
     "usuarioViewController",
-    function ($scope, $routeParams, promesasService, auth, $location) {
-        if (auth.data.status != 200) {
+
+    function ($scope, $routeParams, promesasService, auth) {
+        if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel = auth.data.message.tipo_usuario_obj;
-            $scope.controller = "usuarioViewController";
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         }
 
         promesasService.ajaxGet('usuario', $routeParams.id)
