@@ -13,6 +13,9 @@ miModulo.factory('promesasService', ['$http',
             ajaxGetCount: function (objeto) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount');
             },
+            ajaxGetCountFactura: function (objeto,id,filter) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount&id=' + id + '&filter=' + filter);
+            },
             ajaxGetPage: function (objeto, rpp, page) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page);
             },
@@ -35,7 +38,7 @@ miModulo.factory('promesasService', ['$http',
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=fill&number=' + number);
             },
             ajaxSearch: function (objeto, rpp, page, word) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page + '&filter=' + word);
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page + '&word=' + word);
             },
             ajaxAddCarrito: function (id, cantidad) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=carrito&op=add&id=' + id + '&cantidad=' + cantidad);

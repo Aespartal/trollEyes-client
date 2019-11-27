@@ -100,6 +100,17 @@
                             </th>
                         </div>
                         <div>
+                            <th>Facturas <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/link_factura/asc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-up"></i></i></a>
+                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/link_factura/desc"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
+                                            class="fas fa-sort-down"></i></i></a>
+                                </div>
+                            </th>
+                        </div>
+                        <div>
                             <th>Tipo usuario <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/tipo_usuario_obj/asc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
@@ -119,6 +130,7 @@
                         <td>{{fila.apellido1}} {{fila.apellido2}}</td>
                         <td>{{fila.email}}</td>
                         <td>{{fila.login}}</td>
+                        <td><a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/{{fila.id}}/usuario">{{fila.link_factura}}</a></td>
                         <td><a
                                 href="#!/tipousuario/view/{{fila.tipo_usuario_obj.id}}">{{fila.tipo_usuario_obj.descripcion}}</a>
                         </td>

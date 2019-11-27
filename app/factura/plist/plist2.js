@@ -1,5 +1,5 @@
 var miControlador = miModulo.controller(
-    "facturaPlistController",
+    "facturaPlist2Controller",
     function ($scope, $routeParams, $http, promesasService, $window, auth, $location) {
 
         if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
@@ -13,16 +13,14 @@ var miControlador = miModulo.controller(
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
         $scope.rppS = [10, 50, 100];
-        $scope.controller = "facturaPlistController";
-        $scope.colOrder = $routeParams.colOrder;
-        $scope.order = $routeParams.order;
+        $scope.controller = "facturaPlist2Controller";
+        // $scope.colOrder = $routeParams.colOrder;
+        // $scope.order = $routeParams.order;
         $scope.id_usuario = $routeParams.id;
         $scope.filter = $routeParams.filter;
 
-        if ($scope.order == null || $scope.colOrder == null) {
-            request = "http://localhost:8081/trolleyes/json?ob=factura&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
-        } else {
-            request = "http://localhost:8081/trolleyes/json?ob=factura&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "&direccion=" + $scope.order;
+        if($scope.id_usuario != null || $scope.filter !=null){
+            request =  "http://localhost:8081/trolleyes/json?ob=factura&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&id=" + $scope.id_usuario + "&filter=" + $scope.filter;
         }
 
         $http({
@@ -58,7 +56,7 @@ var miControlador = miModulo.controller(
                 });
         }
 
-        promesasService.ajaxGetCount('factura')
+        promesasService.ajaxGetCountFactura('factura',$scope.id_usuario,$scope.filter)
             .then(function (response) {
                 $scope.status = response.data.status;
                 $scope.numRegistros = response.data.message;

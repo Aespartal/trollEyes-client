@@ -139,7 +139,7 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
-        $routeProvider.when('/usuario/plist/:rpp/:page/:filter', {
+        $routeProvider.when('/usuario/plist/:rpp/:page/:word', {
             templateUrl: 'app/usuario/plist/plist.html', controller: 'usuarioPlistController',
             resolve: {
                 auth: function (promesasService) {
@@ -147,6 +147,7 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
+
         $routeProvider.when('/usuario/remove/:id', {
             templateUrl: 'app/usuario/remove/remove.html', controller: 'usuarioRemoveController',
             resolve: {
@@ -256,6 +257,14 @@ miModulo.config(['$routeProvider',
         //-------factura------------------------
         $routeProvider.when('/factura/plist/:rpp/:page', {
             templateUrl: 'app/factura/plist/plist.html', controller: 'facturaPlistController',
+            resolve: {
+                auth: function (promesasService) {
+                    return promesasService.ajaxCheck();
+                },
+            }
+        })
+        $routeProvider.when('/factura/plist/:rpp/:page/:id?/:filter?', {
+            templateUrl: 'app/factura/plist/plist2.html', controller: 'facturaPlist2Controller',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();

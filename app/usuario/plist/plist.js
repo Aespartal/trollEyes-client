@@ -21,7 +21,6 @@ var miControlador = miModulo.controller(
         } else {
             request = "http://localhost:8081/trolleyes/json?ob=usuario&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
         }
-
         $http({
             method: "GET",
             withCredentials: true,
