@@ -13,7 +13,7 @@ miModulo.factory('promesasService', ['$http',
             ajaxGetCount: function (objeto) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount');
             },
-            ajaxGetCountFactura: function (objeto,id,filter) {
+            ajaxGetCountFilter: function (objeto,id,filter) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount&id=' + id + '&filter=' + filter);
             },
             ajaxGetPage: function (objeto, rpp, page) {

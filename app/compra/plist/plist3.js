@@ -1,25 +1,27 @@
 var miControlador = miModulo.controller(
-    "facturaPlist2Controller",
-    function ($scope, $routeParams, $http, promesasService, $window, auth, $location) {
+    "compraPlist3Controller",
 
-        if (auth.data.status != 200 || (auth.data.message.id != $routeParams.id && auth.data.message.tipo_usuario_obj.id != 1)) {
+    function ($scope, $routeParams, $http, promesasService, $window, auth,$location) {
+        if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
             $scope.authLevel =  auth.data.message.tipo_usuario_obj;
-        }
-
+        }  
+          
+        $scope.controller = "compraPlist3Controller";
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
         $scope.rppS = [10, 50, 100];
-        $scope.controller = "facturaPlist2Controller";
+        
         // $scope.colOrder = $routeParams.colOrder;
         // $scope.order = $routeParams.order;
-        $scope.id_usuario = $routeParams.id;
+        $scope.id_producto = $routeParams.id;
+        
 
-        if($scope.id_usuario != null || $scope.filter !=null){
-            request =  "http://localhost:8081/trolleyes/json?ob=factura&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&id=" + $scope.id_usuario + "&filter=usuario";
+        if($scope.id_producto != null || $scope.filter !=null){
+            request =  "http://localhost:8081/trolleyes/json?ob=compra&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&id=" + $scope.id_producto + "&filter=producto";
         }
 
         $http({
@@ -29,14 +31,15 @@ var miControlador = miModulo.controller(
         }).then(function (response) {
             $scope.status = response.data.status;
             $scope.pagina = response.data.message;
+            $scope.link_producto = response.data.message[0].producto_obj.id;
         });
 
         $scope.showSelectValue = function (mySelect) {
-            $window.location.href = `/trollEyes-client/#!/factura/plist/` + mySelect + `/1`;
+            $window.location.href = `/trollEyes-client/#!/compra/plist/` + mySelect + `/1`;
         }
 
         $scope.search = function () {
-            promesasService.ajaxSearch('factura', $scope.rppActual, $scope.paginaActual, $scope.word)
+            promesasService.ajaxSearch('compra', $scope.rppActual, $scope.paginaActual, $scope.word)
                 .then(function (response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -46,7 +49,6 @@ var miControlador = miModulo.controller(
                         $scope.fallo = false;
                         $scope.hecho = true;
                         $scope.pagina = response.data.message;
-
                     }
                 }, function (error) {
                     $scope.hecho = true;
@@ -54,8 +56,7 @@ var miControlador = miModulo.controller(
                     $scope.falloMensaje = error.message + " " + error.stack;
                 });
         }
-
-        promesasService.ajaxGetCountFilter('factura',$scope.id_usuario,"usuario")
+        promesasService.ajaxGetCountFilter('compra',$scope.id_producto,"producto")
             .then(function (response) {
                 $scope.status = response.data.status;
                 $scope.numRegistros = response.data.message;

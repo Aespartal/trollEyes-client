@@ -17,7 +17,7 @@
                 <nav aria-label="Registros por página">
                     <ul class="pagination float-right">
                         <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
-                            <a class="page-link" href="#!/factura/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
+                            <a class="page-link" href="#!/factura/plist/{{r}}/{{ calcPage[$index] }}/{{id_usuario}}/{{filter}}">{{r}}</a>
                         </li>
                     </ul>
                 </nav>
@@ -26,7 +26,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href=href="#!/factura/plist/{{ rppActual }}/{{ p }}/{{id_usuario}}/{{filter}}">{{p}}</a>
+                                href="#!/factura/plist/{{ rppActual }}/{{ p }}/{{id_usuario}}/{{filter}}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>
@@ -83,7 +83,7 @@
                         <td>{{fila.id}}</td>
                         <td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
                         <td>{{fila.iva}}</td>
-                        <td>{{fila.link_compra}}</td>
+                        <td><a href="#!/compra/plist/10/1/{{fila.id}}/factura">{{fila.link_compra}}</a></td>
                         <td> 
                             <a href="#!/factura/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
                             <a href="#!/factura/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>

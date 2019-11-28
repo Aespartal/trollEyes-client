@@ -130,9 +130,12 @@
                         <td>{{fila.apellido1}} {{fila.apellido2}}</td>
                         <td>{{fila.email}}</td>
                         <td>{{fila.login}}</td>
-                        <td><a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/{{fila.id}}/usuario">{{fila.link_factura}}</a></td>
+                        <td>
+                            <a  ng-if="fila.link_factura != 0" href="#!/factura/plist/10/1/{{fila.id}}/usuario">{{fila.link_factura}}</a>
+                            <span  ng-if="fila.link_factura == 0">{{fila.link_factura}}</span>
+                        </td>
                         <td><a
-                                href="#!/tipousuario/view/{{fila.tipo_usuario_obj.id}}">{{fila.tipo_usuario_obj.descripcion}}</a>
+                               href="#!/tipousuario/view/{{fila.tipo_usuario_obj.id}}">{{fila.tipo_usuario_obj.descripcion}}</a>
                         </td>
                         <td>
                             <a href="#!/usuario/view/{{fila.id}}"><i class="fa fa-eye"></i></a>

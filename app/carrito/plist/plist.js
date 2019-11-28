@@ -26,10 +26,10 @@ var miControlador = miModulo.controller(
                     $scope.status = response.data.status;
                     $scope.pagina = response.data.message;
 
-                    if(isEmpty(response.data.message)){
+                    if(response.data.message.length==0){
                         $scope.count=0;
                     } else{
-                        $scope.count = Object.keys(response.data.message).length;       
+                        $scope.count = response.data.message.length;       
                     }
                     for (i = 0; i < $scope.count; i++) {
                         cantidad = $scope.pagina[i].cantidad;

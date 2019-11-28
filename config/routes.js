@@ -263,14 +263,14 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
-        $routeProvider.when('/factura/plist/:rpp/:page/:id?/:filter?', {
+        $routeProvider.when('/factura/plist/:rpp/:page/:id/:filter', {
             templateUrl: 'app/factura/plist/plist2.html', controller: 'facturaPlist2Controller',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();
                 },
             }
-        })
+        })   
         $routeProvider.when('/factura/plist/:rpp/:page/:colOrder?/:order?', {
             templateUrl: 'app/factura/plist/plist.html', controller: 'facturaPlistController',
             resolve: {
@@ -337,6 +337,22 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
+        $routeProvider.when('/compra/plist/:rpp/:page/:id/factura', {
+            templateUrl: 'app/compra/plist/plist2.html', controller: 'compraPlist2Controller',
+            resolve: {
+                auth: function (promesasService) {
+                    return promesasService.ajaxCheck();
+                },
+            }
+        }) 
+        $routeProvider.when('/compra/plist/:rpp/:page/:id/producto', {
+            templateUrl: 'app/compra/plist/plist3.html', controller: 'compraPlist3Controller',
+            resolve: {
+                auth: function (promesasService) {
+                    return promesasService.ajaxCheck();
+                },
+            }
+        }) 
         $routeProvider.when('/compra/plist/:rpp/:page/:colOrder?/:order?', {
             templateUrl: 'app/compra/plist/plist.html', controller: 'compraPlistController',
             resolve: {
