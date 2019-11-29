@@ -32,7 +32,7 @@ var miControlador = miModulo.controller(
             $scope.status = response.data.status;
             $scope.pagina = response.data.message;
            // $scope.link_factura = response.data.message[0].factura_obj.id;
-            $scope.usuario_obj_id = response.data.message[0].factura_obj.usuario_obj.id;
+            $scope.usuario_obj_id = response.data.message.shift().factura_obj.usuario_obj.id;
         });
 
         $scope.showSelectValue = function (mySelect) {
