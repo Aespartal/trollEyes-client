@@ -6,7 +6,7 @@ var miControlador = miModulo.controller(
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
 
         $scope.id = $routeParams.id;
@@ -25,7 +25,27 @@ var miControlador = miModulo.controller(
             }, function () {
                 $scope.fallo = true;
             })
-
+            
+        promesasService.ajaxListCarrito()
+            .then(function successCallback(response) {
+                if (response.data.status != 200) {
+                    $scope.falloMensaje = response.data.message;
+                } else {
+                    $scope.status = response.data.status;
+                    $scope.pagina = response.data.message;
+                    if (response.data.message) {
+                        if (response.data.message.length == 0) {
+                            $scope.count = 0;
+                        } else {
+                            $scope.count = response.data.message.length;
+                        }
+                    } else {
+                        $scope.count = 0;
+                    }
+                }
+            }, function (response) {
+                $scope.mensaje = "Ha ocurrido un error";
+            });
         $scope.modificar = function () {
 
             const datos = {
@@ -39,7 +59,9 @@ var miControlador = miModulo.controller(
             };
 
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            promesasService.ajaxUpdate('factura', { params: jsonToSend })
+            promesasService.ajaxUpdate('factura', {
+                    params: jsonToSend
+                })
                 .then(function (response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;

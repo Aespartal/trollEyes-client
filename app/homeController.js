@@ -58,21 +58,25 @@ var miControlador = miModulo.controller(
             }
         }
         promesasService.ajaxListCarrito()
-        .then(function successCallback(response) {
-            if (response.data.status != 200) {
-                $scope.falloMensaje = response.data.message;
-            } else {     
-                
-                if(isEmpty(response.data.message)){
-                    $scope.count=0;
-                } else{
-                    $scope.count = Object.keys(response.data.message).length;       
+            .then(function successCallback(response) {
+                if (response.data.status != 200) {
+                    $scope.falloMensaje = response.data.message;
+                } else {
+                    $scope.status = response.data.status;
+                    $scope.pagina = response.data.message;
+                    if (response.data.message) {
+                        if (response.data.message.length == 0) {
+                            $scope.count = 0;
+                        } else {
+                            $scope.count = response.data.message.length;
+                        }
+                    } else {
+                        $scope.count = 0;
+                    }
                 }
-                                 
-            }
-        }, function (response) {
-            $scope.mensaje = "Ha ocurrido un error";
-        });
+            }, function (response) {
+                $scope.mensaje = "Ha ocurrido un error";
+            });
         /*Add carrito*/
         $scope.add = function (id) {
             cantidad = 1;

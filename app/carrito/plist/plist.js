@@ -9,14 +9,6 @@ var miControlador = miModulo.controller(
         $scope.fallo = false;
         $scope.hecho = false;
         total = 0;
-        /*List de carrito*/
-        function  isEmpty(obj) {
-            for(var key in obj) {
-                if(obj.hasOwnProperty(key))
-                    return false;
-            }
-            return true;
-        };
 
         promesasService.ajaxListCarrito()
             .then(function successCallback(response) {
@@ -25,20 +17,22 @@ var miControlador = miModulo.controller(
                 } else {
                     $scope.status = response.data.status;
                     $scope.pagina = response.data.message;
-
-                    if(response.data.message.length==0){
-                        $scope.count=0;
-                    } else{
-                        $scope.count = response.data.message.length;       
+                    if (response.data.message) {
+                        if (response.data.message.length == 0) {
+                            $scope.count = 0;
+                        } else {
+                            $scope.count = response.data.message.length;
+                        }
+                    } else {
+                        $scope.count = 0;
                     }
                     for (i = 0; i < $scope.count; i++) {
                         cantidad = $scope.pagina[i].cantidad;
                         precioUniCant = parseFloat($scope.pagina[i].producto_obj.precio);
-                        total += precioUniCant*cantidad;
-                        
+                        total += precioUniCant * cantidad;
+
                     }
                     $scope.total = total.toFixed(2);
-
                 }
             }, function (response) {
                 $scope.mensaje = "Ha ocurrido un error";
@@ -103,7 +97,7 @@ var miControlador = miModulo.controller(
                 });
         }
 
-       
+
 
         $scope.cerrar = function () {
             $location.path('/home/12/1');
