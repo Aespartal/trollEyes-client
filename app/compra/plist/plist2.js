@@ -2,12 +2,12 @@ var miControlador = miModulo.controller(
     "compraPlist2Controller",
 
     function ($scope, $routeParams, $http, promesasService, $window, auth, $location) {
-        if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
+        if (auth.data.status != 200 || (auth.data.message.id != $scope.usuario_obj_id && auth.data.message.tipo_usuario_obj.id != 1)) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel = auth.data.message.tipo_usuario_obj;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
         }
 
         $scope.controller = "compraPlist2Controller";
@@ -31,7 +31,8 @@ var miControlador = miModulo.controller(
         }).then(function (response) {
             $scope.status = response.data.status;
             $scope.pagina = response.data.message;
-            $scope.link_factura = response.data.message[0].factura_obj.id;
+           // $scope.link_factura = response.data.message[0].factura_obj.id;
+            $scope.usuario_obj_id = response.data.message[0].factura_obj.usuario_obj.id;
         });
 
         $scope.showSelectValue = function (mySelect) {
