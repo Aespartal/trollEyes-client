@@ -4,6 +4,7 @@ var miControlador = miModulo.controller(
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message.login;
         $scope.authLevel = auth.data.message.tipo_usuario_obj;
+        $scope.authid = auth.data.message.id;
         $scope.controller = "homeController";
         $scope.campo = $routeParams.order;
         $scope.direction = $routeParams.direction;

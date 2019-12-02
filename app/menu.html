@@ -10,6 +10,11 @@
         ng-class="{'active':(controller=='homeController')}">
         <a class="nav-link" href="#!/home/12/1"><i class="fas fa-home"></i> Home</a>
       </li>
+      <!--Mis facturas -->
+      <li class="nav-item" ng-show="authStatus==200 && authLevel.id != 1"
+        ng-class="{'active':(controller=='facturaPlist3Controller')}">
+        <a class="nav-link" href="#!/factura/plist/10/1/{{authid}}"><i class="fas fa-file-invoice"></i> Mis facturas </a>
+      </li>
       <!-- Productos -->
       <div class="dropdown" ng-show="authStatus==200 && authLevel.id == 1">
         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -26,9 +31,6 @@
             producto</a>
           <a class="dropdown-item" ng-class="{'active':(controller=='tipoproductoPlistController')}"
             href="#!/tipoproducto/plist/10/1"><i class="fas fa-list"></i> Lista tipo
-            producto</a>
-          <a class="dropdown-item" ng-class="{'active':(controller=='tipoproductoPlistController')}"
-            href="#!/tipoproducto/plist/10/1">Lista tipo
             producto</a>
         </div>
       </div>

@@ -13,11 +13,17 @@ miModulo.factory('promesasService', ['$http',
             ajaxGetCount: function (objeto) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount');
             },
+            ajaxGetCountFacture: function (id) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=factura&op=getcountfactureuser&id=' + id);
+            },
             ajaxGetCountFilter: function (objeto,id,filter) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount&id=' + id + '&filter=' + filter);
             },
             ajaxGetPage: function (objeto, rpp, page) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page);
+            },
+            ajaxGetPageFacture: function (rpp, page, id) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=factura&op=getpagefactureuser&rpp=' + rpp + '&page=' + page + '&id=' + id);
             },
             ajaxRemove: function (objeto, identificador) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=remove&id=' + identificador);

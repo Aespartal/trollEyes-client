@@ -32,9 +32,9 @@
                             <th>Nombre de usuario</th>
                             <td class="align-middle">{{authUsername}}</td>
                         </tr>
-                        <tr>
+                        <tr ng-show="authLevel.id != 1">
                             <th>Tus facturas</th>
-                            <td class="align-middle"><a href="#!/factura/plist/10/1/{{authid}}/usuario">{{authFactura}}</a></td>
+                            <td class="align-middle"><a href="#!/factura/plist/10/1/{{authid}}">{{authFactura}}</a></td>
                         </tr>
                     </table>
                 </div>

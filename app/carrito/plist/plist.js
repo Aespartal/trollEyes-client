@@ -6,6 +6,7 @@ var miControlador = miModulo.controller(
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message.login;
         $scope.authLevel = auth.data.message.tipo_usuario_obj;
+        $scope.authid = auth.data.message.id;
         $scope.fallo = false;
         $scope.hecho = false;
         total = 0;
