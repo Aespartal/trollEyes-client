@@ -17,7 +17,6 @@
           ng-class="{'active':(controller=='productoPlistController' || controller=='productoViewController' || controller=='productoRemoveController' || controller=='productoNewController' || controller=='productoEditController')}">
           <i class="fas fa-box"></i> Productos
         </button>
-
         <div class="dropdown-menu" aria-labelledby="producto">
           <a class="dropdown-item" ng-class="{'active':(controller=='productoPlistController')}"
             href="#!/producto/plist/10/1"><i class="fas fa-list"></i> Lista de
@@ -34,19 +33,41 @@
         </div>
       </div>
       <!-- Pedidos -->
-      <li class="nav-item" ng-show="authStatus==200 && authLevel.id == 1"
-        ng-class="{'active':(controller=='compraPlistController' || controller=='compraViewController' || controller=='compraRemoveController' || controller=='compraNewController' || controller=='compraEditController')}"
-        aria-labelledby="pedidos">
-        <a class="nav-link" ng-class="{'active':(controller=='compraPlistController')}" href="#!/compra/plist/10/1"><i
-            class="fas fa-boxes"></i> Pedidos</a>
-      </li>
+      <div class="dropdown" ng-show="authStatus==200 && authLevel.id == 1">
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true"  aria-expanded="false">
+          <i class="fas fa-boxes"></i> Pedidos
+        </button>
+        <div class="dropdown-menu" ng-show="authStatus==200 && authLevel.id == 1" aria-labelledby="pedido"
+        ng-class="{'active':(controller=='compraPlistController' || controller=='compraNewController' || controller=='compraRemoveController' || controller=='compraViewController' || controller=='compraEditController')}">
+          <a class="dropdown-item" ng-class="{'active':(controller=='compraPlistController')}" 
+          href="#!/compra/plist/10/1">
+          <i class="fas fa-list"></i> Lista de Pedidos</a>
+          <a class="dropdown-item" ng-class="{'active':(controller=='compraNewController')}" 
+          href="#!/compra/new">
+            <i class="fas fa-plus-square"></i> Nuevo pedido</a>
+        </div>
+
+
+      </div>
       <!-- Facturas -->
-      <li class="nav-item" ng-show="authStatus==200 && authLevel.id == 1"
+      <div class="dropdown" ng-show="authStatus==200 && authLevel.id == 1">
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true"  aria-expanded="false">
+          <i class="fas fa-file-invoice"></i> Facturas
+        </button>
+        <div class="dropdown-menu" ng-show="authStatus==200 && authLevel.id == 1"
         ng-class="{'active':(controller=='facturaPlistController' || controller=='facturaPlist2Controller' || controller=='facturaViewController' || controller=='facturaRemoveController' || controller=='facturaNewController' || controller=='facturaEditController')}"
         aria-labelledby="facturas">
-        <a class="nav-link" ng-class="{'active':(controller=='facturaPlistController')}" href="#!/factura/plist/10/1">
-          <i class="fas fa-file-invoice"></i> Facturas</a>
-      </li>
+        <a class="dropdown-item" ng-class="{'active':(controller=='facturaPlistController')}" 
+        href="#!/factura/plist/10/1">
+        <i class="fas fa-list"></i> Lista de Facturas</a>
+        <a class="dropdown-item" ng-class="{'active':(controller=='facturaNewController')}" 
+        href="#!/factura/new">
+        <i class="fas fa-plus-square"></i> Nueva Factura</a>
+    </div>
+  </div>
+
       <!-- Usuarios -->
       <div class="dropdown" ng-show="authStatus==200 && authLevel.id == 1">
         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -65,9 +86,6 @@
           <a class="dropdown-item" ng-class="{'active':(controller=='tipousuarioPlistController')}"
             href="#!/tipousuario/plist/10/1"><i class="fas fa-list"></i> Lista tipo
             usuario</a>
-            <a class="dropdown-item" ng-class="{'active':(controller=='tipousuarioPlistController')}"
-            href="#!/tipousuario/plist/10/1">Lista tipo
-            usuario</a>  
         </div>
       </div>
       <!-- Fills -->
