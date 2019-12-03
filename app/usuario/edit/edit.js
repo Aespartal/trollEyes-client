@@ -1,6 +1,6 @@
 var miControlador = miModulo.controller(
     "usuarioEditController",
-    function ($scope, $http, $routeParams, promesasService, auth) {
+    function ($scope, $http, $routeParams, promesasService, auth,$location) {
         if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');
         } else {

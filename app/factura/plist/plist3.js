@@ -17,7 +17,7 @@ var miControlador = miModulo.controller(
         $scope.id_usuario = $routeParams.id;
 
         if($scope.id_usuario != null || $scope.filter !=null){
-            request =  "http://localhost:8081/trolleyes/json?ob=factura&op=getpagefactureuser&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&id=" + $scope.id_usuario;
+            request =  "http://localhost:8081/trolleyes/json?ob=factura&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
         }
 
         $http({
