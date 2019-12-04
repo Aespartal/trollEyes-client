@@ -1,8 +1,8 @@
 miModulo.factory('promesasService', ['$http',
     function ($http) {
         return {
-            ajaxGet: function (objeto, identificador) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=get&id=' + identificador);
+            ajaxGet: function (objeto, id) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=get&id=' + id);
             },
             ajaxUpdate: function (objeto, datos) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=update', datos);
@@ -10,23 +10,26 @@ miModulo.factory('promesasService', ['$http',
             ajaxNew: function (objeto, datos) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=insert', datos);
             },
-            ajaxGetCount: function (objeto) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount');
-            },
-            ajaxGetCountFacture: function (id) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=factura&op=getcountfactureuser&id=' + id);
-            },
-            ajaxGetCountFilter: function (objeto,id,filter) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount&id=' + id + '&filter=' + filter);
+            // ajaxGetCount: function (objeto) {
+            //     return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount');
+            // },
+            // ajaxGetCount: function (objeto,id) {
+            //     return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount&id=' + id);
+            //},
+            ajaxGetCount: function (objeto, id, filter) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount&id=' + id + '&filter=' + filter); // SOLO PARA ADMIN
             },
             ajaxGetPage: function (objeto, rpp, page) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page);
             },
-            ajaxGetPageFacture: function (rpp, page, id) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=factura&op=getpagefactureuser&rpp=' + rpp + '&page=' + page + '&id=' + id);
-            },
-            ajaxRemove: function (objeto, identificador) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=remove&id=' + identificador);
+            // ajaxGetPage: function (objeto, rpp, page, id) {
+            //     return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page + '&id=' + id);
+            // },
+            // ajaxGetPage: function (objeto, rpp, page, orden, direccion) {
+            //     return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page + '&order=' + orden + '&direccion=' + direccion);
+            // },
+            ajaxRemove: function (objeto, id) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=remove&id=' + id);
             },
             ajaxLogin: function (username, password) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=login&username=' + username + '&password=' + forge_sha256(password));

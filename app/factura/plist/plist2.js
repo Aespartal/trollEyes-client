@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "facturaPlist2Controller",
     function ($scope, $routeParams, $http, promesasService, $window, auth, $location) {
-
+        //---------------Todas las facturas de un usuario especifico---------------
         if (auth.data.status != 200 || (auth.data.message.id != $routeParams.id && auth.data.message.tipo_usuario_obj.id != 1)) {
             $location.path('/login');
         } else {
@@ -18,9 +18,8 @@ var miControlador = miModulo.controller(
         // $scope.order = $routeParams.order;
         $scope.id_usuario = $routeParams.id;
 
-        if($scope.id_usuario != null || $scope.filter !=null){
-            request =  "http://localhost:8081/trolleyes/json?ob=factura&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&id=" + $scope.id_usuario + "&filter=usuario";
-        }
+        request =  "http://localhost:8081/trolleyes/json?ob=factura&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&id=" + $scope.id_usuario + "&filter=usuario";
+        request2 = "http://localhost:8081/trolleyes/json?ob=factura&op=getcount&id=" + $scope.id_usuario + "&filter=usuario";
 
         $http({
             method: "GET",
@@ -30,10 +29,6 @@ var miControlador = miModulo.controller(
             $scope.status = response.data.status;
             $scope.pagina = response.data.message;
         });
-
-        $scope.showSelectValue = function (mySelect) {
-            $window.location.href = `/trollEyes-client/#!/factura/plist/` + mySelect + `/1`;
-        }
 
         $scope.search = function () {
             promesasService.ajaxSearch('factura', $scope.rppActual, $scope.paginaActual, $scope.word)
@@ -55,8 +50,11 @@ var miControlador = miModulo.controller(
                 });
         }
 
-        promesasService.ajaxGetCountFilter('factura',$scope.id_usuario,"usuario")
-            .then(function (response) {
+        $http({
+            method: "GET",
+            withCredentials: true,
+            url: request2
+        }).then(function (response) {
                 $scope.status = response.data.status;
                 $scope.numRegistros = response.data.message;
                 $scope.numPaginas = Math.ceil($scope.numRegistros / $routeParams.rpp);

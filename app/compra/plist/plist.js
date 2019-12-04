@@ -1,6 +1,6 @@
 var miControlador = miModulo.controller(
     "compraPlistController",
-
+    //-----------------------------lISTA DE PEDIDOS EN GENERAL---------------------------------
     function ($scope, $routeParams, $http, promesasService, $window, auth,$location) {
         if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');

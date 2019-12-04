@@ -13,22 +13,14 @@ var miControlador = miModulo.controller(
         $scope.controller = "compraPlist3Controller";
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
-        $scope.rppS = [10, 50, 100];
+        $scope.rppS = [10, 50, 100];;
+        $scope.id = $routeParams.id;
+        $scope.objeto = $routeParams.filter;
 
-        // $scope.colOrder = $routeParams.colOrder;
-        // $scope.order = $routeParams.order;
-        $scope.id_producto = $routeParams.id;
-
-
-        if ($scope.id_producto != null || $scope.filter != null) {
-            request = "http://localhost:8081/trolleyes/json?ob=compra&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&id=" + $scope.id_producto + "&filter=producto";
-        }
-
-        $http({
-            method: "GET",
-            withCredentials: true,
-            url: request
-        }).then(function (response) {
+        request = "http://localhost:8081/trolleyes/json?ob=compra&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&id=" + $scope.id + "&filter=" + $scope.objeto;
+        
+        promesasService.ajaxGetPage('compra', $scope.rppActual, $scope.paginaActual,  $scope.id, $scope.objeto)
+        .then(function (response) {
             $scope.status = response.data.status;
             $scope.pagina = response.data.message;
             $scope.link_producto = response.data.message[0].producto_obj.id;

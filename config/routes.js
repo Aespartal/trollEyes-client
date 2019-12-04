@@ -345,7 +345,7 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
-        $routeProvider.when('/compra/plist/:rpp/:page/:id/factura', {
+        $routeProvider.when('/compra/plist/:rpp/:page/:id', {
             templateUrl: 'app/compra/plist/plist2.html', controller: 'compraPlist2Controller',
             resolve: {
                 auth: function (promesasService) {
@@ -353,7 +353,7 @@ miModulo.config(['$routeProvider',
                 },
             }
         }) 
-        $routeProvider.when('/compra/plist/:rpp/:page/:id/producto', {
+        $routeProvider.when('/compra/plist/:rpp/:page/:id/:filter', {
             templateUrl: 'app/compra/plist/plist3.html', controller: 'compraPlist3Controller',
             resolve: {
                 auth: function (promesasService) {
