@@ -255,44 +255,13 @@ miModulo.config(['$routeProvider',
             }
         })
         //-------factura------------------------
-        $routeProvider.when('/factura/plist/:rpp/:page', {
-            templateUrl: 'app/factura/plist/plist.html', controller: 'facturaPlistController',
-            resolve: {
-                auth: function (promesasService) {
-                    return promesasService.ajaxCheck();
-                },
-            }
-        })
-        $routeProvider.when('/factura/plist/:rpp/:page/:id', {
-            templateUrl: 'app/factura/plist/plist3.html', controller: 'facturaPlist3Controller',
-            resolve: {
-                auth: function (promesasService) {
-                    return promesasService.ajaxCheck();
-                },
-            }
-        })  
-        $routeProvider.when('/factura/plist/:rpp/:page/:id/:filter', {
-            templateUrl: 'app/factura/plist/plist2.html', controller: 'facturaPlist2Controller',
-            resolve: {
-                auth: function (promesasService) {
-                    return promesasService.ajaxCheck();
-                },
-            }
-        })        
         $routeProvider.when('/factura/plist/:rpp/:page/:colOrder?/:order?', {
-            templateUrl: 'app/factura/plist/plist.html', controller: 'facturaPlistController',
+            templateUrl: 'app/factura/plist/plist.html',
+            controller: 'facturaPlistController',
             resolve: {
-                auth: function (promesasService) {
-                    return promesasService.ajaxCheck();
-                },
-            }
-        })
-        $routeProvider.when('/factura/plist/:rpp/:page/:filter', {
-            templateUrl: 'app/factura/plist/plist.html', controller: 'facturaPlistController',
-            resolve: {
-                auth: function (promesasService) {
-                    return promesasService.ajaxCheck();
-                },
+                auth: function (promisesService) {
+                    return promisesService.ajaxCheck();
+                }
             }
         })
         $routeProvider.when('/factura/remove/:id', {

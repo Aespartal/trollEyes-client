@@ -1,6 +1,7 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold"><i class="fas fa-file-invoice"></i> Lista de facturas <i class="fas fa-list"></i></span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-file-invoice"></i> Lista de facturas <i
+                class="fas fa-list"></i></span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -14,96 +15,97 @@
                             ng-click="search()">Buscar</button>
                     </form>
                 </nav>
+
+                <!--Registros por pagina-->
                 <nav aria-label="Registros por página">
-                    <ul class="pagination float-right">
-                        <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
-                            <a class="page-link" href="#!/factura/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
-                        </li>
-                    </ul>
+                    <div class="content-box mb-3">
+                        <h5 class="mb-3">Nº facturas por página</h5>
+                        <div class="dropdown d-inline">
+                            <button class="btn btn-light dropdown-toggle w-25" type="button" id="dropdownMenuPPP"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ rpp }}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuPPP">
+                                <a class="dropdown-item"
+                                    ng-href="#!/factura/plist/10/{{actually_page}}{{ buildURL() }}">10</a>
+                                <a class="dropdown-item"
+                                    ng-href="#!/factura/plist/25/{{actually_page}}{{ buildURL() }}">25</a>
+                                <a class="dropdown-item"
+                                    ng-href="#!/factura/plist/50/{{actually_page}}{{ buildURL() }}">50</a>
+                                <a class="dropdown-item"
+                                    ng-href="#!/factura/plist/75/{{actually_page}}{{ buildURL() }}">75</a>
+                                <a class="dropdown-item"
+                                    ng-href="#!/factura/plist/100/{{actually_page}}{{ buildURL() }}">100</a>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
-                <nav aria-label="Paginación">
-                    <ul class="pagination">
-                        <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
-                            ng-repeat="p in botonera track by $index">
+                <div class="content-box" ng-if="user_id !== null">
+                    <a class="btn btn-primary w-100" href="#!/facturas/plist/10/1">Listar todas las facturas</a>
+                </div>
+
+                <!-- Paginacion -->
+                <nav aria-label="Paginación" ng-if="pages.length > 1">
+                    <ul class="pagination justify-content-left">
+                        <li class="page-item" ng-class="{'active':(actually_page==p)}" ng-disabled="p == '...'"
+                            ng-repeat="p in pages track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/factura/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                ng-href="#!/factura/plist/{{rpp}}/{{p}}{{ buildURL() }}">{{
+                                p }}
+                            </a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>
                 </nav>
-                <table class="table">
-                    <tr>
-                        <div>
-                            <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-down"></i></i></a>
-                                </div>
-                        </div>
-                        </th>
-                        <div>
-                            <th>Fecha <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/fecha/asc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/fecha/desc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-down"></i></i></a>
-                                </div>
-                        </div>
-                        </th>
-                        <div>
-                            <th>IVA <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/iva/asc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/iva/desc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-down"></i></i></a>
-                                </div>
+                <h6 ng-if="facturas_empty">¡No hay ninguna factura para este usuario!</h6>
+                <table class="table table-striped" ng-if="!facturas_empty">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 4vw;">
+                                <a class="text-dark" ng-class="colOrder === 'id' && order === 'desc' ? 'dropup' : ''"
+                                   ng-href="{{ full_url() }}/id/{{ get_order() }}">Id
+                                    <span class="dropdown-toggle"></span>
+                                </a>
                             </th>
-                        </div>
-                        <div>
-                            <th>Usuario <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/usuario_obj/asc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/usuario_obj/desc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-down"></i></i></a>
-                                </div>
+                            <th scope="col">
+                                <a class="text-dark" ng-class="colOrder === 'fecha' && order === 'desc' ? 'dropup' : ''"
+                                   ng-href="{{ full_url() }}/fecha/{{ get_order() }}">Fecha
+                                    <span class="dropdown-toggle"></span>
+                                </a>
                             </th>
-                        </div>
-                        <th>Acciones</th>
-                    </tr>
-                    <tr ng-repeat="fila in pagina">
-                        <td>{{fila.id}}</td>
-                        <td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
-                        <td>{{fila.iva}}</td>
+                            <th scope="col">
+                                <a class="text-dark" ng-class="colOrder === 'iva' && order === 'desc' ? 'dropup' : ''"
+                                   ng-href="{{ full_url() }}/iva/{{ get_order() }}">IVA
+                                    <span class="dropdown-toggle"></span>
+                                </a>
+                            </th>
+                            <th scope="col" ng-if="user_id === null">
+                                Usuario
+                            </th>
+                            <th scope="col">
+                                Nº Compras
+                            </th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    <tr ng-repeat="factura in pagina">
+                        <td>{{factura.id}}</td>
+                        <td>{{ factura.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
+                        <td>{{factura.iva}}</td>
+                        <td ng-if="user_id === null">
+                            <a href="#!/usuario/view/{{ factura.usuario_obj.id }}" class="text-dark">
+                                {{ factura.usuario_obj.nombre }} {{ factura.usuario_obj.apellido1 }} {{ factura.usuario_obj.apellido2 }}  ({{ factura.usuario_obj.id }})
+                            </a>
+                        </td>
                         <td>
-                            <a href="#!/usuario/view/{{fila.usuario_obj.id}}">{{fila.usuario_obj.nombre}}
-                                {{fila.usuario_obj.apellido1}} {{fila.usuario_obj.apellido2}}</td>
-                        <td> 
-                            <a href="#!/factura/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
-                            <a href="#!/factura/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
-                            <a href="#!/factura/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
+                            <a class="text-dark" href="#!/compra/plist/10/1?factura={{ factura.id }}">{{ factura.link_compra }}</a>
+                        </td>
+                        <td>
+                            <a href="#!/factura/view/{{factura.id}}"><i class="fa fa-eye"></i></a>
+                            <a href="#!/factura/edit/{{factura.id}}"><i class="fa fa-edit"></i></a>
+                            <a href="#!/factura/remove/{{factura.id}}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
-
                 </table>
-                <nav aria-label="Paginación">
-                    <ul class="pagination">
-                        <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
-                            ng-repeat="p in botonera track by $index">
-                            <a class="page-link" ng-if="p != '...'"
-                                href="#!/factura/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
-                            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>
