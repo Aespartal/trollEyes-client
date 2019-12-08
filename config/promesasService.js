@@ -16,18 +16,43 @@ miModulo.factory('promesasService', ['$http',
             // ajaxGetCount: function (objeto,id) {
             //     return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount&id=' + id);
             //},
-            ajaxGetCount: function (objeto, id, filter) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount&id=' + id + '&filter=' + filter); // SOLO PARA ADMIN
+            ajaxGetCount: function (object,id,filter) {
+                if(filter != null && id != null) {
+                    return $http.get(`http://localhost:8081/trolleyes/json?ob=${object}&op=getcount&filter=${filter}&id=${id}`);
+                }
+                return $http.get(`http://localhost:8081/trolleyes/json?ob=${object}&op=getcount`);
             },
-            ajaxGetPage: function (objeto, rpp, page) {
-                return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page);
+            ajaxGetPage: function (object, rpp, page, colOrder, order, user, filter) {
+                if (colOrder == null && order == null && user == null && filter == null) {
+                    url = `http://localhost:8081/trolleyes/json?ob=${object}&op=getpage&page=${page}&rpp=${rpp}`;
+                } else if(user != null && filter != null) {
+                    url = `http://localhost:8081/trolleyes/json?ob=${object}&op=getpage&page=${page}&rpp=${rpp}&filter=${filter}&id=${user}`;
+                } else if(user != null && filter != null && colOrder != null && order != null) {
+                    url = `http://localhost:8081/trolleyes/json?ob=${object}&op=getpage&page=${page}&rpp=${rpp}&filter=${filter}&rpp=${rpp}&order=${colOrder}&direccion=${order}`;
+                } else {
+                    url = `http://localhost:8081/trolleyes/json?ob=${object}&op=getpage&page=${page}&rpp=${rpp}&order=${colOrder}&direccion=${order}`
+                }
+                return $http.get(url);
             },
-            // ajaxGetPage: function (objeto, rpp, page, id) {
-            //     return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page + '&id=' + id);
-            // },
-            // ajaxGetPage: function (objeto, rpp, page, orden, direccion) {
-            //     return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getpage&rpp=' + rpp + '&page=' + page + '&order=' + orden + '&direccion=' + direccion);
-            // },
+            pagination: function (num_posts, ppe, actually_page, range) {
+                let num_pages = Math.ceil(num_posts / ppe);
+                let pages = [];
+                range++;
+    
+                for (let i = 1; i <= num_pages; i++) {
+                    if (i === 1) {
+                        pages.push(i);
+                    } else if (i > (actually_page - range) && i < (actually_page + range)) {
+                        pages.push(i);
+                    } else if (i === num_pages) {
+                        pages.push(i);
+                    } else if (i === (actually_page - range) || i === (actually_page + range)) {
+                        pages.push('...');
+                    }
+                }
+    
+                return pages;
+            },
             ajaxRemove: function (objeto, id) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=remove&id=' + id);
             },

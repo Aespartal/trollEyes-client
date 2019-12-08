@@ -1,104 +1,142 @@
-var miControlador = miModulo.controller('facturaPlistController', ['$scope', '$location', 'promisesService', '$routeParams', '$window', '$location', 'auth', function ($scope, $location, promisesService, $routeParams, $window, $location, auth) {
-    $scope.object = "factura";
-    $scope.authStatus = auth.data.status;
-    $scope.client = auth.data.message.tipo_usuario_obj["descripcion"];
-    $scope.controller = "facturaPlistController";
-
-    if ($scope.authStatus !== 200) {
-        $location.path('/login');
-    }
-
-    if ($scope.client !== "Administrador") {
-        $location.path('/');
-    }
-
-    if ($routeParams.user !== undefined) {
-        $scope.user_id = $routeParams.user;
-        $scope.filter = "usuario";
-    } else {
-        $scope.user_id = null;
-        $scope.filter = null;
-    }
-
-    $scope.actually_page = parseInt($routeParams.page);
-    $scope.rpp = parseInt($routeParams.rpp);
-
-    $scope.colOrder = $routeParams.colOrder;
-    $scope.order = $routeParams.order;
-
-    $scope.full_url = function () {
-        let url = $location.absUrl();
-
-        let find_id = url.indexOf("/id");
-        let find_fechad = url.indexOf("/fecha");
-        let find_iva = url.indexOf("/iva");
-
-        if (find_id !== -1) {
-            max_cut_string = find_id;
-        } else if (find_fechad !== -1) {
-            max_cut_string = find_fechad;
-        } else if (find_iva !== -1) {
-            max_cut_string = find_iva;
+var miControlador = miModulo.controller(
+    "facturaPlistController",
+    //-----------------------------lISTA DE FACTURAS---------------------------------
+    function ($scope, $routeParams, $http, promesasService, $window, auth,$location) {
+        $scope.object = 'factura';
+        if (auth.data.status != 200) {
+            $location.path('/login');
         } else {
-            return url;
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message.login;
+            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+            $scope.client = auth.data.message.tipo_usuario_obj["descripcion"];
+        }  
+          
+        $scope.controller = "facturaPlistController";
+        $scope.paginaActual = parseInt($routeParams.page);
+        $scope.rppActual = parseInt($routeParams.rpp);
+        $scope.rppS = [10, 50, 100];
+        $scope.user_id = $routeParams.id;
+        $scope.filter = $routeParams.filter;
+        $scope.colOrder = $routeParams.colOrder;
+        $scope.order = $routeParams.order;
+
+        if ( $scope.colOrder == null && $scope.order == null && $scope.user_id == null && $scope.filter == null) {
+            request = "http://localhost:8081/trolleyes/json?ob=" + $scope.object + "&op=getpage&page="+ $scope.paginaActual +"&rpp="+ $scope.rppActual;
+        } else if($scope.user_id != null &&  $scope.filter != null) {
+            request = "http://localhost:8081/trolleyes/json?ob=" + $scope.object + "&op=getpage&page="+ $scope.paginaActual +"&rpp="+ $scope.rppActual +"&filter="+ $scope.filter + "&id=" + $scope.user_id;
+        } else if($scope.user_id != null &&  $scope.filter != null && $scope.colOrder != null && $scope.order != null) {
+            request = "http://localhost:8081/trolleyes/json?ob=" + $scope.object + "&op=getpage&page="+ $scope.paginaActual +"&rpp="+ $scope.rppActual +
+            "&filter="+ $scope.filter + "&id=" + $scope.user_id + "&order=" + $scope.colOrder + "&direccion="+$scope.order;
+        } else {
+            request = "http://localhost:8081/trolleyes/json?ob=" + $scope.object + "&op=getpage&page="+ $scope.paginaActual +"&rpp="+ $scope.rppActual +
+            "&order=" + $scope.colOrder + "&direccion="+$scope.order;
         }
 
-        return url.substring(0, max_cut_string);
-    };
+        $http({
+            method: "GET",
+            withCredentials: true,
+            url: request
+        }).then(function (response) {
+            $scope.status = response.data.status;
+            $scope.pagina = response.data.message;        
+        });
 
-    $scope.get_order = function () {
-        if ($scope.order === "desc") {
-            return "asc"
-        } else {
-            return "desc"
-        }
-    };
-
-    $scope.buildURL = function () {
-        if ($scope.colOrder !== undefined && $scope.order !== undefined && $scope.user_id === null) {
-            return `/${$scope.colOrder}/${$scope.order}`;
-        } else if ($scope.colOrder !== undefined && $scope.order !== undefined && $scope.user_id !== null) {
-            return `/${$scope.colOrder}/${$scope.order}?user=${$scope.user_id}`;
-        }  else if ($scope.colOrder === undefined && $scope.order === undefined && $scope.user_id !== null) {
-            return `?user=${$scope.user_id}`;
-        } else {
-            return '';
-        }
-    };
-
-
-    promisesService.ajaxGetPage($scope.object, $scope.rpp, $scope.actually_page, $scope.colOrder, $scope.order, $scope.user_id, $scope.filter).then(function (response) {
-        $scope.facturas = response.data.message;
-        if ($scope.user_id !== null) {
-            promisesService.ajaxGet("usuario", $scope.user_id).then((response) => {
-                user = response.data.message;
-                if (user === null) {
-                    $window.location.href = `#!/factura/plist/${$scope.rpp}/1`;
+        promesasService.ajaxListCarrito()
+            .then(function successCallback(response) {
+                if (response.data.status != 200) {
+                    $scope.falloMensaje = response.data.message;
                 } else {
-                    if ($scope.facturas && $scope.facturas.length) {
-                        $scope.facturas_empty = false;
+                    $scope.status = response.data.status;
+                    $scope.pagina = response.data.message;
+                    if (response.data.message) {
+                        if (response.data.message.length == 0) {
+                            $scope.count = 0;
+                        } else {
+                            $scope.count = response.data.message.length;
+                        }
                     } else {
-                        $scope.facturas_empty = true;
-                    }
-
-                    $scope.usuario = user.nombre + " " + user.apellido1 + " " + user.apellido2;
-                    $scope.num_facturas = user.link_factura;
-                    $scope.pages = promisesService.pagination($scope.num_facturas, $scope.rpp, $scope.actually_page, 2);
-                    if ($scope.pages.indexOf($scope.actually_page) === -1) {
-                        $window.location.href = `#!/factura/plist/${$scope.rpp}/1?user=${user.id}`;
+                        $scope.count = 0;
                     }
                 }
+            }, function (response) {
+                $scope.mensaje = "Ha ocurrido un error";
             });
 
-        } else {
-            promisesService.ajaxGetCount($scope.object).then(function (response) {
-                $scope.num_facturas = response.data.message;
-                $scope.pages = promisesService.pagination($scope.num_facturas, $scope.rpp, $scope.actually_page, 2);
+        $scope.search = function () {
+            promesasService.ajaxSearch($scope.object, $scope.rppActual, $scope.paginaActual, $scope.word)
+                .then(function (response) {
+                    if (response.data.status != 200) {
+                        $scope.fallo = true;
+                        $scope.falloMensaje = response.data.message;
 
-                if ($scope.pages.indexOf($scope.actually_page) === -1) {
-                    $window.location.href = `#!/factura/plist/${$scope.rpp}/1`;
-                }
-            });
+                    } else {
+                        $scope.fallo = false;
+                        $scope.hecho = true;
+                        $scope.pagina = response.data.message;
+
+                    }
+                }, function (error) {
+                    $scope.hecho = true;
+                    $scope.fallo = true;
+                    $scope.falloMensaje = error.message + " " + error.stack;
+                });
         }
-    });
-}]);
+        if($scope.user_id == null && $scope.filter == null){
+            promesasService.ajaxGetCount($scope.object)
+            .then(function (response) {
+                $scope.status = response.data.status;
+                $scope.numRegistros = response.data.message;
+                $scope.numPaginas = Math.ceil($scope.numRegistros / $routeParams.rpp);
+                $scope.calcPage = [];
+                for (const p of $scope.rppS) {
+                    const res = $scope.paginaActual / $scope.numPaginas;
+                    const next = Math.ceil($scope.numRegistros / p);
+                    $scope.calcPage.push(Math.ceil(res * next));
+                }
+                paginacion(2);
+                if ($scope.paginaActual > $scope.numPaginas) {
+                    $window.location.href = `#!/${$scope.object}/${$scope.rppActual}/${$scope.numPaginas}`;
+                } else if ($routeParams.page < 1) {
+                    $window.location.href = `#!/${$scope.object}/${$scope.rppActual}/1`;
+                }
+            })
+        } else {
+            promesasService.ajaxGetCount($scope.object,$scope.user_id, $scope.filter )
+            .then(function (response) {
+                $scope.status = response.data.status;
+                $scope.numRegistros = response.data.message;
+                $scope.numPaginas = Math.ceil($scope.numRegistros / $routeParams.rpp);
+                $scope.calcPage = [];
+                for (const p of $scope.rppS) {
+                    const res = $scope.paginaActual / $scope.numPaginas;
+                    const next = Math.ceil($scope.numRegistros / p);
+                    $scope.calcPage.push(Math.ceil(res * next));
+                }
+                paginacion(2);
+                if ($scope.paginaActual > $scope.numPaginas) {
+                    $window.location.href = `#!/${$scope.object}/${$scope.rppActual}/${$scope.numPaginas}/${$scope.user_id}/${$scope.filter}`;
+                } else if ($routeParams.page < 1) {
+                    $window.location.href = `#!/${$scope.object}/${$scope.rppActual}/1/${$scope.user_id}/${$scope.filter}`;
+                }
+            })
+        }
+        
+
+        function paginacion(vecindad) {
+            vecindad++;
+            $scope.botonera = [];
+            for (i = 1; i <= $scope.numPaginas; i++) {
+                if (i == 1) {
+                    $scope.botonera.push(i);
+                } else if (i > ($scope.paginaActual - vecindad) && i < ($scope.paginaActual + vecindad)) {
+                    $scope.botonera.push(i);
+                } else if (i == $scope.numPaginas) {
+                    $scope.botonera.push(i);
+                } else if (i == ($scope.paginaActual - vecindad) || i == ($scope.paginaActual + vecindad)) {
+                    $scope.botonera.push('...');
+                }
+            }
+        }
+    }
+)

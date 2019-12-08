@@ -21,7 +21,7 @@ var miControlador = miModulo.controller(
         if ($scope.order == null || $scope.colOrder == null) {
             request = "http://localhost:8081/trolleyes/json?ob=compra&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
         } else {
-            request = "http://localhost:8081/trolleyes/json?ob=compra&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
+            request = "http://localhost:8081/trolleyes/json?ob=compra&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "&direccion=" + $scope.order
         }
 
         $http({

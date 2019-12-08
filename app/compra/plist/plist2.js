@@ -2,6 +2,7 @@ var miControlador = miModulo.controller(
     "compraPlist2Controller",
     //-----------------------------Pedidos de una factura en concreto-------------------------
     function ($scope, $routeParams, $http, promesasService, $window, auth, $location) {
+        $scope.object = "compra";
         if (auth.data.status != 200) {
             $location.path('/login');
         } else {
@@ -13,16 +14,27 @@ var miControlador = miModulo.controller(
         $scope.controller = "compraPlist2Controller";
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
-        $scope.rppS = [10, 50, 100];
-
-        // $scope.colOrder = $routeParams.colOrder;
-        // $scope.order = $routeParams.order;
-        $scope.id_factura = $routeParams.id;
-
-
-        request = "http://localhost:8081/trolleyes/json?ob=compra&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&id=" + $scope.id_factura;        
-        request2 = "http://localhost:8081/trolleyes/json?ob=compra&op=getcount&id=" + $scope.id_factura;     
+        $scope.rppS = [10, 50, 100];   
         
+        $scope.id_factura = $routeParams.id;
+        $scope.filter = $routeParams.filter;
+        $scope.colOrder = $routeParams.colOrder;
+        $scope.order = $routeParams.order;
+
+        if ( $scope.colOrder == null && $scope.order == null && $scope.id_factura == null && $scope.filter == null) {
+            request = "http://localhost:8081/trolleyes/json?ob=" + $scope.object + "&op=getpage&page="+ $scope.paginaActual +"&rpp="+ $scope.rppActual;
+        } else if($scope.id_factura != null &&  $scope.filter != null) {
+            request = "http://localhost:8081/trolleyes/json?ob=" + $scope.object + "&op=getpage&page="+ $scope.paginaActual +"&rpp="+ $scope.rppActual +
+            "&filter="+ $scope.filter + "&id=" + $scope.id_factura;
+        } else if($scope.id_factura != null &&  $scope.filter != null && $scope.colOrder != null && $scope.order != null) {
+            request = "http://localhost:8081/trolleyes/json?ob=" + $scope.object + "&op=getpage&page="+ $scope.paginaActual +"&rpp="+ $scope.rppActual +
+            "&filter="+ $scope.filter + "&id=" + $scope.id_factura + "&order=" + $scope.colOrder + "&direccion="+$scope.order;
+        } else {
+            request = "http://localhost:8081/trolleyes/json?ob=" + $scope.object + "&op=getpage&page="+ $scope.paginaActual +"&rpp="+ $scope.rppActual +
+            "&order=" + $scope.colOrder + "&direccion="+$scope.order;
+        }
+
+
         $http({
             method: "GET",
             withCredentials: true,
@@ -33,12 +45,8 @@ var miControlador = miModulo.controller(
             $scope.usuario_obj_id = response.data.message.shift().factura_obj.usuario_obj.id;
         });
 
-        $scope.showSelectValue = function (mySelect) {
-            $window.location.href = `/trollEyes-client/#!/compra/plist/` + mySelect + `/1`;
-        }
-
         $scope.search = function () {
-            promesasService.ajaxSearch('compra', $scope.rppActual, $scope.paginaActual, $scope.word)
+            promesasService.ajaxSearch($scope.object, $scope.rppActual, $scope.paginaActual, $scope.word)
                 .then(function (response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -56,11 +64,8 @@ var miControlador = miModulo.controller(
                     $scope.falloMensaje = error.message + " " + error.stack;
                 });
         }
-        $http({
-            method: "GET",
-            withCredentials: true,
-            url: request2
-        }).then(function (response) {
+        promesasService.ajaxGetCount($scope.object,$scope.id_factura, $scope.filter )
+        .then(function (response) {
                 $scope.status = response.data.status;
                 $scope.numRegistros = response.data.message;
                 $scope.numPaginas = Math.ceil($scope.numRegistros / $routeParams.rpp);
@@ -72,9 +77,9 @@ var miControlador = miModulo.controller(
                 }
                 paginacion(2);
                 if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `#!/home/${$scope.rppActual}/${$scope.numPaginas}`;
+                    $window.location.href = `#!/compra/${$scope.rppActual}/${$scope.numPaginas}/${$scope.id_factura}/${$scope.filter}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `#!/home/${$scope.rppActual}/1`;
+                    $window.location.href = `#!/compra/${$scope.rppActual}/1/${$scope.id_factura}/${$scope.filter}`;
                 }
             })
 
