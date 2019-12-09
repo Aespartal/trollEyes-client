@@ -19,7 +19,7 @@ var miControlador = miModulo.controller(
         if ($scope.order == null || $scope.colOrder == null) {
             request = "http://localhost:8081/trolleyes/json?ob=producto&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual;
         } else {
-            request = "http://localhost:8081/trolleyes/json?ob=producto&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
+            request = "http://localhost:8081/trolleyes/json?ob=producto&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "&direccion=" + $scope.order
         }
 
         $http({
@@ -70,9 +70,9 @@ var miControlador = miModulo.controller(
                 }
                 paginacion(2);
                 if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `#!/home/${$scope.rppActual}/${$scope.numPaginas}`;
+                    $window.location.href = `#!/producto/${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `#!/home/${$scope.rppActual}/1`;
+                    $window.location.href = `#!/producto/${$scope.rppActual}/1`;
                 }
             })
 

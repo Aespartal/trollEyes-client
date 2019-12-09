@@ -340,14 +340,6 @@ miModulo.config(['$routeProvider',
                 },
             }
         }) 
-        // $routeProvider.when('/compra/plist/:rpp/:page/:id/:filter', {
-        //     templateUrl: 'app/compra/plist/plist3.html', controller: 'compraPlist3Controller',
-        //     resolve: {
-        //         auth: function (promesasService) {
-        //             return promesasService.ajaxCheck();
-        //         },
-        //     }
-        // }) 
         $routeProvider.when('/compra/plist/:rpp/:page/:colOrder?/:order?', {
             templateUrl: 'app/compra/plist/plist.html', controller: 'compraPlistController',
             resolve: {

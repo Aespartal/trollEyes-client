@@ -10,12 +10,6 @@ miModulo.factory('promesasService', ['$http',
             ajaxNew: function (objeto, datos) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=insert', datos);
             },
-            // ajaxGetCount: function (objeto) {
-            //     return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount');
-            // },
-            // ajaxGetCount: function (objeto,id) {
-            //     return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=getcount&id=' + id);
-            //},
             ajaxGetCount: function (object,id,filter) {
                 if(filter != null && id != null) {
                     return $http.get(`http://localhost:8081/trolleyes/json?ob=${object}&op=getcount&filter=${filter}&id=${id}`);
@@ -34,25 +28,25 @@ miModulo.factory('promesasService', ['$http',
                 }
                 return $http.get(url);
             },
-            pagination: function (num_posts, ppe, actually_page, range) {
-                let num_pages = Math.ceil(num_posts / ppe);
-                let pages = [];
-                range++;
+            // pagination: function (num_posts, ppe, actually_page, range) {
+            //     let num_pages = Math.ceil(num_posts / ppe);
+            //     let pages = [];
+            //     range++;
     
-                for (let i = 1; i <= num_pages; i++) {
-                    if (i === 1) {
-                        pages.push(i);
-                    } else if (i > (actually_page - range) && i < (actually_page + range)) {
-                        pages.push(i);
-                    } else if (i === num_pages) {
-                        pages.push(i);
-                    } else if (i === (actually_page - range) || i === (actually_page + range)) {
-                        pages.push('...');
-                    }
-                }
+            //     for (let i = 1; i <= num_pages; i++) {
+            //         if (i === 1) {
+            //             pages.push(i);
+            //         } else if (i > (actually_page - range) && i < (actually_page + range)) {
+            //             pages.push(i);
+            //         } else if (i === num_pages) {
+            //             pages.push(i);
+            //         } else if (i === (actually_page - range) || i === (actually_page + range)) {
+            //             pages.push('...');
+            //         }
+            //     }
     
-                return pages;
-            },
+            //     return pages;
+            // },
             ajaxRemove: function (objeto, id) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=remove&id=' + id);
             },

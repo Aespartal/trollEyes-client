@@ -90,9 +90,9 @@ var miControlador = miModulo.controller(
                 }
                 paginacion(2);
                 if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `#!/home/${$scope.rppActual}/${$scope.numPaginas}`;
+                    $window.location.href = `#!/compra/${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `#!/home/${$scope.rppActual}/1`;
+                    $window.location.href = `#!/compra/${$scope.rppActual}/1`;
                 }
             })
 
