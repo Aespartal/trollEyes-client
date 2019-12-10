@@ -54,10 +54,6 @@ var miControlador = miModulo.controller(
                 $scope.mensaje = "Ha ocurrido un error";
             });
 
-        $scope.showSelectValue = function (mySelect) {
-            $window.location.href = `/trollEyes-client/#!/compra/plist/` + mySelect + `/1`;
-        }
-
         $scope.search = function () {
             promesasService.ajaxSearch('compra', $scope.rppActual, $scope.paginaActual, $scope.word)
                 .then(function (response) {

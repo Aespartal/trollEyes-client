@@ -1,6 +1,6 @@
 var miControlador = miModulo.controller(
     "homeController",
-    function ($scope, $routeParams, $window, $location, promesasService, auth) {
+    function ($scope, $routeParams, $window, promesasService, auth) {
         $scope.authStatus = auth.data.status;
         $scope.authUsername = auth.data.message.login;
         $scope.authLevel = auth.data.message.tipo_usuario_obj;
@@ -36,9 +36,9 @@ var miControlador = miModulo.controller(
 
                 paginacion(2);
                 if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `#!/home/${$scope.rppActual}/${$scope.numPaginas}`;
+                    $window.location.href = `./home/${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `#!/home/${$scope.rppActual}/1`;
+                    $window.location.href = `./home/${$scope.rppActual}/1`;
                 }
             }, function () {
             })
@@ -111,13 +111,5 @@ var miControlador = miModulo.controller(
                     $scope.hecho = true;
                 })
         }
-
-        function isEmpty(obj) {
-            for(var key in obj) {
-                if(obj.hasOwnProperty(key))
-                    return false;
-            }
-            return true;
-        };
     }
 )

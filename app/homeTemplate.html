@@ -9,7 +9,7 @@
         <div class="card" ng-repeat="fila in pagina">
           <div class="card-body">
             <div class="card_img">
-              <a class="card_img_link" href="#!/producto/view/{{fila.id}}">
+              <a class="card_img_link" href="producto/view/{{fila.id}}">
                 <img class="image" ng-src="{{fila.imagen}}">
               </a>
             </div>
@@ -18,7 +18,7 @@
               <p class="card-text">Precio: {{fila.precio}} €</p>
               <a name="addCarrito" ng-click="add(fila.id)" class="btn btn-primary animated pulse cursor"
                 ng-show="authLevel.id != 1">Añadir al carrito</a>
-              <a href="#!/producto/edit/{{fila.id}}" class="btn btn-primary animated pulse cursor"
+              <a href="producto/edit/{{fila.id}}" class="btn btn-primary animated pulse cursor"
                 ng-show="authLevel.id == 1">Editar Producto</a>
 
           </div>
@@ -29,7 +29,7 @@
       <ul class="pagination">
         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
           ng-repeat="p in botonera track by $index">
-          <a class="page-link" ng-if="p != '...'" href="#!/home/{{ rppActual }}/{{ p }}">{{p}}</a>
+          <a class="page-link" ng-if="p != '...'" href="home/{{ rppActual }}/{{ p }}">{{p}}</a>
           <span class="page-link" ng-if="p == '...'">{{ p }}</span>
         </li>
       </ul>

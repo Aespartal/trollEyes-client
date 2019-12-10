@@ -30,11 +30,7 @@ var miControlador = miModulo.controller(
             $scope.status = response.data.status;
             $scope.pagina = response.data.message;
         });
-
-        $scope.showSelectValue = function (mySelect) {
-            $window.location.href = `/trollEyes-client/#!/producto/plist/` + mySelect + `/1`;
-        }
-
+        
         $scope.search = function () {
             promesasService.ajaxSearch('producto', $scope.rppActual, $scope.paginaActual, $scope.word)
                 .then(function (response) {

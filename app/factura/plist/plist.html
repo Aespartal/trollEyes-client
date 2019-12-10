@@ -63,15 +63,7 @@
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
-                        <th>Nº Compras <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/link_compra/asc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-up"></i></i></a>
-                                <a href="#!/factura/plist/{{ rppActual }}/{{ paginaActual }}/link_compra/desc"
-                                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                        class="fas fa-sort-down"></i></i></a>
-                            </div>
-                        </th>
+                        <th>Nº Compras</th>
                         <th>Acciones</th>
                     </tr>
                     <tr ng-repeat="factura in pagina">
@@ -79,7 +71,8 @@
                         <td>{{ factura.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
                         <td>{{factura.iva}}</td>
                         <td>
-                            <a class="text-dark" href="#!/compra/plist/10/1/{{ factura.id }}/factura">{{ factura.link_compra }}</a>
+                            <a  ng-if="factura.link_compra != 0" class="text-dark" href="#!/compra/plist/10/1/{{ factura.id }}/factura">{{ factura.link_compra }}</a>
+                            <span  ng-if="factura.link_compra == 0">{{fila.link_factura}}</span>
                         </td>
                         <td>
                             <a href="#!/factura/view/{{factura.id}}"><i class="fa fa-eye"></i></a>

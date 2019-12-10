@@ -2,9 +2,6 @@ miModulo.config(['$httpProvider', function ($httpProvider) {
   $httpProvider.defaults.withCredentials = true;
 }])
 
-/*
-html5Mode
-
 miModulo.config(['$locationProvider', function ($locationProvider) {
   $locationProvider.html5Mode({
       //requireBase: false,

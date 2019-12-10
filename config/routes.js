@@ -414,7 +414,7 @@ miModulo.config(['$routeProvider',
             }
         })
         //-------Home---------------------------
-        $routeProvider.when('/home/:rpp/:page', {
+        $routeProvider.when('/', {
             templateUrl: 'app/homeTemplate.html', controller: 'homeController',
             resolve: {
                 auth: function (promesasService) {
