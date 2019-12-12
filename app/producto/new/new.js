@@ -63,7 +63,7 @@ var miControlador = miModulo.controller(
             var form = f;
             if ($scope.tipo_producto_obj.id != null) {
                 if (consultar) {
-                    promesasService.ajaxGet('producto', $routeParams.id)
+                    promesasService.ajaxGet('producto', $scope.tipo_producto_obj.id)
                         .then(function (response) {
                             $scope.tipo_producto_obj = response.data.message;
                             form.userForm.tipo_producto_obj.$setValidity('valid', true);
@@ -74,7 +74,7 @@ var miControlador = miModulo.controller(
                     form.userForm.tipo_producto_obj.$setValidity('valid', true);
                 }
             } else {
-                $scope.tipo_producto_obj.desc = "";
+                $scope.tipo_producto_obj.descripcion = "";
             }
         };
 

@@ -1,16 +1,15 @@
 html, body {
-    background-color: #61C2FF;
-    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(161, 219, 255);
+    font-family: 'Mukta', sans-serif;
     height: 100%;
     margin: 0;
 }
 
 .header {
     margin-top: 50px;
-    text-align: center;
     margin-bottom: 20px;
-    padding: 20px 20px 70px 20px;
-    background-image: url("header.jpg");
+    padding: 20px 20px 100px 20px;
+    background-image: url("header1.jpg");
 }
 
 .container {
@@ -139,7 +138,16 @@ button#dropdownMenuButton {
     display: none;
 }
 
+.header>h1{
+    background-color: rgba(0, 0, 0, 0.397);
+    color:white;
+
+}
+.header>h2{
+    color:white;
+}
 .context-menu {
+    margin-left:150px;
     cursor: context-menu;
 }
 
@@ -157,6 +165,13 @@ button#dropdownMenuButton {
     text-decoration: none;
 }
 
+.card-body-product{
+    height: 90%;
+}
+.precio{
+    font-size: 20px;
+    font-weight: bold;
+}
 .u-floatleft {
     float: left;
 }
@@ -171,8 +186,14 @@ button#dropdownMenuButton {
     }
     .col-md-12 {
         margin:0 auto;
-
     }
+    .header{
+        text-align: center;
+    }
+    .context-menu {
+        margin-left:0;  
+    }
+
     
 }
 
@@ -246,7 +267,7 @@ button#dropdownMenuButton {
   }
 
 .color-b {
-    color: #316280
+    color: #94a1aa
 }
 
 .card-title>a:hover {
@@ -287,6 +308,9 @@ section.container-posts {
 
 .btn-outline-white {
     color: white;
+}
+.btn-carrito {
+    color: white!important;
 }
 
 .carrito{

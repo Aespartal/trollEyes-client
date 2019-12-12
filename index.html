@@ -2,6 +2,7 @@
 <html lang="es" ng-app="TrollEyesApp">
 
 <head>
+  <base href="/trollEyes-client/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.min.js"></script>
   <!-- calendar -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
@@ -23,6 +24,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
   <!-- fin de calendar -->
+  <link href="https://fonts.googleapis.com/css?family=Mukta&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="vendor/angular-css.min.js"></script>
@@ -30,6 +32,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/animated.css" />
+  <!--Descargar facturas-->
+  <script src="vendor/jspdf.debug.js"></script>
   <!--App-->
   <script src="config/module.js"></script>
   <script src="config/config.js"></script>
@@ -38,7 +42,6 @@
   <script src="config/routes.js"></script>
   <script src="app/homeController.js"></script>
   <script src="app/about.js"></script>
-  <base href="/trollEyes-client/index.html"/>
   <!-- producto -->
   <script src="app/producto/remove/remove.js"></script>
   <script src="app/producto/edit/edit.js"></script>
@@ -55,7 +58,8 @@
   <script src="app/tipoproducto/selection.js"></script>
   <!-- compra -->
   <script src="app/compra/plist/plist.js"></script>
-  <script src="app/compra/plist/plist2.js"></script>
+  <script src="app/compra/plistXFactura/plistXFactura.js"></script>
+  <script src="app/compra/misCompras/plist.js"></script>
   <script src="app/compra/remove/remove.js"></script>
   <script src="app/compra/view/view.js"></script>
   <script src="app/compra/edit/edit.js"></script>
@@ -80,6 +84,7 @@
   <script src="app/tipousuario/selection.js"></script>
   <!-- factura -->
   <script src="app/factura/plist/plist.js"></script>
+  <script src="app/factura/misFacturas/plist.js"></script>
   <script src="app/factura/remove/remove.js"></script>
   <script src="app/factura/view/view.js"></script>
   <script src="app/factura/edit/edit.js"></script>

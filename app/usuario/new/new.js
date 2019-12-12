@@ -63,7 +63,7 @@ var miControlador = miModulo.controller(
             var form = f;
             if ($scope.tipo_usuario_obj.id != null) {
                 if (consultar) {
-                    promesasService.ajaxGet('tipo_usuario', $routeParams.id)
+                    promesasService.ajaxGet('tipo_usuario', $scope.tipo_usuario_obj.id)
                         .then(function (response) {
                             $scope.tipo_usuario_obj = response.data.message;
                             form.userForm.tipo_usuario_obj.$setValidity('valid', true);

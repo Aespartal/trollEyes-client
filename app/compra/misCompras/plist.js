@@ -1,23 +1,33 @@
 var miControlador = miModulo.controller(
-    "compraPlist2Controller",
+    "misComprasController",
     //-----------------------------Pedidos de una factura en concreto-------------------------
     function ($scope, $routeParams, $http, promesasService, $window, auth, $location) {
         $scope.object = "compra";
         if (auth.data.status != 200) {
             $location.path('/login');
-        } else {
-            $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
-        }
+        } 
 
-        $scope.controller = "compraPlist2Controller";
+        if ($routeParams.factura == null) {
+            $location.path('/');
+        } 
+
+        $scope.authStatus = auth.data.status;
+        $scope.authUsername = auth.data.message.login;
+        $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+
+        $scope.controller = "misComprasController";
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
         $scope.rppS = [10, 50, 100];   
         
-        $scope.id_factura = $routeParams.id;
-        $scope.filter = $routeParams.filter;
+        if ($routeParams.factura !== undefined) {
+            $scope.id_factura = parseInt($routeParams.factura);
+            $scope.filter = "factura";
+        } else {
+            $scope.factura_id = null;
+            $scope.filter = null;
+        }
+
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;
 
@@ -77,9 +87,9 @@ var miControlador = miModulo.controller(
                 }
                 paginacion(2);
                 if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `#!/compra/${$scope.rppActual}/${$scope.numPaginas}/${$scope.id_factura}/${$scope.filter}`;
+                    $window.location.href = `./compra/${$scope.rppActual}/${$scope.numPaginas}/${$scope.id_factura}/${$scope.filter}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `#!/compra/${$scope.rppActual}/1/${$scope.id_factura}/${$scope.filter}`;
+                    $window.location.href = `./compra/${$scope.rppActual}/1/${$scope.id_factura}/${$scope.filter}`;
                 }
             })
 

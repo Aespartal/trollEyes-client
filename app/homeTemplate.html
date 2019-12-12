@@ -1,26 +1,32 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
   <h1><span class="font-weight-bold context-menu">Bienvenido a troll<span class="color-b">Eyes</span></span></h1>
+
+  <h2 class="context-menu">Tu tienda de confienza</h2>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <h1 class="text-center font-weight-bold">NUESTROS PRODUCTOS</h1>
       <section class="container-posts">
         <div class="card" ng-repeat="fila in pagina">
           <div class="card-body">
-            <div class="card_img">
-              <a class="card_img_link" href="producto/view/{{fila.id}}">
-                <img class="image" ng-src="{{fila.imagen}}">
-              </a>
-            </div>
-            <h2 class="card-title">{{fila.descripcion}}</h5>
-              <p class="card-text">{{fila.codigo}}</p>
-              <p class="card-text">Precio: {{fila.precio}} €</p>
-              <a name="addCarrito" ng-click="add(fila.id)" class="btn btn-primary animated pulse cursor"
-                ng-show="authLevel.id != 1">Añadir al carrito</a>
-              <a href="producto/edit/{{fila.id}}" class="btn btn-primary animated pulse cursor"
+            <div class="card-body-product">
+                <div class="card_img">
+                    <a class="card_img_link" href="./producto/view/{{fila.id}}">
+                      <img class="image" ng-src="{{fila.imagen}}">
+                    </a>
+                  </div>
+                  <h2 class="card-title">{{fila.descripcion}}</h5>
+                    <p class="card-text">{{fila.codigo}}</p>
+                    <p class="card-text">Precio: <span class="precio">{{fila.precio}} €</span></p>
+            </div>   
+            <div class="text-center">
+                <a name="addCarrito" ng-click="add(fila.id)" class="btn btn-carrito btn-primary cursor"
+                ng-show="authLevel.id != 1">Añadir al carrito <i class="fas fa-shopping-cart"></i></a>
+              <a href="./producto/edit/{{fila.id}}" class="btn btn-carrito btn-primary cursor"
                 ng-show="authLevel.id == 1">Editar Producto</a>
-
+            </div>   
           </div>
         </div>
       </section>
@@ -29,7 +35,7 @@
       <ul class="pagination">
         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
           ng-repeat="p in botonera track by $index">
-          <a class="page-link" ng-if="p != '...'" href="home/{{ rppActual }}/{{ p }}">{{p}}</a>
+          <a class="page-link" ng-if="p != '...'" href="./?rpp={{ rppActual }}&page={{ p }}">{{p}}</a>
           <span class="page-link" ng-if="p == '...'">{{ p }}</span>
         </li>
       </ul>

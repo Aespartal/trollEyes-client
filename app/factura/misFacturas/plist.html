@@ -1,6 +1,7 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1 ng-if="client === 'Administrador'"><span class="font-weight-bold context-menu"><i class="fas fa-file-invoice"></i> {{ user_id !== null ? "Lista de Facturas de " + usuario + "." : "Lista de Facturas" }} <i class="fas fa-list"></i></span></h1>
+    <h1><span class="font-weight-bold context-menu"><i class="fas fa-file-invoice"></i> Mis facturas <i
+        class="fas fa-list"></i></span></h1>  
 </div>
 <div class="container">
     <div class="row">
@@ -13,15 +14,11 @@
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
                             ng-click="search()">Buscar</button>
                     </form>
-                    <div class="text-right">
-                            <a class="btn btn-primary" href="./factura/new" ng-if="user_id === null">Nueva factura</a>
-                            <a class="btn btn-primary" href="./factura/new?user={{ user_id }}" ng-if="user_id !== null">Nueva factura</a>
-                    </div>
                 </nav>
                 <nav aria-label="Registros por página">
                     <ul class="pagination float-right">
                         <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
-                            <a class="page-link" href="./factura/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
+                            <a class="page-link" href="./misFacturas/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
                         </li>
                     </ul>
                 </nav>
@@ -30,7 +27,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="./factura/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="./misFacturas/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>
@@ -38,47 +35,47 @@
                 <table class="table">
                     <tr>
                         <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="./factura/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                                <a href="./misFacturas/{{ rppActual }}/{{ paginaActual }}/id/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="./factura/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                <a href="./misFacturas/{{ rppActual }}/{{ paginaActual }}/id/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
                         <th>Fecha <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="./factura/plist/{{ rppActual }}/{{ paginaActual }}/Fecha/asc"
+                                <a href="./misFacturas/{{ rppActual }}/{{ paginaActual }}/Fecha/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="./factura/plist/{{ rppActual }}/{{ paginaActual }}/Fecha/desc"
+                                <a href="./misFacturas/{{ rppActual }}/{{ paginaActual }}/Fecha/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
                         <th>IVA <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <a href="./factura/plist/{{ rppActual }}/{{ paginaActual }}/IVA/asc"
+                                <a href="./misFacturas/{{ rppActual }}/{{ paginaActual }}/IVA/asc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-up"></i></i></a>
-                                <a href="./factura/plist/{{ rppActual }}/{{ paginaActual }}/IVA/desc"
+                                <a href="./misFacturas/{{ rppActual }}/{{ paginaActual }}/IVA/desc"
                                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                         class="fas fa-sort-down"></i></i></a>
                             </div>
                         </th>
                         <th>Nº Compras</th>
-                        <th>Acciones</th>
+                        <th>Informe PDF</th>
                     </tr>
-                    <tr ng-repeat="factura in facturas">
+                    <tr ng-repeat="factura in pagina">
                         <td>{{factura.id}}</td>
                         <td>{{ factura.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>
                         <td>{{factura.iva}}</td>
                         <td>
-                            <a  ng-if="factura.link_compra != 0" class="text-dark" href="./compra/plistXfactura/10/1/{{ factura.id }}/factura">{{ factura.link_compra }}</a>
-                            <span  ng-if="factura.link_compra == 0" >{{factura.link_compra}}</span>
+                            <a class="text-dark" href="./misCompras/plist/10/1?factura={{ factura.id }}">{{ factura.link_compra }}</a>
                         </td>
                         <td>
-                            <a href="./factura/view/{{factura.id}}"><i class="fa fa-eye"></i></a>
-                            <a href="./factura/edit/{{factura.id}}"><i class="fa fa-edit"></i></a>
-                            <a href="./factura/remove/{{factura.id}}"><i class="fa fa-times"></i></a>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a class="btn btn-light" ng-click="download(factura)"><i
+                                            class="fas fa-download"></i></a>
+                                </div>
                         </td>
                     </tr>
                 </table>
@@ -87,7 +84,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="./factura/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="./misFacturas/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>

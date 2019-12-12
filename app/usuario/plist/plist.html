@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold"><i class="fas fa-user"></i> Lista de usuarios <i class="fas fa-list"></i></span></h1>
+    <h1><span class="font-weight-bold context-menu"><i class="fas fa-user"></i> Lista de usuarios <i class="fas fa-list"></i></span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -17,7 +17,7 @@
                 <nav aria-label="Registros por página">
                     <ul class="pagination float-right">
                         <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
-                            <a class="page-link" href="#!/usuario/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
+                            <a class="page-link" href="./usuario/plist/{{r}}/{{ calcPage[$index] }}">{{r}}</a>
                         </li>
                     </ul>
                 </nav>
@@ -26,7 +26,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/usuario/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="./usuario/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>
@@ -35,10 +35,10 @@
                     <tr>
                         <div>
                             <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/id/asc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/id/desc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-down"></i></i></a>
                                 </div>
@@ -46,10 +46,10 @@
                         </div>
                         <div>
                             <th>DNI <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/dni/asc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/dni/asc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/dni/desc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/dni/desc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-down"></i></i></a>
                                 </div>
@@ -57,10 +57,10 @@
                         </div>
                         <div>
                             <th>Nombre <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/nombre/asc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/nombre/asc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/nombre/desc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/nombre/desc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-down"></i></i></a>
                                 </div>
@@ -68,10 +68,10 @@
                         </div>
                         <div>
                             <th>Apellidos <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/apellido1/asc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/apellido1/asc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/apellido1/desc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/apellido1/desc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-down"></i></i></a>
                                 </div>
@@ -79,10 +79,10 @@
                         </div>
                         <div>
                             <th>Email <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/email/asc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/email/asc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/email/desc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/email/desc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-down"></i></i></a>
                                 </div>
@@ -90,57 +90,41 @@
                         </div>
                         <div>
                             <th>Login <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/login/asc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/login/asc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/login/desc"
+                                    <a href="./usuario/plist/{{ rppActual }}/{{ paginaActual }}/login/desc"
                                         class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
                                             class="fas fa-sort-down"></i></i></a>
                                 </div>
                             </th>
                         </div>
                         <div>
-                            <th>Facturas <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/link_factura/asc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/link_factura/desc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-down"></i></i></a>
-                                </div>
-                            </th>
+                            <th>Facturas</th>
                         </div>
                         <div>
-                            <th>Tipo usuario <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/tipo_usuario_obj/asc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-up"></i></i></a>
-                                    <a href="#!/usuario/plist/{{ rppActual }}/{{ paginaActual }}/tipo_usuario_obj/desc"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i
-                                            class="fas fa-sort-down"></i></i></a>
-                                </div>
-                            </th>
+                            <th>Tipo usuario</th>
                         </div>
                         <th>Acciones</th>
                     </tr>
-                    <tr ng-repeat="fila in pagina">
-                        <td>{{fila.id}}</td>
-                        <td>{{fila.dni}}</td>
-                        <td>{{fila.nombre}}</td>
-                        <td>{{fila.apellido1}} {{fila.apellido2}}</td>
-                        <td>{{fila.email}}</td>
-                        <td>{{fila.login}}</td>
+                    <tr ng-repeat="usuario in pagina">
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.dni}}</td>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.apellido1}} {{usuario.apellido2}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>{{usuario.login}}</td>
                         <td>
-                            <a  ng-if="fila.link_factura != 0" href="#!/factura/plist/10/1/{{fila.id}}/usuario">{{fila.link_factura}}</a>
-                            <span  ng-if="fila.link_factura == 0">{{fila.link_factura}}</span>
+                            <a  ng-if="usuario.link_factura != 0" class="text-dark" href="./factura/plist/10/1?user={{ usuario.id }}">{{usuario.link_factura}}</a>
+                            <span  ng-if="usuario.link_factura == 0">{{usuario.link_factura}}</span>
                         </td>
                         <td><a
-                               href="#!/tipousuario/view/{{fila.tipo_usuario_obj.id}}">{{fila.tipo_usuario_obj.descripcion}}</a>
+                               href="./tipousuario/view/{{usuario.tipo_usuario_obj.id}}">{{usuario.tipo_usuario_obj.descripcion}}</a>
                         </td>
                         <td>
-                            <a href="#!/usuario/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
-                            <a href="#!/usuario/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
-                            <a href="#!/usuario/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
+                            <a href="./usuario/view/{{usuario.id}}"><i class="fa fa-eye"></i></a>
+                            <a href="./usuario/edit/{{usuario.id}}"><i class="fa fa-edit"></i></a>
+                            <a href="./usuario/remove/{{usuario.id}}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
 
@@ -150,7 +134,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="#!/usuario/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
+                                href="./usuario/plist/{{ rppActual }}/{{ p }}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>

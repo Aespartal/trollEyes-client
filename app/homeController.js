@@ -6,18 +6,12 @@ var miControlador = miModulo.controller(
         $scope.authLevel = auth.data.message.tipo_usuario_obj;
         $scope.authid = auth.data.message.id;
         $scope.controller = "homeController";
-        $scope.campo = $routeParams.order;
-        $scope.direction = $routeParams.direction;
-        
 
-        if (!$routeParams.page) {
+        if ($routeParams.page === undefined && $routeParams.rpp === undefined) {
             $scope.paginaActual = 1;
+            $scope.rppActual = 12;
         } else {
             $scope.paginaActual = parseInt($routeParams.page);
-        }
-        if (!$routeParams.rpp) {
-            $scope.rppActual = 10;
-        } else {
             $scope.rppActual = parseInt($routeParams.rpp);
         }
 
@@ -25,7 +19,6 @@ var miControlador = miModulo.controller(
             .then(function (response) {
                 $scope.status = response.data.status;
                 $scope.pagina = response.data.message;
-            }, function () {
             })
 
         promesasService.ajaxGetCount('producto')
@@ -36,13 +29,13 @@ var miControlador = miModulo.controller(
 
                 paginacion(2);
                 if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `./home/${$scope.rppActual}/${$scope.numPaginas}`;
+                    $window.location.href = `./${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `./home/${$scope.rppActual}/1`;
+                    $window.location.href = `./${$scope.rppActual}/1`;
                 }
-            }, function () {
             })
-        
+
+        /*Paginacion*/
         function paginacion(vecindad) {
             vecindad++;
             $scope.botonera = [];
@@ -58,6 +51,7 @@ var miControlador = miModulo.controller(
                 }
             }
         }
+        /*Lista de carrito*/
         promesasService.ajaxListCarrito()
             .then(function successCallback(response) {
                 if (response.data.status != 200) {
@@ -78,10 +72,10 @@ var miControlador = miModulo.controller(
             }, function (response) {
                 $scope.mensaje = "Ha ocurrido un error";
             });
+
         /*Add carrito*/
         $scope.add = function (id) {
-            cantidad = 1;
-            promesasService.ajaxAddCarrito(id, cantidad)
+            promesasService.ajaxAddCarrito(id, 1)
                 .then(function successCallback(response) {
                     if (response.data.status != 200) {
                         $scope.fallo = true;
@@ -90,23 +84,23 @@ var miControlador = miModulo.controller(
                         $scope.fallo = false;
                         $scope.hecho = true;
                         promesasService.ajaxListCarrito()
-                        .then(function successCallback(response) {
-                            if (response.data.status != 200) {
-                                $scope.falloMensaje = response.data.message;
-                            } else {     
-                                
-                                if(isEmpty(response.data.message)){
-                                    $scope.count=0;
-                                } else{
-                                    $scope.count = Object.keys(response.data.message).length;       
+                            .then(function successCallback(response) {
+                                if (response.data.status != 200) {
+                                    $scope.falloMensaje = response.data.message;
+                                } else {
+                                    if (response.data.message) {
+                                        if (response.data.message.length == 0) {
+                                            $scope.count = 0;
+                                        } else {
+                                            $scope.count = response.data.message.length;
+                                        }
+                                    } else {
+                                        $scope.count = 0;
+                                    }
                                 }
-                                button = document.getElementsByName("addCarrito");
-                                button.className = 'animated bounce';
-                                                 
-                            }
-                        }, function (response) {
-                            $scope.mensaje = "Ha ocurrido un error";
-                        });
+                            }, function (response) {
+                                $scope.mensaje = "Ha ocurrido un error";
+                            });
                     }
                     $scope.hecho = true;
                 })

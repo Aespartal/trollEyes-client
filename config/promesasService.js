@@ -28,25 +28,6 @@ miModulo.factory('promesasService', ['$http',
                 }
                 return $http.get(url);
             },
-            // pagination: function (num_posts, ppe, actually_page, range) {
-            //     let num_pages = Math.ceil(num_posts / ppe);
-            //     let pages = [];
-            //     range++;
-    
-            //     for (let i = 1; i <= num_pages; i++) {
-            //         if (i === 1) {
-            //             pages.push(i);
-            //         } else if (i > (actually_page - range) && i < (actually_page + range)) {
-            //             pages.push(i);
-            //         } else if (i === num_pages) {
-            //             pages.push(i);
-            //         } else if (i === (actually_page - range) || i === (actually_page + range)) {
-            //             pages.push('...');
-            //         }
-            //     }
-    
-            //     return pages;
-            // },
             ajaxRemove: function (objeto, id) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=remove&id=' + id);
             },

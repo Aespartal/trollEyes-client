@@ -1,18 +1,29 @@
 var miControlador = miModulo.controller(
     "facturaNewController",
-    function ($scope, $http, $location, promesasService, auth, $location) {
+    function ($scope, $http, $location, promesasService, auth, $location, $routeParams) {
         if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');
         } else {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
-        }  
+            $scope.authLevel = auth.data.message.tipo_usuario_obj;
+        }
 
         $scope.controller = "facturaNewController";
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
+
+        if ($routeParams.user !== undefined) {
+            $scope.user_id = parseInt($routeParams.user);
+            promesasService.ajaxGet('usuario', $scope.user_id)
+                .then(function (response) {
+                    $scope.usuario_obj = response.data.message;
+                })
+        } else {
+            $scope.user_id = null;
+
+        }
 
         promesasService.ajaxCheck()
             .then(function (response) {
@@ -55,19 +66,17 @@ var miControlador = miModulo.controller(
                 });
         }
 
-        $scope.tipoUsuarioRefresh = function (f, consultar) {
+        $scope.usuarioRefresh = function (f, consultar) {
             var form = f;
             if ($scope.usuario_obj.id != null) {
                 if (consultar) {
-                    $http({
-                        method: 'GET',
-                        url: 'http://localhost:8081/trolleyes/json?ob=usuario&op=get&id=' + $scope.tipo_usuario_obj.id
-                    }).then(function (response) {
-                        $scope.usuario_obj = response.data.message;
-                        form.userForm.usuario_obj.$setValidity('valid', true);
-                    }, function () {
-                        form.userForm.usuario_obj.$setValidity('valid', false);
-                    });
+                    promesasService.ajaxGet('usuario', $scope.usuario_obj.id)
+                        .then(function (response) {
+                            $scope.usuario_obj = response.data.message;
+                            form.userForm.usuario_obj.$setValidity('valid', true);
+                        }, function () {
+                            form.userForm.usuario_obj.$setValidity('valid', false);
+                        });
                 } else {
                     form.userForm.usuario_obj.$setValidity('valid', true);
                 }
@@ -76,26 +85,6 @@ var miControlador = miModulo.controller(
             }
         };
 
-        promesasService.ajaxListCarrito()
-            .then(function successCallback(response) {
-                if (response.data.status != 200) {
-                    $scope.falloMensaje = response.data.message;
-                } else {
-                    $scope.status = response.data.status;
-                    $scope.pagina = response.data.message;
-                    if (response.data.message) {
-                        if (response.data.message.length == 0) {
-                            $scope.count = 0;
-                        } else {
-                            $scope.count = response.data.message.length;
-                        }
-                    } else {
-                        $scope.count = 0;
-                    }
-                }
-            }, function (response) {
-                $scope.mensaje = "Ha ocurrido un error";
-            });
         $scope.volver = function () {
             window.history.back();
         };

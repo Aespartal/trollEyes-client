@@ -1,6 +1,6 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="header shadow">
-    <h1><span class="font-weight-bold"><i class="fas fa-user"></i> Este es tu perfil @{{authUsername}} <i class="fas fa-eye"></i></span></h1>
+    <h1><span class="font-weight-bold context-menu"><i class="fas fa-user"></i> Este es tu perfil @{{authUsername}} <i class="fas fa-eye"></i></span></h1>
 </div>
 <div class="container">
     <div class="row">
@@ -34,7 +34,7 @@
                         </tr>
                         <tr ng-show="authLevel.id != 1">
                             <th>Tus facturas</th>
-                            <td class="align-middle"><a href="#!/factura/plist/10/1/{{authid}}">{{authFactura}}</a></td>
+                            <td class="align-middle"><a href="./factura/plist/10/1/{{authid}}">{{authFactura}}</a></td>
                         </tr>
                     </table>
                 </div>

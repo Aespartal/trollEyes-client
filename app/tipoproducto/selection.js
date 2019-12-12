@@ -45,8 +45,7 @@ function cController($http) {
 
 
     self.save = function (id, descripcion) {
-        self.obj.id = id;
-        self.obj.descripcion = descripcion;
+        self.obj = {id: id,descripcion: descripcion}
         self.onTipoproductoSet();
     };
     

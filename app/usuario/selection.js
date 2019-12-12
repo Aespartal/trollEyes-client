@@ -43,12 +43,10 @@ function cController($http) {
         self.data = response.data.message || 'Request failed';
     });
 
-
-    self.save = function (id, desc) {
-        self.obj.id = id;
-        self.obj.desc = desc;
-        self.onUsuarioSet();
+    self.save = function (id, nombre, apellido1) {
+        self.obj={id : id,nombre : nombre,apellido1 : apellido1};
     };
+
     
 
     self.update = function () {

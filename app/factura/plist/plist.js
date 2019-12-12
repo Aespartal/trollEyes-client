@@ -5,19 +5,31 @@ var miControlador = miModulo.controller(
         $scope.object = 'factura';
         if (auth.data.status != 200) {
             $location.path('/login');
-        } else {
-            $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
-            $scope.client = auth.data.message.tipo_usuario_obj["descripcion"];
-        }  
-          
+        }
+        $scope.authStatus = auth.data.status;
+        $scope.authUsername = auth.data.message.login;
+        $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+
         $scope.controller = "facturaPlistController";
+        $scope.tipo_usuario = auth.data.message.tipo_usuario_obj["id"];
+        $scope.client = auth.data.message.tipo_usuario_obj["descripcion"];
+    
+
+        if ($routeParams.user !== undefined) {
+            $scope.user_id = parseInt($routeParams.user);
+            $scope.filter = "usuario";
+        } else {
+            $scope.user_id = null;
+            $scope.filter = null;
+        }
+
+        if ($scope.tipo_usuario !== 1) $location.path('/');
+
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
+
         $scope.rppS = [10, 50, 100];
-        $scope.user_id = $routeParams.id;
-        $scope.filter = $routeParams.filter;
+
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;
 
@@ -39,29 +51,26 @@ var miControlador = miModulo.controller(
             url: request
         }).then(function (response) {
             $scope.status = response.data.status;
-            $scope.pagina = response.data.message;        
+            $scope.facturas = response.data.message;
+
         });
 
-        promesasService.ajaxListCarrito()
-            .then(function successCallback(response) {
-                if (response.data.status != 200) {
-                    $scope.falloMensaje = response.data.message;
+        if ($scope.user_id !== null) {
+            promesasService.ajaxGet("usuario", $scope.user_id).then((response) => {
+                user = response.data.message;
+                if (user === null) {
+                    $window.location.href = `./factura/plist/${$scope.rppActual}/1`;
                 } else {
-                    $scope.status = response.data.status;
-                    $scope.pagina = response.data.message;
-                    if (response.data.message) {
-                        if (response.data.message.length == 0) {
-                            $scope.count = 0;
-                        } else {
-                            $scope.count = response.data.message.length;
-                        }
+                    if ($scope.facturas && $scope.facturas.length) {
+                        $scope.facturas_empty = false;
                     } else {
-                        $scope.count = 0;
+                        $scope.facturas_empty = true;
                     }
+                    $scope.usuario = user.nombre + " " + user.apellido1 + " " + user.apellido2;
                 }
-            }, function (response) {
-                $scope.mensaje = "Ha ocurrido un error";
-            });
+
+            }
+        )};
 
         $scope.search = function () {
             promesasService.ajaxSearch($scope.object, $scope.rppActual, $scope.paginaActual, $scope.word)
@@ -96,9 +105,9 @@ var miControlador = miModulo.controller(
                 }
                 paginacion(2);
                 if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `#!/${$scope.object}/${$scope.rppActual}/${$scope.numPaginas}`;
+                    $window.location.href = `./${$scope.object}/${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `#!/${$scope.object}/${$scope.rppActual}/1`;
+                    $window.location.href = `./${$scope.object}/${$scope.rppActual}/1`;
                 }
             })
         } else {
@@ -115,9 +124,9 @@ var miControlador = miModulo.controller(
                 }
                 paginacion(2);
                 if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `#!/${$scope.object}/${$scope.rppActual}/${$scope.numPaginas}/${$scope.user_id}/${$scope.filter}`;
+                    $window.location.href = `./${$scope.object}/${$scope.rppActual}/${$scope.numPaginas}/${$scope.user_id}/${$scope.filter}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `#!/${$scope.object}/${$scope.rppActual}/1/${$scope.user_id}/${$scope.filter}`;
+                    $window.location.href = `./${$scope.object}/${$scope.rppActual}/1/${$scope.user_id}/${$scope.filter}`;
                 }
             })
         }
