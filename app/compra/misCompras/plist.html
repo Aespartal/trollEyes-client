@@ -17,8 +17,8 @@
                 <nav aria-label="Registros por página">
                     <ul class="pagination float-right">
                         <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
-                            <a class="page-link" href="./misCompras/plist/{{r}}/{{ calcPage[$index] }}/{{id_factura}}/{{filter}}">{{r}}</a>
-                        </li>
+                            <a class="page-link" href="./misCompras/plist/{{r}}/{{ calcPage[$index] }}?{{filter}}={{id_factura}}">{{r}}</a>
+                        </li>  <!--?factura={{ factura.id }}-->             
                     </ul>
                 </nav>
                 <nav aria-label="Paginación">
@@ -26,7 +26,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="./misCompras/plist/{{ rppActual }}/{{ p }}/{{id_factura}}/{{filter}}">{{p}}</a>
+                                href="./misCompras/plist/{{ rppActual }}/{{ p }}?{{filter}}={{id_factura}}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>
@@ -71,7 +71,7 @@
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
                             ng-repeat="p in botonera track by $index">
                             <a class="page-link" ng-if="p != '...'"
-                                href="./misCompras/plist/{{ rppActual }}/{{ p }}/{{id_factura}}/{{filter}}">{{p}}</a>
+                                href="./misCompras/plist/{{ rppActual }}/{{ p }}?{{filter}}={{id_factura}}">{{p}}</a>
                             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
                         </li>
                     </ul>

@@ -101,6 +101,16 @@
           </div>
         </div>
       </form>
+      <br>
+      <div>
+        <h3>Elige la imagen para subir al servidor </h3>
+        <form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">
+          <input type="file" file-model="myFile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" ng-model="foto">
+            <input type="submit" value="upload file" /><br/>
+        </form>          
+        <div id="spinner"></div>
+    </div>
+    <br>
       <div ng-show="!fallo&&hecho">
         <div class="alert alert-success text-center" role="alert">
           <h2>Se ha añadido un nuevo producto.</h2>

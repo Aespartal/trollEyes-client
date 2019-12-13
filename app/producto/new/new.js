@@ -29,11 +29,18 @@ var miControlador = miModulo.controller(
             })
 
         $scope.new = function () {
+            if($scope.myFile === undefined){
+                $scope.foto = "Default.png";
+            } else{
+                $scope.foto = guid()+$scope.myFile.name;
+                uploadPhoto($scope.foto);
+            }
+
             const datos = {
                 codigo: $scope.codigo,
                 existencias: $scope.existencias,
                 precio: $scope.precio,
-                imagen: $scope.imagen,
+                imagen: $scope.foto,
                 descripcion: $scope.descripcion,
                 tipo_producto_id: $scope.tipo_producto_obj.id
             }
@@ -59,11 +66,38 @@ var miControlador = miModulo.controller(
                 });
         }
 
+       function uploadPhoto(name) {
+            //Solucion mas cercana
+            //https://stackoverflow.com/questions/37039852/send-formdata-with-other-field-in-angular
+            var file = $scope.myFile;
+            file = new File([file], name, {type: file.type});
+            //Api FormData 
+            //https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData
+            var oFormData = new FormData();
+            oFormData.append('file', file);
+            $http({
+                headers: {'Content-Type': undefined},
+                method: 'POST',
+                data: oFormData,
+                url: `http://localhost:8081/trolleyes/json?ob=producto&op=addimage`
+            });
+        }
+
+        function guid() {
+            return "ss-s-s-s-sss".replace(/s/g, s4);
+        }
+
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+        }
+
         $scope.tipoProductoRefresh = function (f, consultar) {
             var form = f;
             if ($scope.tipo_producto_obj.id != null) {
                 if (consultar) {
-                    promesasService.ajaxGet('producto', $scope.tipo_producto_obj.id)
+                    promesasService.ajaxGet('tipo_producto', $scope.tipo_producto_obj.id)
                         .then(function (response) {
                             $scope.tipo_producto_obj = response.data.message;
                             form.userForm.tipo_producto_obj.$setValidity('valid', true);
@@ -85,4 +119,18 @@ var miControlador = miModulo.controller(
             $location.path('/home/12/1');
         };
     }
-)
+).directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function () {
+                scope.$apply(function () {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
