@@ -104,10 +104,10 @@
       <br>
       <div>
         <h3>Elige la imagen para subir al servidor </h3>
-        <form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">
-          <input type="file" file-model="myFile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" ng-model="foto">
-            <input type="submit" value="upload file" /><br/>
-        </form>          
+        <!--<form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">-->
+          <!--<input type="file" file-model="myFile" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" ng-model="foto">-->
+          <input type = "file" file-model = "myFile"/><br/>
+        <!--</form>-->  
         <div id="spinner"></div>
     </div>
     <br>

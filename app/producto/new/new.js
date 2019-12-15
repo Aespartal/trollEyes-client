@@ -30,7 +30,7 @@ var miControlador = miModulo.controller(
 
         $scope.new = function () {
             if($scope.myFile === undefined){
-                $scope.foto = "Default.png";
+                $scope.foto = "default.png";
             } else{
                 $scope.foto = guid()+$scope.myFile.name;
                 uploadPhoto($scope.foto);
@@ -67,12 +67,9 @@ var miControlador = miModulo.controller(
         }
 
        function uploadPhoto(name) {
-            //Solucion mas cercana
-            //https://stackoverflow.com/questions/37039852/send-formdata-with-other-field-in-angular
+
             var file = $scope.myFile;
             file = new File([file], name, {type: file.type});
-            //Api FormData 
-            //https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData
             var oFormData = new FormData();
             oFormData.append('file', file);
             $http({
@@ -81,9 +78,11 @@ var miControlador = miModulo.controller(
                 data: oFormData,
                 url: `http://localhost:8081/trolleyes/json?ob=producto&op=addimage`
             });
+
         }
 
         function guid() {
+
             return "ss-s-s-s-sss".replace(/s/g, s4);
         }
 
