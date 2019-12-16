@@ -1,6 +1,6 @@
 var miControlador = miModulo.controller(
     "login",
-    function ($scope, $location, promesasService, auth) {
+    function ($scope, $location, promesasService, auth, $auth) {
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
@@ -104,5 +104,14 @@ var miControlador = miModulo.controller(
 
                             });
         }
+
+        $scope.loginGoogle = function() {
+            $auth.authenticate('google')
+            .then(function(response){
+                console.log(response);
+            }).catch(function(response){
+                console.log(response);
+            });
+          };
     }
 )
