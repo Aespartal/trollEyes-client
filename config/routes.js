@@ -465,6 +465,14 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
+        .when('/singup', {
+            templateUrl: 'app/usuario/singup/singup.html', controller: 'singup', css: 'app/usuario/singup/singup.css',
+            resolve: {
+                auth: function (promesasService) {
+                    return promesasService.ajaxCheck();
+                },
+            }
+        })
         .when('/logout', {
             templateUrl: 'app/usuario/logout/logout.html', controller: 'logout',
             resolve: {
