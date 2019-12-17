@@ -35,6 +35,9 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="ast">
+                    <span class="ast-importante">*Solo puedes eliminar las facturas sin pedidos.</span>
+                </div>
                 <table class="table">
                     <tr>
                         <th>Id <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -78,10 +81,13 @@
                         <td>
                             <a href="./factura/view/{{factura.id}}"><i class="fa fa-eye"></i></a>
                             <a href="./factura/edit/{{factura.id}}"><i class="fa fa-edit"></i></a>
-                            <a href="./factura/remove/{{factura.id}}"><i class="fa fa-times"></i></a>
+                            <a ng-if="factura.canDelete==true" href="./factura/remove/{{factura.id}}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                 </table>
+                <div class="text-center" ng-show="facturas.length == 0">
+                        <span>No hay facturas.</span>
+                </div>
                 <nav aria-label="Paginación">
                     <ul class="pagination">
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"

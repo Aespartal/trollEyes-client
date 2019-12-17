@@ -79,6 +79,9 @@
                         </td>
                     </tr>
                 </table>
+                <div class="text-center" ng-show="pagina.length == 0">
+                        <span>No hay facturas.</span>
+                </div>
                 <nav aria-label="Paginación">
                     <ul class="pagination">
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"

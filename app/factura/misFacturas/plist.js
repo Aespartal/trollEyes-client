@@ -3,21 +3,23 @@ var miControlador = miModulo.controller(
     //-----------------------------lISTA DE FACTURAS---------------------------------
     function ($scope, $routeParams, $http, promesasService, $window, auth,$location) {
         $scope.object = 'factura';
+
         if (auth.data.status != 200) {
             $location.path('/login');
-        } else {
-            $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message.login;
-            $scope.authLevel =  auth.data.message.tipo_usuario_obj;
-            $scope.client = auth.data.message.tipo_usuario_obj["descripcion"];
-        }  
+        }
+
+        $scope.authStatus = auth.data.status;
+        $scope.authUsername = auth.data.message.login;
+        $scope.authLevel =  auth.data.message.tipo_usuario_obj;
+        $scope.client = auth.data.message.tipo_usuario_obj["descripcion"];
           
         $scope.controller = "misFacturasController";
+
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
+
         $scope.rppS = [10, 50, 100];
-        // $scope.user_id = $routeParams.id;
-        // $scope.filter = $routeParams.filter;
+
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;
 
@@ -95,7 +97,7 @@ var miControlador = miModulo.controller(
                     $scope.calcPage.push(Math.ceil(res * next));
                 }
                 paginacion(2);
-                if ($scope.paginaActual > $scope.numPaginas) {
+                if ($scope.paginaActual > $scope.numPaginas && $scope.numPaginas != 0) {
                     $window.location.href = `./${$scope.object}/${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
                     $window.location.href = `./${$scope.object}/${$scope.rppActual}/1`;

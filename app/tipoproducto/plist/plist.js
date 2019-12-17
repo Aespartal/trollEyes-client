@@ -1,19 +1,21 @@
 var miControlador = miModulo.controller(
     "tipoproductoPlistController",
     function ($scope, $routeParams, $http, promesasService, $window, auth, $location) {
-
+        
         if (auth.data.status != 200) {
             $location.path('/login');
-        } else {
-            $scope.authStatus = auth.data.status;
-            $scope.authUsername = auth.data.message.login;
-            $scope.authLevel = auth.data.message.tipo_usuario_obj;
         }
+        $scope.controller = "tipoproductoPlistController";    
+
+        $scope.authStatus = auth.data.status;
+        $scope.authUsername = auth.data.message.login;
+        $scope.authLevel = auth.data.message.tipo_usuario_obj;
 
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
+
         $scope.rppS = [10, 50, 100];
-        $scope.controller = "tipoproductoPlistController";
+
         $scope.colOrder = $routeParams.colOrder;
         $scope.order = $routeParams.order;
 
@@ -23,7 +25,6 @@ var miControlador = miModulo.controller(
             request = "http://localhost:8081/trolleyes/json?ob=tipo_producto&op=getpage&rpp=" + $scope.rppActual + "&page=" + $scope.paginaActual + "&order=" + $scope.colOrder + "," + $scope.order
         }
 
-
         $http({
             method: "GET",
             withCredentials: true,
@@ -32,10 +33,6 @@ var miControlador = miModulo.controller(
             $scope.status = response.data.status;
             $scope.pagina = response.data.message;
         });
-
-        $scope.showSelectValue = function (mySelect) {
-            $window.location.href = `/trollEyes-client/./tipo_producto/plist/` + mySelect + `/1`;
-        }
 
         $scope.search = function () {
             promesasService.ajaxSearch('tipo_producto', $scope.rppActual, $scope.paginaActual, $scope.word)
@@ -68,32 +65,12 @@ var miControlador = miModulo.controller(
                     $scope.calcPage.push(Math.ceil(res * next));
                 }
                 paginacion(2);
-                if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `./home/${$scope.rppActual}/${$scope.numPaginas}`;
+                if ($scope.paginaActual > $scope.numPaginas && $scope.numPaginas != 0) {
+                    $window.location.href = `./tipoproducto/${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `./home/${$scope.rppActual}/1`;
+                    $window.location.href = `./tipoproducto/${$scope.rppActual}/1`;
                 }
             })
-            promesasService.ajaxListCarrito()
-            .then(function successCallback(response) {
-                if (response.data.status != 200) {
-                    $scope.falloMensaje = response.data.message;
-                } else {
-                    $scope.status = response.data.status;
-                    $scope.pagina = response.data.message;
-                    if (response.data.message) {
-                        if (response.data.message.length == 0) {
-                            $scope.count = 0;
-                        } else {
-                            $scope.count = response.data.message.length;
-                        }
-                    } else {
-                        $scope.count = 0;
-                    }
-                }
-            }, function (response) {
-                $scope.mensaje = "Ha ocurrido un error";
-            });
         function paginacion(vecindad) {
             vecindad++;
             $scope.botonera = [];

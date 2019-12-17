@@ -340,3 +340,14 @@ section.container-posts {
 .footer-copyright.py-3 a {
     color: white;
 }
+
+.ast{
+    width: 100%;
+    height:auto;
+    float: right;
+    text-align: right;
+}
+.ast-importante{
+    font-size: 15px;
+    font-style: italic;
+}

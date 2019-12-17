@@ -86,7 +86,7 @@ var miControlador = miModulo.controller(
                     $scope.calcPage.push(Math.ceil(res * next));
                 }
                 paginacion(2);
-                if ($scope.paginaActual > $scope.numPaginas) {
+                if ($scope.paginaActual > $scope.numPaginas && $scope.numPaginas != 0) {
                     $window.location.href = `./compra/${$scope.rppActual}/${$scope.numPaginas}/${$scope.id_factura}/${$scope.filter}`;
                 } else if ($routeParams.page < 1) {
                     $window.location.href = `./compra/${$scope.rppActual}/1/${$scope.id_factura}/${$scope.filter}`;

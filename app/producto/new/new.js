@@ -35,7 +35,7 @@ var miControlador = miModulo.controller(
                 $scope.foto = guid()+$scope.myFile.name;
                 uploadPhoto($scope.foto);
             }
-
+            $("#spinner").append('<img src="./img/spinner.gif"></div>');
             const datos = {
                 codigo: $scope.codigo,
                 existencias: $scope.existencias,
@@ -50,6 +50,7 @@ var miControlador = miModulo.controller(
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
             promesasService.ajaxNew('producto', { params: jsonToSend })
                 .then(function successCallback(response) {
+                    $("#spinner").empty().append(response);
                     if (response.data.status != 200) {
                         $scope.fallo = true;
                         $scope.falloMensaje = response.data.response;
@@ -59,6 +60,7 @@ var miControlador = miModulo.controller(
                     }
                     $scope.hecho = true;
                 }, function (error) {
+                    $("#spinner").empty().append(response);
                     $scope.hecho = true;
                     $scope.fallo = true;
                     $scope.falloMensaje = error.message + " " + error.stack;

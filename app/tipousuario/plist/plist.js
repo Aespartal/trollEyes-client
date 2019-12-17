@@ -68,10 +68,10 @@ var miControlador = miModulo.controller(
                     $scope.calcPage.push(Math.ceil(res * next));
                 }
                 paginacion(2);
-                if ($scope.paginaActual > $scope.numPaginas) {
-                    $window.location.href = `./home/${$scope.rppActual}/${$scope.numPaginas}`;
+                if ($scope.paginaActual > $scope.numPaginas && $scope.numPaginas != 0) {
+                    $window.location.href = `./tipousuario/${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
-                    $window.location.href = `./home/${$scope.rppActual}/1`;
+                    $window.location.href = `./tipousuario/${$scope.rppActual}/1`;
                 }
             })
 

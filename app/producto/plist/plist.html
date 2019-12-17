@@ -31,6 +31,9 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="ast">
+                    <span class="ast-importante">*Solo puedes eliminar los productos que no están en pedidos.</span>
+                </div>
                 <table class="table">
                     <tr>
                         <div>
@@ -90,15 +93,16 @@
                         <td><a
                                 href="./tipoproducto/view/{{fila.tipo_producto_obj.id}}">{{fila.tipo_producto_obj.descripcion}}</a>
                         </td>
-                        <!--<td>{{ fila.fecha | stringToDate | date : "dd/MM/yyyy"}}</td>-->
                         <td>
                             <a href="./producto/view/{{fila.id}}"><i class="fa fa-eye"></i></a>
                             <a href="./producto/edit/{{fila.id}}"><i class="fa fa-edit"></i></a>
-                            <a href="./producto/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
+                            <a ng-if="fila.canDelete==true" href="./producto/remove/{{fila.id}}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
-
                 </table>
+                <div class="text-center" ng-show="pagina.length == 0">
+                        <span>No hay productos.</span>
+                </div>
                 <nav aria-label="Paginación">
                     <ul class="pagination">
                         <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"

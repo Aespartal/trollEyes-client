@@ -28,7 +28,7 @@ var miControlador = miModulo.controller(
                 $scope.numPaginas = Math.ceil($scope.numRegistros / $scope.rppActual);
 
                 paginacion(2);
-                if ($scope.paginaActual > $scope.numPaginas) {
+                if ($scope.paginaActual > $scope.numPaginas && $scope.numPaginas != 0) {
                     $window.location.href = `./${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
                     $window.location.href = `./${$scope.rppActual}/1`;

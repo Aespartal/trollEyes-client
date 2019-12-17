@@ -8,13 +8,14 @@
   <div class="row">
     <div class="col-md-12">
       <h1 class="text-center font-weight-bold">NUESTROS PRODUCTOS</h1>
-      <section class="container-posts">
+      <section ng-show="pagina.length > 0" class="container-posts">
         <div class="card" ng-repeat="fila in pagina">
+
           <div class="card-body">
             <div class="card-body-product">
                 <div class="card_img">
                     <a class="card_img_link" href="./producto/view/{{fila.id}}">
-                      <img class="image" src="http://localhost:8081//imagenes/{{fila.imagen}}">
+                      <img class="image" ng-src="http://localhost:8081//imagenes/{{fila.imagen}}">
                     </a>
                   </div>
                   <h2 class="card-title">{{fila.descripcion}}</h5>
@@ -28,7 +29,13 @@
                 ng-show="authLevel.id == 1">Editar Producto</a>
             </div>   
           </div>
+
         </div>
+
+      </section>
+
+      <section class="text-center" ng-show="pagina.length == 0" class="container-posts">
+            <span>No hay productos.</span>
       </section>
     </div>
     <nav aria-label="Paginación">

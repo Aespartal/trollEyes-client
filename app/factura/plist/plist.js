@@ -56,7 +56,8 @@ var miControlador = miModulo.controller(
         });
 
         if ($scope.user_id !== null) {
-            promesasService.ajaxGet("usuario", $scope.user_id).then((response) => {
+            promesasService.ajaxGet("usuario", $scope.user_id)
+            .then((response) => {
                 user = response.data.message;
                 if (user === null) {
                     $window.location.href = `./factura/plist/${$scope.rppActual}/1`;
@@ -104,7 +105,7 @@ var miControlador = miModulo.controller(
                     $scope.calcPage.push(Math.ceil(res * next));
                 }
                 paginacion(2);
-                if ($scope.paginaActual > $scope.numPaginas) {
+                if ($scope.paginaActual > $scope.numPaginas && $scope.numPaginas != 0) {
                     $window.location.href = `./${$scope.object}/${$scope.rppActual}/${$scope.numPaginas}`;
                 } else if ($routeParams.page < 1) {
                     $window.location.href = `./${$scope.object}/${$scope.rppActual}/1`;
