@@ -34,6 +34,9 @@ miModulo.factory('promesasService', ['$http',
             ajaxLogin: function (username, password) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=login&username=' + username + '&password=' + forge_sha256(password));
             },
+            ajaxGoogleLogin: function (googleUser) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=login&token=' + googleUser.getAuthResponse().id_token);
+            },
             ajaxLogout: function () {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=logout');
             },

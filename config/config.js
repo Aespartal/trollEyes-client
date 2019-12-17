@@ -31,20 +31,11 @@ miModulo.config(function ($mdDateLocaleProvider) {
   };
 });
 
-miModulo.config(function ($authProvider){
-  $authProvider.httpInterceptor = false;
-  $authProvider.google({
-    clientId: '797685668265-d6m9g3nr3f0l996p0sjmeo4riaicitks.apps.googleusercontent.com',
-    url: 'http://localhost:8081/trolleyes/json',
-    authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
-    redirectUri: window.location.origin,
-    requiredUrlParams: ['scope'],
-    optionalUrlParams: ['display'],
-    scope: ['profile', 'email'],
-    scopePrefix: 'openid',
-    scopeDelimiter: ' ',
-    display: 'popup',
-    oauthType: '2.0',
-    popupOptions: { width: 452, height: 633 }
+miModulo.config(function () {
+  gapi.load('auth2', function () {
+    gapi.auth2.init({
+      client_id: '797685668265-ih234de2qh7snar06qlf89k17bjftago.apps.googleusercontent.com'
+    });
   });
+
 });

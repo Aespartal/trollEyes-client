@@ -1,6 +1,6 @@
 var miControlador = miModulo.controller(
     "login",
-    function ($scope, $location, promesasService, auth, $auth) {
+    function ($scope, $location, promesasService, auth) {
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
@@ -36,24 +36,24 @@ var miControlador = miModulo.controller(
             });
         $scope.login = function () {
             if ($scope.username != undefined && $scope.password != undefined) {
-                        promesasService.ajaxLogin($scope.username, $scope.password)
-                            .then(function (response) {
-                                if (response.data.status != 200) {
-                                    $scope.fallo = true;
-                                    $scope.falloMensaje = response.data.message;
-                                } else {
-                                    $scope.session = true;
-                                    $scope.fallo = false;
-                                    $location.path("/home/12/1");
-                                }
-                                $scope.hecho = true;
-                            }, function (error) {
-                                $scope.session = false;
-                                $scope.hecho = true;
-                                $scope.fallo = true;
-                                $scope.falloMensaje = error.message + " " + error.stack;
+                promesasService.ajaxLogin($scope.username, $scope.password)
+                    .then(function (response) {
+                        if (response.data.status != 200) {
+                            $scope.fallo = true;
+                            $scope.falloMensaje = response.data.message;
+                        } else {
+                            $scope.session = true;
+                            $scope.fallo = false;
+                            $location.path("/home/12/1");
+                        }
+                        $scope.hecho = true;
+                    }, function (error) {
+                        $scope.session = false;
+                        $scope.hecho = true;
+                        $scope.fallo = true;
+                        $scope.falloMensaje = error.message + " " + error.stack;
 
-                            });
+                    });
             } else {
                 $scope.fallo = true;
                 $scope.falloMensaje = "Los campos no pueden estar vacios. ";
@@ -63,55 +63,55 @@ var miControlador = miModulo.controller(
         $scope.loginAd = function () {
             $scope.username = "trolleyes";
             $scope.password = "trolleyes";
-                        promesasService.ajaxLogin($scope.username, $scope.password)
-                            .then(function (response) {
-                                if (response.data.status != 200) {
-                                    $scope.fallo = true;
-                                    $scope.falloMensaje = response.data.message;
-                                } else {
-                                    $scope.session = true;
-                                    $scope.fallo = false;
-                                    $location.path("/home/12/1");
-                                }
-                                $scope.hecho = true;
-                            }, function (error) {
-                                $scope.session = false;
-                                $scope.hecho = true;
-                                $scope.fallo = true;
-                                $scope.falloMensaje = error.message + " " + error.stack;
+            promesasService.ajaxLogin($scope.username, $scope.password)
+                .then(function (response) {
+                    if (response.data.status != 200) {
+                        $scope.fallo = true;
+                        $scope.falloMensaje = response.data.message;
+                    } else {
+                        $scope.session = true;
+                        $scope.fallo = false;
+                        $location.path("/home/12/1");
+                    }
+                    $scope.hecho = true;
+                }, function (error) {
+                    $scope.session = false;
+                    $scope.hecho = true;
+                    $scope.fallo = true;
+                    $scope.falloMensaje = error.message + " " + error.stack;
 
-                            });
+                });
         }
         $scope.loginCli = function () {
             $scope.username = "madepa5597";
             $scope.password = "trolleyes";
-                        promesasService.ajaxLogin($scope.username, $scope.password)
-                            .then(function (response) {
-                                if (response.data.status != 200) {
-                                    $scope.fallo = true;
-                                    $scope.falloMensaje = response.data.message;
-                                } else {
-                                    $scope.session = true;
-                                    $scope.fallo = false;
-                                    $location.path("/home/12/1");
-                                }
-                                $scope.hecho = true;
-                            }, function (error) {
-                                $scope.session = false;
-                                $scope.hecho = true;
-                                $scope.fallo = true;
-                                $scope.falloMensaje = error.message + " " + error.stack;
+            promesasService.ajaxLogin($scope.username, $scope.password)
+                .then(function (response) {
+                    if (response.data.status != 200) {
+                        $scope.fallo = true;
+                        $scope.falloMensaje = response.data.message;
+                    } else {
+                        $scope.session = true;
+                        $scope.fallo = false;
+                        $location.path("/home/12/1");
+                    }
+                    $scope.hecho = true;
+                }, function (error) {
+                    $scope.session = false;
+                    $scope.hecho = true;
+                    $scope.fallo = true;
+                    $scope.falloMensaje = error.message + " " + error.stack;
 
-                            });
+                });
         }
 
-        $scope.loginGoogle = function() {
-            $auth.authenticate('google')
-            .then(function(response){
-                console.log(response);
-            }).catch(function(response){
-                console.log(response);
+        $scope.loginGoogle = function () {
+            var GoogleAuth = gapi.auth2.getAuthInstance();
+            GoogleAuth.signIn().then((googleUser) => {
+                promesasService.ajaxGoogleLogin(googleUser);
+            }).catch((error) => {
+                console.log(error);
             });
-          };
+        }
     }
-)
+);

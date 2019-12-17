@@ -2,8 +2,7 @@ var miModulo = angular.module("TrollEyesApp", [
     'ngRoute',
     'angularCSS',
     'components',
-    'ngMaterial',
-    'satellizer'
+    'ngMaterial'
 ]);
 
 var moduleComponent = angular.module('components', []);
