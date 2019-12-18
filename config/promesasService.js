@@ -38,6 +38,7 @@ miModulo.factory('promesasService', ['$http',
                 return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=login&token=' + googleUser.getAuthResponse().id_token);
             },
             ajaxLogout: function () {
+                gapi.auth2.getAuthInstance().signOut();
                 return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=logout');
             },
             ajaxCheck: function () {
