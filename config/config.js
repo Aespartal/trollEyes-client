@@ -29,5 +29,13 @@ miModulo.config(function ($mdDateLocaleProvider) {
   $mdDateLocaleProvider.formatDate = function (date) {
     return moment(date).format('DD-MM-YYYY');
   };
-
 })
+
+miModulo.config(function () {
+  gapi.load('auth2', function () {
+    gapi.auth2.init({
+      client_id: '797685668265-ih234de2qh7snar06qlf89k17bjftago.apps.googleusercontent.com'
+    });
+  });
+
+});

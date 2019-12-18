@@ -28,13 +28,18 @@ miModulo.factory('promesasService', ['$http',
                 }
                 return $http.get(url);
             },
+
             ajaxRemove: function (objeto, id) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=' + objeto + '&op=remove&id=' + id);
             },
             ajaxLogin: function (username, password) {
                 return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=login&username=' + username + '&password=' + forge_sha256(password));
             },
+            ajaxGoogleLogin: function (googleUser) {
+                return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=login&token=' + googleUser.getAuthResponse().id_token);
+            },
             ajaxLogout: function () {
+                gapi.auth2.getAuthInstance().signOut();
                 return $http.get('http://localhost:8081/trolleyes/json?ob=usuario&op=logout');
             },
             ajaxCheck: function () {
