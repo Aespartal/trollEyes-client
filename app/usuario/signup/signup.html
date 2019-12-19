@@ -1,11 +1,11 @@
 <ng-include src="'app/menu.html'"></ng-include>
 <div class="form-center">
-    <div class="singup-container">
-        <div class="singup-top">
-            <img class="singup-img" src="" alt="">
-            <h2 class="singup-title">Regis<span>Troll</span></h2>
+    <div class="signup-container">
+        <div class="signup-top">
+            <img class="signup-img" src="" alt="">
+            <h2 class="signup-title">Regis<span>Troll</span></h2>
         </div>
-        <form name="userForm" class="singup-form col-xs-12" style="height: 400px;">
+        <form name="userForm" class="signup-form col-xs-12" style="height: 400px;">
             <input type="text" class="form-control" name="email" ng-model="email"
                 ng-class="{ 'is-invalid' : userForm.email.$invalid && !userForm.email.$pristine }" id="Email"
                 aria-describedby="Usuario" placeholder="&#x0040; email" ng-required="true">
@@ -65,7 +65,7 @@
                 Error: {{falloMensaje}}
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-1" ng-click="singup()">Registrarse <i
+                <button type="submit" class="btn btn-primary btn-1" ng-click="signup()">Registrarse <i
                         class="fas fa-sign-in-alt"></i></button>
             </div>
             <br>

@@ -1,10 +1,10 @@
 var miControlador = miModulo.controller(
-    "singup",
+    "signup",
     function ($scope, $location, promesasService, auth) {
         $scope.fallo = false;
         $scope.hecho = false;
         $scope.falloMensaje = "";
-        $scope.controller = "singup";
+        $scope.controller = "signup";
         if (auth.data.status == 200) {
             $location.path('/');
         } else {
@@ -34,7 +34,7 @@ var miControlador = miModulo.controller(
             }, function (response) {
                 $scope.mensaje = "Ha ocurrido un error";
             });
-        $scope.singup = function () {
+        $scope.signup = function () {
             if ($scope.email != undefined && $scope.username != undefined && $scope.password != undefined && $scope.dni != undefined && $scope.nombre != undefined && $scope.apellido1 != undefined && $scope.apellido2 != undefined) {
                 promesasService.ajaxSignup($scope.email, $scope.username, $scope.password, $scope.dni, $scope.nombre, $scope.apellido1, $scope.apellido2)
                     .then(function (response) {

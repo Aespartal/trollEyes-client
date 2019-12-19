@@ -465,8 +465,8 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
-        .when('/singup', {
-            templateUrl: 'app/usuario/singup/singup.html', controller: 'singup', css: 'app/usuario/singup/singup.css',
+        .when('/signup', {
+            templateUrl: 'app/usuario/signup/signup.html', controller: 'signup', css: 'app/usuario/signup/signup.css',
             resolve: {
                 auth: function (promesasService) {
                     return promesasService.ajaxCheck();

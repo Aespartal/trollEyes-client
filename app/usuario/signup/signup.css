@@ -6,7 +6,7 @@
     background-color: rgb(255, 255, 255);
 }
 
-.singup-container {
+.signup-container {
     background-color: rgb(255, 255, 255);
     width: 350px;
     border-top: solid .5rem #316280;
@@ -15,26 +15,26 @@
     box-shadow: 0 0 .5rem #8A8C8C;
 }
 
-.singup-top {
+.signup-top {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.singup-title {
+.signup-title {
     color: #8A8C8C;
 }
 
-.singup-title span {
+.signup-title span {
     color: #316280;
 }
 
-.singup-img {
+.signup-img {
     width: 8rem;
     border-radius: 50%;
 }
 
-.singup-form {
+.signup-form {
     display: flex;
     flex-direction: column;
     padding: 0rem 2rem 0;
