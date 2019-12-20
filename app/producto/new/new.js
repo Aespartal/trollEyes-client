@@ -2,7 +2,7 @@ var miControlador = miModulo.controller(
     "productoNewController",
 
     function ($scope, $http, $location, promesasService, auth,$routeParams) {
-        
+        $scope.object = "producto";
         if (auth.data.status != 200 || auth.data.message.tipo_usuario_obj.id == 2) {
             $location.path('/login');
         } else {
@@ -48,7 +48,7 @@ var miControlador = miModulo.controller(
                 data: JSON.stringify(datos)
             };
             $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            promesasService.ajaxNew('producto', { params: jsonToSend })
+            promesasService.ajaxNew($scope.object, { params: jsonToSend })
                 .then(function successCallback(response) {
                     $("#spinner").empty().append(response);
                     if (response.data.status != 200) {
@@ -78,7 +78,7 @@ var miControlador = miModulo.controller(
                 headers: {'Content-Type': undefined},
                 method: 'POST',
                 data: oFormData,
-                url: `http://localhost:8081/trolleyes/json?ob=producto&op=addimage`
+                url: `http://localhost:8081/trolleyes/json?ob=${$scope.object}&op=addimage`
             });
 
         }
@@ -117,7 +117,7 @@ var miControlador = miModulo.controller(
             window.history.back();
         };
         $scope.cerrar = function () {
-            $location.path('/home/12/1');
+            $location.path('/');
         };
     }
 ).directive('fileModel', ['$parse', function ($parse) {

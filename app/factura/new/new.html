@@ -82,7 +82,7 @@
         <br>
         <div class="row">
           <div class="col text-center">
-            <button type="button" class="btn btn-primary" ng-click="new()">Crear factura</button>
+            <button type="button" class="btn btn-primary" ng-disabled="!userForm.$valid" ng-click="new()">Crear factura</button>
           </div>
         </div>
       </form>

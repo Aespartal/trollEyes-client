@@ -255,25 +255,6 @@ miModulo.config(['$routeProvider',
                 },
             }
         })
-        //-------factura------------------------
-        // .when('/factura/plist/:rpp/:page/:id?', {
-        //     templateUrl: 'app/factura/plist/plist.html',
-        //     controller: 'facturaPlistController',
-        //     resolve: {
-        //         auth: function (promesasService) {
-        //             return promesasService.ajaxCheck();
-        //         }
-        //     }
-        // })
-        // .when('/factura/plist/:rpp/:page/:id/:filter', {
-        //     templateUrl: 'app/factura/plist/plist.html',
-        //     controller: 'facturaPlistController',
-        //     resolve: {
-        //         auth: function (promesasService) {
-        //             return promesasService.ajaxCheck();
-        //         }
-        //     }
-        // })
         .when('/factura/plist/:rpp/:page/:colOrder?/:order?', {
             templateUrl: 'app/factura/plist/plist.html',
             controller: 'facturaPlistController',
