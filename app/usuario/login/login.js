@@ -44,7 +44,7 @@ var miControlador = miModulo.controller(
                             } else {
                                 $scope.session = true;
                                 $scope.fallo = false;
-                                $location.path("/home/12/1");
+                                $location.path("/");
                             }
                             $scope.hecho = true;
                         }, function (error) {
@@ -71,7 +71,7 @@ var miControlador = miModulo.controller(
                         } else {
                             $scope.session = true;
                             $scope.fallo = false;
-                            $location.path("/home/12/1");
+                            $location.path("/");
                         }
                         $scope.hecho = true;
                     }, function (error) {
@@ -93,7 +93,7 @@ var miControlador = miModulo.controller(
                         } else {
                             $scope.session = true;
                             $scope.fallo = false;
-                            $location.path("/home/12/1");
+                            $location.path("/");
                         }
                         $scope.hecho = true;
                     }, function (error) {
@@ -107,7 +107,16 @@ var miControlador = miModulo.controller(
             $scope.loginGoogle = function () {
                 var GoogleAuth = gapi.auth2.getAuthInstance();
                 GoogleAuth.signIn().then((googleUser) => {
-                    promesasService.ajaxGoogleLogin(googleUser);
+                    promesasService.ajaxGoogleLogin(googleUser)
+                    .then(function (response) {
+                            $location.path("/");
+                    }, function (error) {
+                        $scope.session = false;
+                        $scope.hecho = true;
+                        $scope.fallo = true;
+                        $scope.falloMensaje = error.message + " " + error.stack;
+
+                    });
                 }).catch((error) => {
                     console.log(error);
                 });

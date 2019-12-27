@@ -34,7 +34,7 @@ miModulo.config(function ($mdDateLocaleProvider) {
 miModulo.config(function () {
   gapi.load('auth2', function () {
     gapi.auth2.init({
-      client_id: '797685668265-ih234de2qh7snar06qlf89k17bjftago.apps.googleusercontent.com'
+      client_id: '217071584820-iu9ks9m7alnc8jpbbm9if66ipitcm6hk.apps.googleusercontent.com'
     });
   });
 
